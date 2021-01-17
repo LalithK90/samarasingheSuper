@@ -80,7 +80,7 @@ public class InvoiceController {
     //send not expired and not zero quantity
     model.addAttribute("ledgers", ledgerService.findAll()
         .stream()
-        .filter(x -> 0 < Integer.parseInt(x.getQuantity()) && x.getExpiredDate().isBefore(LocalDate.now()))
+        .filter(x -> 0 < Integer.parseInt(x.getQuantity()) && x.getExpiredDate().isAfter(LocalDate.now()))
         .collect(Collectors.toList()));
     return "invoice/addInvoice";
   }
