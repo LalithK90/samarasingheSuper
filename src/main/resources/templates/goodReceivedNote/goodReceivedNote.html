@@ -35,6 +35,7 @@
                 <th> Supplier</th>
                 <th> Priority</th>
                 <th> Amount</th>
+                <th> Created By</th>
                 <th> Created Date</th>
                 <th> Modify</th>
             </tr>
@@ -46,6 +47,7 @@
                 <th data-th-text="${purchaseOrder.supplier.name}"></th>
                 <th data-th-text="${purchaseOrder.purchaseOrderPriority.purchaseOrderPriority}"></th>
                 <th data-th-text="${purchaseOrder.price}"></th>
+                <th data-th-text="${purchaseOrder.createdBy}"></th>
                 <th data-th-text="${{purchaseOrder.createdAt}}"></th>
                 <th>
                     <a  data-th-href="${'/purchaseOrder/view/' + purchaseOrder.id}"
