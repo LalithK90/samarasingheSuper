@@ -157,13 +157,15 @@
           <th > Index</th >
           <th > User Name</th >
           <th >Payment Count</th >
+          <th >Total Payment Value</th >
         </tr >
         </thead >
         <tbody >
-        <tr data-th-each="invoiceCashier, rowCount : ${invoiceByCashierAndTotalAmount}" >
+        <tr data-th-each="invoiceCashier, rowCount : ${paymentByUserAndTotalAmount}" >
           <th data-th-text="${rowCount.count}" ></th >
           <th data-th-text="${invoiceCashier.name}" ></th >
           <th data-th-text="${invoiceCashier.count}" ></th >
+          <th data-th-text="${invoiceCashier.total}" ></th >
         </tr >
         </tbody >
       </table >

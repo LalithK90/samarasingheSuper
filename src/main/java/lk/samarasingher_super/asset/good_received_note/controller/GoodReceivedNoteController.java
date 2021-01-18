@@ -1,5 +1,6 @@
 package lk.samarasingher_super.asset.good_received_note.controller;
 
+import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
 import lk.samarasingher_super.asset.purchase_order.entity.enums.PurchaseOrderStatus;
 import lk.samarasingher_super.asset.purchase_order.entity.PurchaseOrder;
 import lk.samarasingher_super.asset.purchase_order.service.PurchaseOrderService;
@@ -68,6 +69,7 @@ public class GoodReceivedNoteController {
                     ledgers.add(ledgerDB);
                 } else {
                     ledger.setGoodReceivedNote(goodReceivedNote);
+                    ledger.setLiveDead(LiveDead.ACTIVE);
                     ledgers.add(ledger);
                 }
             }

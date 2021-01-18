@@ -82,7 +82,7 @@ public class ReportController {
         invoices.stream().filter(x -> x.getPaymentMethod().equals(PaymentMethod.CASH)).collect(Collectors.toList());
     int invoiceCashCount = invoiceCash.size();
     AtomicReference< BigDecimal > invoiceCashAmount = new AtomicReference<>(BigDecimal.ZERO);
-    invoiceCards.forEach(x -> {
+    invoiceCash.forEach(x -> {
       BigDecimal addAmount = operatorService.addition(invoiceCashAmount.get(), x.getTotalAmount());
       invoiceCashAmount.set(addAmount);
     });
@@ -130,13 +130,37 @@ public class ReportController {
           invoices.stream().filter(a -> a.getCreatedBy().equals(x)).collect(Collectors.toList());
       nameCount.setCount(cashierInvoice.size());
       cashierInvoice.forEach(a -> {
-        BigDecimal addAmount = operatorService.addition(paymentCashAmount.get(), a.getTotalAmount());
-        paymentCashAmount.set(addAmount);
+        BigDecimal addAmount = operatorService.addition(cashierTotalCount.get(), a.getTotalAmount());
+        cashierTotalCount.set(addAmount);
       });
       nameCount.setTotal(cashierTotalCount.get());
       invoiceByCashierAndTotalAmount.add(nameCount);
     });
+
     model.addAttribute("invoiceByCashierAndTotalAmount", invoiceByCashierAndTotalAmount);
+    // invoice count by cashier
+    List< NameCount > paymentByUserAndTotalAmount = new ArrayList<>();
+//name, count, total
+    HashSet< String > createdByAllPayment = new HashSet<>();
+    payments.forEach(x -> createdByAllPayment.add(x.getCreatedBy()));
+
+    createdByAllPayment.forEach(x -> {
+      NameCount nameCount = new NameCount();
+      Employee employee = userService.findByUserName(x).getEmployee();
+      nameCount.setName(employee.getTitle().getTitle() + " " + employee.getName());
+      AtomicReference< BigDecimal > userTotalCount = new AtomicReference<>(BigDecimal.ZERO);
+      List< Payment > paymentUser =
+          payments.stream().filter(a -> a.getCreatedBy().equals(x)).collect(Collectors.toList());
+      nameCount.setCount(paymentUser.size());
+      paymentUser.forEach(a -> {
+        BigDecimal addAmount = operatorService.addition(userTotalCount.get(), a.getAmount());
+        userTotalCount.set(addAmount);
+      });
+      nameCount.setTotal(userTotalCount.get());
+      paymentByUserAndTotalAmount.add(nameCount);
+    });
+
+    model.addAttribute("paymentByUserAndTotalAmount", paymentByUserAndTotalAmount);
     // item count according to item
     HashSet< Item > invoiceItems = new HashSet<>();
 
@@ -155,6 +179,7 @@ public class ReportController {
       itemNameAndItemCount.add(parameterCount);
     });
     model.addAttribute("itemNameAndItemCount", itemNameAndItemCount);
+
     model.addAttribute("message", message);
     return "report/paymentAndIncomeReport";
   }
