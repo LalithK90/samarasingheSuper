@@ -1,6 +1,7 @@
 package lk.samarasingher_super.asset.payment.controller;
 
 
+import lk.samarasingher_super.asset.common_asset.model.TwoDate;
 import lk.samarasingher_super.asset.purchase_order.entity.enums.PurchaseOrderStatus;
 import lk.samarasingher_super.asset.purchase_order.entity.PurchaseOrder;
 import lk.samarasingher_super.asset.purchase_order.service.PurchaseOrderService;
@@ -80,10 +81,9 @@ public class PaymentController {
     return commonMethod(purchaseOrdersDB, model);
   }
 
-  @GetMapping( "/search" )
-  public String getAllPurchaseOrderToPayBetweenTwoDate(@RequestAttribute( "startDate" ) LocalDate startDate,
-                                                       @RequestAttribute( "endDate" ) LocalDate endDate, Model model) {
-    return commonMethod(purchaseOrderService.findByCreatedAtIsBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate), dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate))
+  @PostMapping( "/search" )
+  public String getAllPurchaseOrderToPayBetweenTwoDate(@ModelAttribute TwoDate twoDate, Model model) {
+    return commonMethod(purchaseOrderService.findByCreatedAtIsBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate()), dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate()))
         , model);
   }
 
@@ -179,11 +179,10 @@ public class PaymentController {
     return "payment/allPayment";
   }
 
-  @GetMapping( "/all/search" )
-  public String getAllPaymentToPayBetweenTwoDate(@RequestAttribute( "startDate" ) LocalDate startDate,
-                                                 @RequestAttribute( "endDate" ) LocalDate endDate, Model model) {
+  @PostMapping( "/all/search" )
+  public String getAllPaymentToPayBetweenTwoDate(@ModelAttribute TwoDate twoDate, Model model) {
     return commonPayment(model,
-                         paymentService.findByCreatedAtIsBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate), dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate))
+                         paymentService.findByCreatedAtIsBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate()), dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate()))
                         );
   }
 }
