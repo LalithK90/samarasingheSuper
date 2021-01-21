@@ -24,14 +24,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final String[] ALL_PERMIT_URL = {"/favicon.ico", "/img/**", "/css/**", "/js/**", "/webjars/**",
       "/login", "/select/**", "/", "/index"};
-private final String[] ADMIN = { "/role/**", "/user/**","/employee/save","/employee/search","/employee/{id}"};
- private final String[] MANAGER = {"/report/manager/**"};
+private final String[] ADMIN = { "/role/**", "/user/**","/employee/**"};
+ private final String[] MANAGER = {"/report/manager/**","/customer/**","/employee/**","/invoice/**","/goodReceivedNote/**","/employee/**","/item/**","/ledger/**","/payment/**","/purchaseOrder/**","/role/**","/supplier/**","/user/**"};
   private final String[] PROCUREMENT_MANAGER = {"/category/**", "/goodReceivedNote/**", " /item/**",
       "/ledger/**", "/purchaseOrder/**",
-      "/supplier/**", "/supplierItem/**"};
+      "/supplier/**", "/supplierItem/**","/discountRatio/**","/goodReceivedNote","/goodReceivedNote/{id}","/invoice/search","/invoice/remove/{id}","/invoice/{id}","/item","/item/add","item/delete/{id}","/item/edit/{id}","/item/{id}","/ledger","/ledger/expiredDate","/ledger/reorderPoint","/ledger/{id}","/purchaseOrder/**","/supplier",};
   private final String[] ACCOUNT_MANAGER = {"/payment/**", "/invoice/**"};
-  private final String[] HR_MANAGER = {"/employee/**"};
-  private final String[] CASHIER = {"/category/getCategory/**", "/invoice/add", "/ledger"};
+  private final String[] HR_MANAGER = {"/employee/**","/purchaseOrder/**","/user/**"};
+  private final String[] CASHIER = {"/category/getCategory/**", "/invoice/add", "/ledger","/customer","/customer/add","/customer/{id}","/invoice/add","/invoice/search","/item","/item/{id}","/ledger","/ledger/reorderPoint","/ledger/expiredDate","/ledger/{id}"};
 
   @Bean
   public UserDetailsServiceImpl userDetailsService() {
