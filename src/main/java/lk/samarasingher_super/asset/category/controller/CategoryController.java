@@ -75,9 +75,7 @@ public  class CategoryController implements AbstractController<Category, Integer
 
     @GetMapping( "/{id}" )
     public String view(@PathVariable Integer id, Model model) {
-        Category category = categoryService.findById(id);
-        model.addAttribute("categoryDetail",category );
-        model.addAttribute("items",category.getItems());
+        model.addAttribute("categoryDetail", categoryService.findById(id));
         return "category/category-detail";
     }
 }

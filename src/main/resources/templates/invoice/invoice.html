@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"  >
-<head data-th-replace="~{fragments/header :: headerFragment}" >
+<head  data-th-replace="~{fragments/header :: headerFragment}" >
   <meta name="viewport" content="width=device-width, initial-scale=1" >
   <meta charset="UTF-8" >
   <title >J N Super </title >
@@ -39,7 +39,7 @@
     </div >
   </div >
   <!--There is message about invoice count-->
-  <div class="row"  data-th-if="${firstInvoiceMessage}" >
+  <div class="row" data-th-if="${firstInvoiceMessage}" >
     <div class="col-sm-12 mt-4" >
       <div class="form-group text-left col-sm-2" >
         <a class="btn btn-primary" href="/invoice/add" ><span
@@ -68,7 +68,7 @@
           <th > Created By</th >
           <th > Date of Invoice</th >
           <th >View</th >
-          <th  data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}" > Delete Invoice
+          <th data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}" > Delete Invoice
           </th >
         </tr >
         </thead >
@@ -82,7 +82,7 @@
           <th ><a class="btn btn-success" data-th-href="${'/invoice/'+ invoice.id}" ><i
                 class="fa fa-folder-open" ></i >&nbsp;View</a >&nbsp;
           </th >
-          <th  data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}" ><a
+          <th data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}" ><a
                 class="btn btn-danger" data-th-href="${'/invoice/remove/' + invoice.id}" >Delete</a >
           </th >
         </tr >

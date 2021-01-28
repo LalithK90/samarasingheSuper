@@ -2,17 +2,14 @@ package lk.samarasingher_super.asset.purchase_order.controller;
 
 
 import lk.samarasingher_super.asset.common_asset.service.CommonService;
-import lk.samarasingher_super.asset.ledger.dao.LedgerDao;
+import lk.samarasingher_super.asset.purchase_order.entity.PurchaseOrder;
 import lk.samarasingher_super.asset.purchase_order.entity.enums.PurchaseOrderPriority;
 import lk.samarasingher_super.asset.purchase_order.entity.enums.PurchaseOrderStatus;
-import lk.samarasingher_super.asset.purchase_order.entity.PurchaseOrder;
-import lk.samarasingher_super.asset.purchase_order_item.entity.PurchaseOrderItem;
-import lk.samarasingher_super.asset.purchase_order_item.service.PurchaseOrderItemService;
 import lk.samarasingher_super.asset.purchase_order.service.PurchaseOrderService;
+import lk.samarasingher_super.asset.purchase_order_item.entity.PurchaseOrderItem;
 import lk.samarasingher_super.asset.supplier.entity.Supplier;
 import lk.samarasingher_super.asset.supplier.service.SupplierService;
 import lk.samarasingher_super.asset.supplier_item.controller.SupplierItemController;
-import lk.samarasingher_super.asset.supplier_item.service.SupplierItemService;
 import lk.samarasingher_super.util.service.EmailService;
 import lk.samarasingher_super.util.service.MakeAutoGenerateNumberService;
 import lk.samarasingher_super.util.service.OperatorService;
@@ -21,9 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,14 +32,19 @@ public class PurchaseOrderController {
     private final SupplierService supplierService;
     private final CommonService commonService;
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
+    private final OperatorService operatorService;
+    private final EmailService emailService;
 
     public PurchaseOrderController(PurchaseOrderService purchaseOrderService,
                                    SupplierService supplierService
-        , CommonService commonService, MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
+        , CommonService commonService, MakeAutoGenerateNumberService makeAutoGenerateNumberService,
+                                   OperatorService operatorService, EmailService emailService) {
         this.purchaseOrderService = purchaseOrderService;
         this.supplierService = supplierService;
         this.commonService = commonService;
         this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
+        this.operatorService = operatorService;
+        this.emailService = emailService;
     }
 
     @GetMapping
@@ -83,12 +85,12 @@ public class PurchaseOrderController {
         if ( purchaseOrder.getId() == null ) {
             if ( purchaseOrderService.lastPurchaseOrder() == null ) {
                 //need to generate new one
-                purchaseOrder.setCode("SSPO" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
+                purchaseOrder.setCode("JNPO" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
             } else {
                 System.out.println("last customer not null");
                 //if there is customer in db need to get that customer's code and increase its value
                 String previousCode = purchaseOrderService.lastPurchaseOrder().getCode().substring(4);
-                purchaseOrder.setCode("SSPO" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
+                purchaseOrder.setCode("JNPO" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
             }
         }
         List< PurchaseOrderItem > purchaseOrderItemList = new ArrayList<>();
@@ -100,8 +102,8 @@ public class PurchaseOrderController {
         }
         purchaseOrder.setPurchaseOrderItems(purchaseOrderItemList);
         PurchaseOrder purchaseOrderSaved = purchaseOrderService.persist(purchaseOrder);
-//todo-> PO email
-        /*        if (purchaseOrderSaved.getSupplier().getEmail() != null) {
+
+                if (purchaseOrderSaved.getSupplier().getEmail() != null) {
             StringBuilder message = new StringBuilder("Item Name\t\t\t\t\tQuantity\t\t\tItem Price\t\t\tTotal(Rs)\n");
             for (int i = 0; i < purchaseOrder.getPurchaseOrderItems().size(); i++) {
                 message
@@ -109,17 +111,16 @@ public class PurchaseOrderController {
                         .append("\t\t\t\t\t")
                         .append(purchaseOrderSaved.getPurchaseOrderItems().get(i).getQuantity())
                         .append("\t\t\t")
-                        .append(purchaseOrderSaved.getPurchaseOrderItems().get(i).getPrice()).append("\t\t\t")
+                        .append(purchaseOrderSaved.getPurchaseOrderItems().get(i).getItem().getSellPrice()).append("\t\t\t")
                         .append(operatorService.multiply(
-                                purchaseOrderSaved.getPurchaseOrderItems().get(i).getPrice(),
+                                purchaseOrderSaved.getPurchaseOrderItems().get(i).getItem().getSellPrice(),
                                 new BigDecimal(Integer.parseInt(purchaseOrderSaved.getPurchaseOrderItems().get(i)
                                 .getQuantity()))
                         ))
                         .append("\n");
             }
-            emailService.sendEmail(purchaseOrderSaved.getSupplier().getEmail(), "Requesting Items According To PO
-            Code " + purchaseOrder.getCode(), message.toString());
-        }*/
+            emailService.sendEmail(purchaseOrderSaved.getSupplier().getEmail(), "Requesting Items According To PO Code " + purchaseOrder.getCode(), message.toString());
+        }
         return "redirect:/purchaseOrder/all";
     }
 
