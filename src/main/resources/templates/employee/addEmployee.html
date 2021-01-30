@@ -6,41 +6,41 @@
 <body >
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
-
-<div class="container  form-Border" >
-  <div class="row text-center formManagement border-info" >
-    <div class="col" >
-      <a class="btn btn-outline-info" href="/home" >
-        Back To Home
-      </a >
-    </div >
-
-    <div class="col" >
-      <a href="/employee" class="btn btn-info" >
-        View Employees
-      </a >
-    </div >
-  </div >
-  <div class="row text-center" >
-    <div class="col" >
-      <h4 class="text-info text-center" >
-        <strong >
-          <span data-th-text="${addStatus==true?'New Employee':'Update Employee Details'}" ></span >
-        </strong >
-      </h4 >
-    </div >
-  </div >
-</div >
 <!--Form Content - start -->
-<div class="container-fluid bg-light formBorder" >
+<div class="container-fluid" style="margin:30px 30px 30px 0px;" >
   <div class="col-sm-12 flex-column " >
     <form id="form" class="form-horizontal" data-th-action="${addStatus==true?'/employee/save':'/employee/update'}"
           data-th-object="${employee}" method="POST" enctype="multipart/form-data" >
       <div class="row" >
+        <div class="container  form-Border" >
+          <div class="row text-center formManagement border-info" >
+            <div class="col" >
+              <a class="btn btn-success" href="/home" >
+                Back To Home
+              </a >
+            </div >
+
+            <div class="col" >
+              <a href="/employee" class="btn btn-success" >
+                View Employees
+              </a >
+            </div >
+          </div >
+          <div class="row text-center" >
+            <div class="col" >
+              <h4 class="text-light text-center" >
+                <strong >
+                  <span data-th-text="${addStatus==true?'New Employee':'Update Employee Details'}" ></span >
+                </strong >
+              </h4 >
+            </div >
+          </div >
+        </div >
+
         <!--Left Side-->
         <div class="form-group col-md-6 col-sm-6 text-left flex-column" >
           <!--Id-->
-          <div id="idStatus"  data-th-if="${addStatus==false}" class="form-row text-right" >
+          <div id="idStatus" data-th-if="${addStatus==false}" class="form-row text-right" >
             <div class="col-md-4" >
               <label class="control-label" for="id" >ID :</label >
             </div >
@@ -50,7 +50,7 @@
             </div >
           </div >
           <!--Payrole number-->
-          <div class="form-row text-right"  data-th-if="${addStatus==false}">
+          <div class="form-row text-right" data-th-if="${addStatus==false}">
             <div class="col-md-4" >
               <label class="control-label" for="name" >Employee code :</label >
             </div >
@@ -58,7 +58,7 @@
               <input id="code" data-th-field="*{code}" class="form-control" tabindex="4"
                      type="text" required />
               <span id="codeE" data-th-errors="*{code}"
-                     data-th-if="${#fields.hasErrors('code')}" class="error" >Error Employee code
+                    data-th-if="${#fields.hasErrors('code')}" class="error" >Error Employee code
                             </span >
             </div >
           </div >
@@ -85,7 +85,7 @@
             <div class="col-md-8" >
               <input id="name" data-th-field="*{name}" class="form-control" tabindex="4" type="text" required />
               <span id="nameError" data-th-errors="*{name}"
-                     data-th-if="${#fields.hasErrors('name')}" class="error" >Error Name</span >
+                    data-th-if="${#fields.hasErrors('name')}" class="error" >Error Name</span >
             </div >
           </div >
           <!--Calling Name-->
@@ -97,7 +97,7 @@
               <input id="callingName" data-th-field="*{callingName}" class="form-control" tabindex="5"
                      type="text" minlength="5" />
               <span class="error" data-th-errors="*{callingName}"
-                     data-th-if="${#fields.hasErrors('callingName')}" id="callingNameError" >Error Calling Name</span >
+                    data-th-if="${#fields.hasErrors('callingName')}" id="callingNameError" >Error Calling Name</span >
             </div >
           </div >
           <!--Nic-->
@@ -110,7 +110,7 @@
                      maxlength="12"
                      minlength="10" required />
               <span class="error" id="nicError" data-th-errors="*{nic}"
-                     data-th-if="${#fields.hasErrors('nic')}" >Error NIC Number</span >
+                    data-th-if="${#fields.hasErrors('nic')}" >Error NIC Number</span >
             </div >
           </div >
           <!--Gender-->
@@ -143,7 +143,7 @@
                      placeholder="Ex: 1990 - 01 - 20"
                      required type="date" />
               <span id="dateOfBirthError" data-th-errors="*{dateOfBirth}"
-                     data-th-if="${#fields.hasErrors('dateOfBirth')}" class="error" >Error Birthday</span >
+                    data-th-if="${#fields.hasErrors('dateOfBirth')}" class="error" >Error Birthday</span >
             </div >
           </div >
           <!--Blood group-->
@@ -205,7 +205,7 @@
                             <textarea id="address" data-th-field="*{address}" class="form-control" tabindex="12"
                                       required ></textarea >
               <span class="error" data-th-errors="*{address}"
-                     data-th-if="${#fields.hasErrors('address')}" id="addressError" >Error Address</span >
+                    data-th-if="${#fields.hasErrors('address')}" id="addressError" >Error Address</span >
             </div >
           </div >
           <!--Mobile Number One-->
@@ -219,7 +219,7 @@
                      maxlength="10" min="9"
                      required />
               <span class="error" data-th-errors="*{mobileOne}"
-                     data-th-if="${#fields.hasErrors('mobileOne')}"
+                    data-th-if="${#fields.hasErrors('mobileOne')}"
                     id="mobileOneError" >Error Mobile Number</span >
             </div >
           </div >
@@ -233,7 +233,7 @@
                      type="text"
                      maxlength="10" min="9" />
               <span class="error" data-th-errors="*{mobileTwo}"
-                     data-th-if="${#fields.hasErrors('mobileTwo')}"
+                    data-th-if="${#fields.hasErrors('mobileTwo')}"
                     id="mobileTwoError" >Error Mobile Number</span >
             </div >
           </div >
@@ -247,7 +247,7 @@
                      maxlength="10"
                      min="9" />
               <span class="error" data-th-errors="*{land}"
-                     data-th-if="${#fields.hasErrors('land')}" id="landError" >Error Land Number</span >
+                    data-th-if="${#fields.hasErrors('land')}" id="landError" >Error Land Number</span >
             </div >
           </div >
           <!--Email-->
@@ -258,7 +258,7 @@
               <div class="col-md-8">
                   <input id="email" data-th-field="*{email}" class="form-control" tabindex="16" type="email" required/>
                   <span class="error" data-th-errors="*{email}"
-                         data-th-if="${#fields.hasErrors('email')}" id="emailError">Error Email</span>
+                        data-th-if="${#fields.hasErrors('email')}" id="emailError">Error Email</span>
               </div>
           </div>-->
           <!--Office email-->
@@ -270,7 +270,7 @@
               <input id="officeEmail" data-th-field="*{officeEmail}" class="form-control" tabindex="17"
                      type="email" required />
               <span class="error" data-th-errors="*{officeEmail}"
-                     data-th-if="${#fields.hasErrors('officeEmail')}"
+                    data-th-if="${#fields.hasErrors('officeEmail')}"
                     id="officeEmailError" >Error Office Email</span >
             </div >
           </div >
@@ -284,7 +284,7 @@
                      class="form-control" tabindex="18"
                      placeholder="Ex: 1990 - 01 - 20" required />
               <span class="error" data-th-errors="*{dateOfAssignment}"
-                     data-th-if="${#fields.hasErrors('dateOfAssignment')}" id="dateOfAssignmentError" >Error Date Of Assignment</span >
+                    data-th-if="${#fields.hasErrors('dateOfAssignment')}" id="dateOfAssignmentError" >Error Date Of Assignment</span >
             </div >
           </div >
           <!--Employee status-->
@@ -314,16 +314,16 @@
               <div class="col-md-3" ></div >
               <div class="col-md-3 ml-5" >
                 <!--photo details-->
-                <img class="img-fluid ml-5"  data-th-if="${addStatus==false && file!=null}" data-th-src="${file.url}"
+                <img class="img-fluid ml-5" data-th-if="${addStatus==false && file!=null}" data-th-src="${file.url}"
                      id="image" alt=""
                      style="height: 100px; width: 100%;" >
-                <img class="img-fluid ml-5"  data-th-if="${addStatus==true}" src="" id="image" alt=""
+                <img class="img-fluid ml-5" data-th-if="${addStatus==true}" src="" id="image" alt=""
                      style="height: 100px; width: 100%" >
               </div >
             </div >
           </div >
           <!--Created by and created at-->
-          <div id="updateStatus"  data-th-if="${addStatus==false}" >
+          <div id="updateStatus" data-th-if="${addStatus==false}" >
             <div class="form-row text-right" >
               <div class="col-md-4" >
                 <label class="control-label" for="createdBy" >Created By :</label >
@@ -357,7 +357,7 @@
           </div >
         </div >
         <div class="form-row" >
-          <label id="errorLabel"  data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
+          <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
           <ul >
             <li id="error" data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}" class="error" ></li >
           </ul >

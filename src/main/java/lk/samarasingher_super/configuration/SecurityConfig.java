@@ -24,14 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final String[] ALL_PERMIT_URL = {"/favicon.ico", "/img/**", "/css/**", "/js/**", "/webjars/**",
       "/login", "/select/**", "/", "/index"};
-private final String[] ADMIN = { "/role/**", "/user/**","/employee/**"};
- private final String[] MANAGER = {"/report/manager/**","/customer/**","/employee/**","/invoice/**","/goodReceivedNote/**","/employee/**","/item/**","/ledger/**","/payment/**","/purchaseOrder/**","/role/**","/supplier/**","/user/**"};
-  private final String[] PROCUREMENT_MANAGER = {"/category/**", "/goodReceivedNote/**", " /item/**",
-      "/ledger/**", "/purchaseOrder/**",
-      "/supplier/**", "/supplierItem/**","/discountRatio/**","/goodReceivedNote","/goodReceivedNote/{id}","/invoice/search","/invoice/remove/{id}","/invoice/{id}","/item","/item/add","item/delete/{id}","/item/edit/{id}","/item/{id}","/ledger","/ledger/expiredDate","/ledger/reorderPoint","/ledger/{id}","/purchaseOrder/**","/supplier",};
-  private final String[] ACCOUNT_MANAGER = {"/payment/**", "/invoice/**"};
-  private final String[] HR_MANAGER = {"/employee/**","/purchaseOrder/**","/user/**"};
-  private final String[] CASHIER = {"/category/getCategory/**", "/invoice/add", "/ledger","/customer","/customer/add","/customer/{id}","/invoice/add","/invoice/search","/item","/item/{id}","/ledger","/ledger/reorderPoint","/ledger/expiredDate","/ledger/{id}"};
 
   @Bean
   public UserDetailsServiceImpl userDetailsService() {
@@ -80,25 +72,27 @@ private final String[] ADMIN = { "/role/**", "/user/**","/employee/**"};
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-/*   http.csrf().disable();
-    http.authorizeRequests().antMatchers("/").permitAll();*/
+  /*  http.csrf().disable();
+    http.authorizeRequests().antMatchers("/").permitAll();
+*/
     // For developing easy to give permission all lin
-
+// {"ADMIN","PROCUREMENT_MANAGER","CASHIER","MANAGER","HR_MANAGER","ACCOUNT_MANAGER"}
 
     http.authorizeRequests(
         authorizeRequests ->
             authorizeRequests
-                //Anytime users can access without login
-                //to see actuator details
                 .antMatchers(ALL_PERMIT_URL).permitAll()
-                //this is used the normal admin to give access every url mapping
-                .antMatchers(ADMIN).hasAnyRole("ADMIN")
-                //Need to login for access those are
-                .antMatchers(MANAGER).hasAnyRole("MANAGER")
-                .antMatchers(PROCUREMENT_MANAGER).hasAnyRole("PROCUMENT_MANAGER")
-                .antMatchers(ACCOUNT_MANAGER).hasAnyRole("ACCOUNT_MANAGER")
-                .antMatchers(HR_MANAGER).hasAnyRole("HR_MANAGER")
-                .antMatchers(CASHIER).hasAnyRole("CASHIER")
+                .antMatchers("/category/**").hasAnyRole("ADMIN","PROCUREMENT_MANAGER")
+                .antMatchers("/category/**").hasAnyRole("CASHIER","MANAGER")
+                .antMatchers("/discountRatio/**").hasAnyRole("PROCUREMENT_MANAGER","MANAGER")
+                .antMatchers("/employee/**").hasAnyRole("MANAGER","HR_MANAGER" ,"ADMIN")
+                .antMatchers("/goodReceivedNote/**").hasAnyRole("MANAGER","PROCUREMENT_MANAGER")
+                .antMatchers("/payment/**").hasAnyRole("MANAGER","ACCOUNT_MANAGER")
+                .antMatchers("/purchaseOrder/**").hasAnyRole("MANAGER","PROCUREMENT_MANAGER")
+                .antMatchers("/role/**").hasAnyRole("MANAGER","HR_MANAGER","ADMIN")
+                .antMatchers("/supplier/**").hasAnyRole("MANAGER","PROCUREMENT_MANAGER")
+                .antMatchers("/supplierItem/**").hasAnyRole("MANAGER","PROCUREMENT_MANAGER")
+                .antMatchers("/user/**").hasAnyRole("MANAGER","HR_MANAGER","ADMIN")
                 .anyRequest()
                 .authenticated())
         // Login form
@@ -132,8 +126,6 @@ private final String[] ADMIN = { "/role/**", "/user/**","/employee/**"};
                     .maximumSessions(6)
                     .expiredUrl("/logout")
                     .sessionRegistry(sessionRegistry()))
-        .rememberMe().key("uniqueAndSecret").tokenValiditySeconds(86400)
-        .and()
         //Cross site disable
         .csrf(AbstractHttpConfigurer::disable)
         .exceptionHandling();

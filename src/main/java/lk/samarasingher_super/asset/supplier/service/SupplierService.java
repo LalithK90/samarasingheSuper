@@ -1,9 +1,8 @@
 package lk.samarasingher_super.asset.supplier.service;
 
-import java.util.stream.Collectors;
 import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
-import lk.samarasingher_super.asset.supplier.entity.Supplier;
 import lk.samarasingher_super.asset.supplier.dao.SupplierDao;
+import lk.samarasingher_super.asset.supplier.entity.Supplier;
 import lk.samarasingher_super.asset.supplier_item.entity.enums.ItemSupplierStatus;
 import lk.samarasingher_super.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @CacheConfig(cacheNames = "supplier")
@@ -26,8 +26,8 @@ public class SupplierService implements AbstractService<Supplier, Integer> {
 
     public List<Supplier> findAll() {
         return supplierDao.findAll().stream()
-            .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
-            .collect(Collectors.toList());
+                .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+                .collect(Collectors.toList());
     }
 
     public Supplier findById(Integer id) {
@@ -37,7 +37,7 @@ public class SupplierService implements AbstractService<Supplier, Integer> {
     public Supplier persist(Supplier supplier) {
         if (supplier.getId() == null) {
             supplier.setItemSupplierStatus(ItemSupplierStatus.CURRENTLY_BUYING);
-        supplier.setLiveDead(LiveDead.ACTIVE);
+            supplier.setLiveDead(LiveDead.ACTIVE);
         }
         return supplierDao.save(supplier);
     }
@@ -51,9 +51,9 @@ public class SupplierService implements AbstractService<Supplier, Integer> {
 
     public List<Supplier> search(Supplier supplier) {
         ExampleMatcher matcher = ExampleMatcher
-            .matching()
-            .withIgnoreCase()
-            .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example<Supplier> supplierExample = Example.of(supplier, matcher);
         return supplierDao.findAll(supplierExample);
     }
