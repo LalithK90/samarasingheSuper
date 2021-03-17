@@ -116,7 +116,7 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
       cell2 =
           new PdfPCell(new Phrase("Name : " + invoice.getCustomer().getTitle().getTitle() + " " + invoice.getCustomer().getName(), secondaryFont));
     } else {
-      cell2 = new PdfPCell(new Phrase("Name : Anymouse Customer ", secondaryFont));
+      cell2 = new PdfPCell(new Phrase("Name : Anonymous Customer ", secondaryFont));
     }
     pdfCellBodyCommonStyle(cell2);
     mainTable.addCell(cell2);
@@ -197,7 +197,7 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
     commonStyleForPdfPCellLastOne(discountRadioAndAmount);
     invoiceTable.addCell(discountRadioAndAmount);
 
-    PdfPCell discountRadioAndAmountRs = new PdfPCell(new Phrase(invoice.getDiscountAmount().setScale(2, BigDecimal.ROUND_CEILING).toString(), secondaryFont));
+    PdfPCell discountRadioAndAmountRs = new PdfPCell(new Phrase(invoice.getDiscountAmount().toString(), secondaryFont));
     commonStyleForPdfPCellLastOne(discountRadioAndAmountRs);
     invoiceTable.addCell(discountRadioAndAmountRs);
 
@@ -205,7 +205,7 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
     commonStyleForPdfPCellLastOne(amount);
     invoiceTable.addCell(amount);
 
-    PdfPCell amountRs = new PdfPCell(new Phrase(invoice.getTotalAmount().setScale(2, BigDecimal.ROUND_CEILING).toString(), highLiltedFont));
+    PdfPCell amountRs = new PdfPCell(new Phrase(invoice.getTotalAmount().toString(), highLiltedFont));
     commonStyleForPdfPCellLastOne(amountRs);
     invoiceTable.addCell(amountRs);
 
@@ -215,7 +215,7 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
       commonStyleForPdfPCellLastOne(amountTendered);
       invoiceTable.addCell(amountTendered);
 
-      PdfPCell amountTenderedRs = new PdfPCell(new Phrase(invoice.getAmountTendered().setScale(2, BigDecimal.ROUND_CEILING).toString(), secondaryFont));
+      PdfPCell amountTenderedRs = new PdfPCell(new Phrase(invoice.getAmountTendered().toString(), secondaryFont));
       commonStyleForPdfPCellLastOne(amountTenderedRs);
       invoiceTable.addCell(amountTenderedRs);
 
@@ -223,7 +223,7 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
       commonStyleForPdfPCellLastOne(balance);
       invoiceTable.addCell(balance);
 
-      PdfPCell balanceRs = new PdfPCell(new Phrase(invoice.getBalance().setScale(2, BigDecimal.ROUND_CEILING).toString(), highLiltedFont));
+      PdfPCell balanceRs = new PdfPCell(new Phrase(invoice.getBalance().toString(), highLiltedFont));
       commonStyleForPdfPCellLastOne(balanceRs);
       invoiceTable.addCell(balanceRs);
 

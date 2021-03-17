@@ -10,12 +10,12 @@ import lk.samarasingher_super.asset.invoice.entity.enums.InvoiceValidOrNot;
 import lk.samarasingher_super.asset.invoice.entity.enums.PaymentMethod;
 import lk.samarasingher_super.asset.invoice.service.InvoiceService;
 import lk.samarasingher_super.asset.invoice_ledger.entity.InvoiceLedger;
-import lk.samarasingher_super.asset.item.service.ItemService;
 import lk.samarasingher_super.asset.ledger.controller.LedgerController;
 import lk.samarasingher_super.asset.ledger.entity.Ledger;
 import lk.samarasingher_super.asset.ledger.service.LedgerService;
 import lk.samarasingher_super.util.service.DateTimeAgeService;
 import lk.samarasingher_super.util.service.MakeAutoGenerateNumberService;
+import lk.samarasingher_super.util.service.TwilioMessageService;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -35,24 +35,25 @@ import java.util.stream.Collectors;
 @RequestMapping( "/invoice" )
 public class InvoiceController {
   private final InvoiceService invoiceService;
-  private final ItemService itemService;
   private final CustomerService customerService;
   private final LedgerService ledgerService;
   private final DateTimeAgeService dateTimeAgeService;
   private final DiscountRatioService discountRatioService;
   private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
+  private final TwilioMessageService twilioMessageService;
 
-  public InvoiceController(InvoiceService invoiceService, ItemService itemService, CustomerService customerService,
+  public InvoiceController(InvoiceService invoiceService, CustomerService customerService,
                            LedgerService ledgerService, DateTimeAgeService dateTimeAgeService,
                            DiscountRatioService discountRatioService,
-                           MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
+                           MakeAutoGenerateNumberService makeAutoGenerateNumberService,
+                           TwilioMessageService twilioMessageService) {
     this.invoiceService = invoiceService;
-    this.itemService = itemService;
     this.customerService = customerService;
     this.ledgerService = ledgerService;
     this.dateTimeAgeService = dateTimeAgeService;
     this.discountRatioService = discountRatioService;
     this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
+    this.twilioMessageService = twilioMessageService;
   }
 
   @GetMapping
@@ -132,7 +133,13 @@ public class InvoiceController {
       ledger.setQuantity(String.valueOf(availableQuantity - sellQuantity));
       ledgerService.persist(ledger);
     }
-
+    if ( saveInvoice.getCustomer() != null ) {
+      try {
+        twilioMessageService.sendSMS(saveInvoice.getCustomer().getMobile(), "Thank You Come Again \n Samarasinghe Super ");
+      } catch ( Exception e ) {
+        e.printStackTrace();
+      }
+    }
     return "redirect:/invoice/fileView/"+saveInvoice.getId();
   }
 
