@@ -1,28 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <title></title>
 </head>
 
 <body>
-
-<!-- Bootstrap NavBar -->
-<div data-th-fragment="navBarFragment">
-<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #333">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-sm navbar-dark " style="background-color:#4d2600;"  data-th-fragment="navBarFragment">
     <a class="navbar-brand" href="#">
-        <span class="menu-collapsed">Samarasinghe Super</span>
+        <img data-th-src="${'../img/logo.png'}" alt="Company log" style="width:50px;height:50px;" id="logo" class="animated-spin">
     </a>
+    <a class="navbar-brand" data-th-href="${'/home'}"><i class="fa fa-home" style="font-size: 18px"></i></a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-itemBatch dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false"> <i class="fa fa-user"></i> General</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' ,'ROLE_ADMIN')"  data-th-href="@{'/employee'}" class="nav-link"> Employee Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' , 'ROLE_ADMIN')"  data-th-href="@{'/user'}" class="nav-link"> User Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' , 'ROLE_ADMIN')"  data-th-href="@{'/role'}" class="nav-link"> Role Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')"  data-th-href="@{'/category'}" class="nav-link"> Category Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' ,'ROLE_CASHIER')"  data-th-href="@{'/item'}" class="nav-link"> Item Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')"  data-th-href="@{'/supplier'}" class="nav-link"> Supplier Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')"  data-th-href="@{'/purchaseOrder'}" class="nav-link"> Purchase Order Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')"  data-th-href="@{'/goodReceivedNote'}" class="nav-link"> GRN Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_ACCOUNT_MANAGER')"  data-th-href="@{'/payment'}" class="nav-link"> Payment Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' ,'ROLE_ACCOUNT_MANAGER' , 'ROLE_CASHIER')"  data-th-href="@{'/invoice'}" class="nav-link"> Invoice Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' , 'ROLE_CASHIER')"  data-th-href="@{'/ledger'}" class="nav-link"> Ledger Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')"  data-th-href="@{'/discountRatio'}" class="nav-link"> Discount Management </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_CASHIER')"  data-th-href="@{'/customer'}" class="nav-link"> Customer Management </a>
+                </div>
+            </li>
 
+            <li class="nav-itemBatch dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false"> <i class="fa fa-bell"></i> Transaction</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' ,'ROLE_ADMIN')" data-th-href="@{'/employee/add'}" class="nav-link"> New Employee </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' , 'ROLE_ADMIN')" data-th-href="@{'/user/add'}" class="nav-link"> New User </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' , 'ROLE_ADMIN')" data-th-href="@{'/role/add'}" class="nav-link"> New Role </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')" data-th-href="@{'/category/add'}" class="nav-link"> New Category </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' ,'ROLE_CASHIER')"  data-th-href="@{'/item/add'}" class="nav-link"> New Item </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')" data-th-href="@{'/supplier/add'}" class="nav-link"> New Supplier </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_ACCOUNT_MANAGER','ROLE_CASHIER')" data-th-href="@{'/invoice/add'}" class="nav-link"> New Invoice </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')" data-th-href="@{'/discountRatio/add'}" class="nav-link"> New Discount </a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_CASHIER')" data-th-href="@{'/customer/add'}" class="nav-link"> New Customer </a>
+                </div>
+            </li>
+
+            <li class="nav-itemBatch dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false"> <i class="fa fa-book-open"></i> Report</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" data-th-href="@{'/report/manager'}" class="nav-link"> Manager Report</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' , 'ROLE_CASHIER')" data-th-href="@{'/ledger'}" class="nav-link"> All Items Report</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_CASHIER')" data-th-href="@{'/report/cashier'}" class="nav-link"> Cashier Daily Report</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' )" data-th-href="@{'/report/payment'}" class="nav-link"> Payment Daily Report</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' )" data-th-href="@{'/report/perCashier'}" class="nav-link"> Per Cashier Report</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' )" data-th-href="@{'/report/perAccount'}" class="nav-link"> Per Account Department User Report</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' )" data-th-href="@{'/report/perItem'}" class="nav-link"> Per Item Report</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--login /logout /profile /password-change link according to sec confi-->
     <div>
-        <ul class="navbar-nav mt-2 mt-lg-0 justify-content-end" style="margin-left:900px">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 justify-content-end">
             <li class="nav-item dropdown" data-sec-authorize="isAuthenticated()">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                    data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-tie fa-lg"></i>
+                    <i class="fas fa-user-tie fa-lg"></i>&nbsp;&nbsp;
                     <span data-th-text="${#authentication.name}"></span>
                     <span class="caret"></span>
                 </a>
@@ -36,132 +87,16 @@
             </li>
             <li class="nav-item dropdown " data-sec-authorize="isAuthenticated()">
                 <a href="/logout" class="nav-link"> <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Log
-                    out</a>
+                                                                                       out</a>
             </li>
             <li class="nav-item dropdown " data-sec-authorize="!isAuthenticated()">
                 <a href="/login" class="nav-link"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Login</a>
             </li>
         </ul>
     </div>
-</nav><!-- NavBar END -->
+
+</nav>
 
 
-<!-- Bootstrap row -->
-<div class="row" id="body-row">
-    <!-- Sidebar -->
-    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block"><!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
-        <!-- Bootstrap List Group -->
-        <ul class="list-group">
-            <!-- Separator with title -->
-            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-                <small>MAIN MENU</small>
-            </li>
-            <!-- /END Separator -->
-            <!-- Menu with submenu -->
-            <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-home fa-fw mr-3"></span>
-                    <span class="menu-collapsed">Home</span>
-                    <span class="submenu-icon ml-auto"></span>
-                </div>
-            </a>
-            <!-- Submenu content -->
-            <div id='submenu1' class="collapse sidebar-submenu">
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed">Charts</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed">Reports</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed">Tables</span>
-                </a>
-            </div>
-            <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-user fa-fw mr-3"></span>
-                    <span class="menu-collapsed">General</span>
-                    <span class="fa fa-caret-down" style="margin-left:90px"></span>
-                </div>
-            </a>
-            <!-- Submenu content -->
-            <div id='submenu2' class="collapse sidebar-submenu">
-
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' ,'ROLE_ADMIN')"  data-th-href="@{'/employee'}" ><span class="menu-collapsed"> Employee Management</span></a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' , 'ROLE_ADMIN')"  data-th-href="@{'/user'}"> <span class="menu-collapsed"> User Management</span> </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' , 'ROLE_ADMIN')"  data-th-href="@{'/role'}"><span class="menu-collapsed"> Role Management</span> </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')"  data-th-href="@{'/category'}"><span class="menu-collapsed"> Category Management </span> </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' ,'ROLE_CASHIER')"  data-th-href="@{'/item'}"><span class="menu-collapsed"> Item Management </span> </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')"  data-th-href="@{'/supplier'}"><span class="menu-collapsed">  Supplier Management</span> </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')"  data-th-href="@{'/purchaseOrder'}"> <span class="menu-collapsed"> Purchase Order Management </span></a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')"  data-th-href="@{'/goodReceivedNote'}"><span class="menu-collapsed"> GRN Management</span> </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_ACCOUNT_MANAGER')"  data-th-href="@{'/payment'}"><span class="menu-collapsed"> GRN Management</span> </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' ,'ROLE_ACCOUNT_MANAGER' , 'ROLE_CASHIER')"  data-th-href="@{'/invoice'}"><span class="menu-collapsed">Invoice Management </span> </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' , 'ROLE_CASHIER')"  data-th-href="@{'/ledger'}"> <span class="menu-collapsed"> Invoice Management </span></a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')"  data-th-href="@{'/discountRatio'}"> <span class="menu-collapsed"> Discount Management</span> </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_CASHIER')"  data-th-href="@{'/customer'}"> <span class="menu-collapsed"> Customer Management</span> </a>
-            </div>
-
-            <a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-envelope fa-fw mr-3"></span>
-                    <span class="menu-collapsed">Transaction</span>
-                    <span class="fa fa-caret-down" style="margin-left:65px"></span>
-                </div>
-            </a>
-
-            <!-- Submenu content -->
-            <div id='submenu3' class="collapse sidebar-submenu">
-
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' ,'ROLE_ADMIN')" data-th-href="@{'/employee/add'}"> New Employee </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' , 'ROLE_ADMIN')" data-th-href="@{'/user/add'}"> New User </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' , 'ROLE_ADMIN')" data-th-href="@{'/role/add'}"> New Role </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')" data-th-href="@{'/category/add'}"> New Category </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER' ,'ROLE_CASHIER')"  data-th-href="@{'/item/add'}"> New Item </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')" data-th-href="@{'/supplier/add'}"> New Supplier </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_ACCOUNT_MANAGER','ROLE_CASHIER')" data-th-href="@{'/invoice/add'}"> New Invoice </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_PROCUREMENT_MANAGER')" data-th-href="@{'/discountRatio/add'}"> New Discount </a>
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_CASHIER')" data-th-href="@{'/customer/add'}"> New Customer </a>
-            </div>
-
-
-            <!-- Separator with title -->
-            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-                <small>Report</small>
-            </li>
-            <!-- /END Separator -->
-            <a href="#" class="bg-dark list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-envelope fa-fw mr-3"></span>
-                    <span class="menu-collapsed">Messages <span class="badge badge-pill badge-primary ml-2">5</span></span>
-                </div>
-            </a>
-            <!-- Separator without title -->
-            <li class="list-group-item sidebar-separator menu-collapsed"></li>
-            <!-- /END Separator -->
-            <a href="#" class="bg-dark list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-question fa-fw mr-3"></span>
-                    <span class="menu-collapsed">Help</span>
-                </div>
-            </a>
-            <a href="#" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span id="collapse-icon" class="fa fa-address-book mr-3"></span>
-                    <span id="collapse-text" class="menu-collapsed">Collapse</span>
-                </div>
-            </a>
-            <!-- Logo -->
-            <li class="list-group-item logo-separator d-flex justify-content-center">
-
-            </li>
-        </ul><!-- List Group END-->
-    </div><!-- sidebar-container END -->
-
-
-</div><!-- body-row END -->
-
-</div>
 </body>
 </html>
-

@@ -161,7 +161,6 @@ public class PurchaseOrderController {
     return "redirect:/purchaseOrder/all";
   }
 
-
   @GetMapping( "/supplier/{id}" )
   public String addPriceToSupplierItem(@PathVariable int id, Model model) {
     Supplier supplier = supplierService.findById(id);
@@ -181,7 +180,6 @@ public class PurchaseOrderController {
 
     return "purchaseOrder/addPurchaseOrder";
   }
-
 
 }
 
