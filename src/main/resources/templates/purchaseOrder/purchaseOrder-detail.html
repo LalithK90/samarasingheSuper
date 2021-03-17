@@ -30,7 +30,7 @@
   </div >
 </div >
 <!--details-->
-<div data-th-fragment="purchaseOrderDetailsFragment" class="container-fluid bg-info formBorder" >
+<div data-th-fragment="purchaseOrderDetailsFragment" class="container-fluid bg-info formBorder" id="purchaseOrder">
   <div class="col-sm-12 flex-column " >
     <div class="row" >
       <a aria-controls="hrefCollapse" aria-expanded="false" class="btn btn-primary col-12" data-toggle="collapse"
@@ -223,6 +223,8 @@
     </div >
   </div >
 </div >
+
+
 <!--Back Button-->
 <div class="form-group col-md-12 col-sm-12 text-center flex-column " >
   <a href="/purchaseOrder" >
@@ -230,11 +232,20 @@
       <i class="fas fa-arrow-circle-left" style="font-size: 20px" ></i >&nbsp; &nbsp;Back
     </button >
   </a >
+  <button class="btn btn-success" type="button" id="btnPrintResult">
+    <i class="fa fa-save" style="font-size: 20px" ></i > Print
+  </button >
 </div >
 
 <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
 <!--script include-->
 <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
+<script >
 
+    $("#btnPrintResult").click(function (){
+        $("#purchaseOrder").addClass("mt-3 pt-3")
+        printContent("purchaseOrder")
+    })
+</script >
 </body >
 </html >
