@@ -19,7 +19,7 @@ repositories {
 springBoot {
 	buildInfo {
 		properties {
-			group = 'lk.jnSusper'
+			group = 'lk.samarasingher_super'
 			version = '0.0.1-SNAPSHOT'
 			sourceCompatibility = '11'
 		}
@@ -86,7 +86,4 @@ test {
 	useJUnitPlatform()
 }
 
-/*To boot run*/
-bootRun {
-	sourceResources sourceSets.main
-}
+
