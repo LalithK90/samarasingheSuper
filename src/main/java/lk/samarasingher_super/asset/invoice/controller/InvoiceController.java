@@ -29,6 +29,8 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -121,6 +123,13 @@ public class InvoiceController {
       }
     }
     invoice.setInvoiceValidOrNot(InvoiceValidOrNot.VALID);
+    List<InvoiceLedger> invoiceLedgers = new ArrayList<>();
+
+    invoice.getInvoiceLedgers().forEach(x-> {
+      x.setInvoice(invoice);
+      invoiceLedgers.add(x);
+    });
+    invoice.setInvoiceLedgers(invoiceLedgers);
     Invoice saveInvoice = invoiceService.persist(invoice);
 
     for ( InvoiceLedger invoiceLedger : saveInvoice.getInvoiceLedgers() ) {
