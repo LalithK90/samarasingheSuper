@@ -91,11 +91,6 @@
               </h3 >
             </div >
           </div >
-          <script >
-              /*active boostrap alert - start*/
-              $(".alert").alert();
-              /*active boostrap alert - end*/
-          </script >
         </div >
         <!--Save customer-->
         <div class="row" data-th-if="${customerDetail != null}" >
@@ -108,11 +103,6 @@
               <div data-th-replace="~{customer/customer-detail :: customerDetailsFragment}" ></div >
             </div >
           </div >
-          <script >
-              /*active boostrap alert - start*/
-              $(".alert").alert();
-              /*active boostrap alert - end*/
-          </script >
         </div >
       </div >
     </main >
@@ -121,5 +111,11 @@
     <script data-th-replace="~{fragments/script :: scriptFragment}" ></script >
   </div >
 </div >
+
+<script >
+  /*active boostrap alert - start*/
+  $(".alert").alert();
+  /*active boostrap alert - end*/
+</script >
 </body >
 </html >
