@@ -1,0 +1,23 @@
+
+
+Already done
+=============
+1. employee
+2. user
+3. role
+4. category
+5. item
+6. supplier
+        supplier item,
+7. purchase
+        purchase order item
+8. discount ration
+
+
+need to be done
+=================
+1. grn
+2. invoice
+3. payment
+4. warranty
+
