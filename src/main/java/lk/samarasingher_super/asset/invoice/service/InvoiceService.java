@@ -8,6 +8,7 @@ import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
 import lk.samarasingher_super.asset.employee.entity.Employee;
 import lk.samarasingher_super.asset.invoice.dao.InvoiceDao;
 import lk.samarasingher_super.asset.invoice.entity.Invoice;
+import lk.samarasingher_super.asset.invoice.entity.enums.PaymentMethod;
 import lk.samarasingher_super.asset.invoice_ledger.entity.InvoiceLedger;
 import lk.samarasingher_super.util.interfaces.AbstractService;
 import org.springframework.data.domain.Example;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -86,6 +88,7 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
 
     Font mainFont = FontFactory.getFont("Arial", 10, BaseColor.BLACK);
     Font secondaryFont = FontFactory.getFont("Arial", 8, BaseColor.BLACK);
+    Font highLiltedFont = FontFactory.getFont("Arial", 8, BaseColor.BLACK);
 
 
     Paragraph paragraph = new Paragraph("Samarasingher Super Center \n \t\t Welipillewa\n \t Kadawatha \n", mainFont);
@@ -94,6 +97,7 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
     paragraph.setIndentationRight(50);
     paragraph.setSpacingAfter(10);
     document.add(paragraph);
+
 //customer details and invoice main details
     float[] columnWidths = {200f, 200f};//column amount{column 1 , column 2 }
     PdfPTable mainTable = new PdfPTable(columnWidths);
@@ -119,85 +123,133 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
 
     document.add(mainTable);
 
-    PdfPTable legderItemDisplay = new PdfPTable(5);//column amount
-    legderItemDisplay.setWidthPercentage(100);
-    legderItemDisplay.setSpacingBefore(10f);
-    legderItemDisplay.setSpacingAfter(10);
+    PdfPTable ledgerItemDisplay = new PdfPTable(5);//column amount
+    ledgerItemDisplay.setWidthPercentage(100);
+    ledgerItemDisplay.setSpacingBefore(10f);
+    ledgerItemDisplay.setSpacingAfter(10);
 
     Font tableHeader = FontFactory.getFont("Arial", 10, BaseColor.BLACK);
-    legderItemDisplay.setWidths(columnWidths);
+    ledgerItemDisplay.setWidths(columnWidths);
 
     PdfPCell indexHeader = new PdfPCell(new Paragraph("Index", tableHeader));
     pdfCellHeaderCommonStyle(indexHeader);
-    legderItemDisplay.addCell(indexHeader);
+    ledgerItemDisplay.addCell(indexHeader);
 
     PdfPCell itemNameHeader = new PdfPCell(new Paragraph("Item Name", tableHeader));
     pdfCellHeaderCommonStyle(itemNameHeader);
-    legderItemDisplay.addCell(itemNameHeader);
+    ledgerItemDisplay.addCell(itemNameHeader);
 
     PdfPCell unitPriceHeader = new PdfPCell(new Paragraph("Unit Price", tableHeader));
     pdfCellHeaderCommonStyle(unitPriceHeader);
-    legderItemDisplay.addCell(unitPriceHeader);
+    ledgerItemDisplay.addCell(unitPriceHeader);
 
     PdfPCell quantityHeader = new PdfPCell(new Paragraph("Quantity", tableHeader));
     pdfCellHeaderCommonStyle(quantityHeader);
-    legderItemDisplay.addCell(quantityHeader);
+    ledgerItemDisplay.addCell(quantityHeader);
 
     PdfPCell lineTotalHeader = new PdfPCell(new Paragraph("Line Total", tableHeader));
     pdfCellHeaderCommonStyle(lineTotalHeader);
-    legderItemDisplay.addCell(lineTotalHeader);
+    ledgerItemDisplay.addCell(lineTotalHeader);
 
     for ( int i = 0; i < invoice.getInvoiceLedgers().size(); i++ ) {
       PdfPCell index = new PdfPCell(new Paragraph(Integer.toString(i), tableHeader));
       pdfCellBodyCommonStyle(index);
-      legderItemDisplay.addCell(index);
+      ledgerItemDisplay.addCell(index);
 
       PdfPCell itemName = new PdfPCell(new Paragraph(invoice.getInvoiceLedgers().get(i).getLedger().getItem().getName(), tableHeader));
       pdfCellBodyCommonStyle(itemName);
-      legderItemDisplay.addCell(itemName);
+      ledgerItemDisplay.addCell(itemName);
 
       PdfPCell unitPrice = new PdfPCell(new Paragraph(invoice.getInvoiceLedgers().get(i).getLedger().getSellPrice().toString(), tableHeader));
       pdfCellBodyCommonStyle(unitPrice);
-      legderItemDisplay.addCell(unitPrice);
+      ledgerItemDisplay.addCell(unitPrice);
 
       PdfPCell quantity = new PdfPCell(new Paragraph(invoice.getInvoiceLedgers().get(i).getQuantity(), tableHeader));
       pdfCellBodyCommonStyle(quantity);
-      legderItemDisplay.addCell(quantity);
+      ledgerItemDisplay.addCell(quantity);
 
       PdfPCell lineTotal = new PdfPCell(new Paragraph(invoice.getInvoiceLedgers().get(i).getLineTotal().toString(), tableHeader));
       pdfCellBodyCommonStyle(lineTotal);
-      legderItemDisplay.addCell(lineTotal);
+      ledgerItemDisplay.addCell(lineTotal);
     }
 
-    document.add(legderItemDisplay);
+    document.add(ledgerItemDisplay);
 
-    PdfPTable invoiceDetails = new PdfPTable(5);//column amount
-    invoiceDetails.setWidthPercentage(100);
-    invoiceDetails.setSpacingBefore(10f);
-    invoiceDetails.setSpacingAfter(10);
+    PdfPTable invoiceTable = new PdfPTable(new float[]{3f, 1f});
 
-    PdfPCell indexColumn = new PdfPCell(new Paragraph("", tableHeader));
-    pdfCellHeaderCommonStyle(indexColumn);
-    legderItemDisplay.addCell(indexColumn);
+    PdfPCell totalAmount = new PdfPCell(new Phrase("\nTotal Amount(Rs.) : ", secondaryFont));
+    commonStyleForPdfPCellLastOne(totalAmount);
+    invoiceTable.addCell(totalAmount);
 
-    PdfPCell itemNameColumn = new PdfPCell(new Paragraph("", tableHeader));
-    pdfCellHeaderCommonStyle(itemNameColumn);
-    legderItemDisplay.addCell(itemNameColumn);
+    PdfPCell totalAmountRs = new PdfPCell(new Phrase("---------------\n" + invoice.getTotalPrice().setScale(2, BigDecimal.ROUND_CEILING).toString(), secondaryFont));
+    commonStyleForPdfPCellLastOne(totalAmountRs);
+    invoiceTable.addCell(totalAmountRs);
 
-    PdfPCell unitPriceColumn = new PdfPCell(new Paragraph("", tableHeader));
-    pdfCellHeaderCommonStyle(unitPriceColumn);
-    legderItemDisplay.addCell(unitPriceColumn);
+    PdfPCell paymentMethodOnBill = new PdfPCell(new Phrase("\nPayment Method : ", secondaryFont));
+    commonStyleForPdfPCellLastOne(paymentMethodOnBill);
+    invoiceTable.addCell(paymentMethodOnBill);
 
-    PdfPCell quantityColumn = new PdfPCell(new Paragraph("Quantity", tableHeader));
-    pdfCellHeaderCommonStyle(quantityColumn);
-    //todo
-    legderItemDisplay.addCell(quantityColumn);
+    PdfPCell paymentMethodOnBillState = new PdfPCell(new Phrase("========\n" + invoice.getPaymentMethod().getPaymentMethod(), secondaryFont));
+    commonStyleForPdfPCellLastOne(paymentMethodOnBillState);
+    invoiceTable.addCell(paymentMethodOnBillState);
 
-    PdfPCell lineTotalColumn = new PdfPCell(new Paragraph("Line Total", tableHeader));
-    pdfCellHeaderCommonStyle(lineTotalColumn);
-    legderItemDisplay.addCell(lineTotalColumn);
+    PdfPCell discountRadioAndAmount = new PdfPCell(new Phrase("Discount ( " + invoice.getDiscountRatio().getAmount() + "% ) (Rs.) : ", secondaryFont));
+    commonStyleForPdfPCellLastOne(discountRadioAndAmount);
+    invoiceTable.addCell(discountRadioAndAmount);
 
-document.add(invoiceDetails);
+    PdfPCell discountRadioAndAmountRs = new PdfPCell(new Phrase(invoice.getDiscountAmount().setScale(2, BigDecimal.ROUND_CEILING).toString(), secondaryFont));
+    commonStyleForPdfPCellLastOne(discountRadioAndAmountRs);
+    invoiceTable.addCell(discountRadioAndAmountRs);
+
+    PdfPCell amount = new PdfPCell(new Phrase("Amount (Rs.) : ", highLiltedFont));
+    commonStyleForPdfPCellLastOne(amount);
+    invoiceTable.addCell(amount);
+
+    PdfPCell amountRs = new PdfPCell(new Phrase(invoice.getTotalAmount().setScale(2, BigDecimal.ROUND_CEILING).toString(), highLiltedFont));
+    commonStyleForPdfPCellLastOne(amountRs);
+    invoiceTable.addCell(amountRs);
+
+
+    if (invoice.getPaymentMethod().equals(PaymentMethod.CASH)) {
+      PdfPCell amountTendered = new PdfPCell(new Phrase("Tender Amount (Rs.) : ", secondaryFont));
+      commonStyleForPdfPCellLastOne(amountTendered);
+      invoiceTable.addCell(amountTendered);
+
+      PdfPCell amountTenderedRs = new PdfPCell(new Phrase(invoice.getAmountTendered().setScale(2, BigDecimal.ROUND_CEILING).toString(), secondaryFont));
+      commonStyleForPdfPCellLastOne(amountTenderedRs);
+      invoiceTable.addCell(amountTenderedRs);
+
+      PdfPCell balance = new PdfPCell(new Phrase("Balance (Rs.) : ", highLiltedFont));
+      commonStyleForPdfPCellLastOne(balance);
+      invoiceTable.addCell(balance);
+
+      PdfPCell balanceRs = new PdfPCell(new Phrase(invoice.getBalance().setScale(2, BigDecimal.ROUND_CEILING).toString(), highLiltedFont));
+      commonStyleForPdfPCellLastOne(balanceRs);
+      invoiceTable.addCell(balanceRs);
+
+    } else {
+      PdfPCell bank = new PdfPCell(new Phrase("Bank Name : ", secondaryFont));
+      commonStyleForPdfPCellLastOne(bank);
+      invoiceTable.addCell(bank);
+
+      PdfPCell bankName = new PdfPCell(new Phrase(invoice.getBankName(), secondaryFont));
+      commonStyleForPdfPCellLastOne(bankName);
+      invoiceTable.addCell(bankName);
+    }
+
+    document.add(invoiceTable);
+
+    Paragraph remarks = new Paragraph("Remarks : " + invoice.getRemarks(), secondaryFont);
+    commonStyleForParagraphTwo(remarks);
+    document.add(remarks);
+
+    Paragraph message = new Paragraph("\nWe will not accept return without invoiced. \n\n ------------------------------------\n            ( " + invoice.getCreatedBy() + " )", secondaryFont);
+    commonStyleForParagraphTwo(message);
+    document.add(message);
+
+
+
+
 
     document.close();
     return new ByteArrayInputStream(out.toByteArray());
@@ -219,5 +271,17 @@ document.add(invoiceDetails);
     pdfPCell.setVerticalAlignment(Element.ALIGN_CENTER);
     pdfPCell.setBackgroundColor(BaseColor.WHITE);
     pdfPCell.setExtraParagraphSpace(5f);
+  }
+
+  private void commonStyleForPdfPCellLastOne(PdfPCell pdfPCell) {
+    pdfPCell.setBorder(0);
+    pdfPCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+    pdfPCell.setBorderColor(BaseColor.WHITE);
+  }
+
+  private void commonStyleForParagraphTwo(Paragraph paragraph) {
+    paragraph.setAlignment(Element.ALIGN_LEFT);
+    paragraph.setIndentationLeft(50);
+    paragraph.setIndentationRight(50);
   }
 }
