@@ -15,12 +15,12 @@
             <br/>
             <fieldset>
                 <div class="form-label-group">
-                    <input type="text" id="username" th:name="${'username'}" class="form-control" placeholder="username"
+                    <input type="text" id="username" data-th-name="${'username'}" class="form-control" placeholder="username"
                            required>
                     <label for="username">Username</label>
                 </div>
                 <div class="form-label-group">
-                    <input type="password" id="inputPassword" th:name="${'password'}" class="form-control"
+                    <input type="password" id="inputPassword" data-th-name="${'password'}" class="form-control"
                            placeholder="password"
                            required>
                     <label for="inputPassword">Password</label>
@@ -40,7 +40,7 @@
 
 </div>
 
-
+</main>
 <div   data-th-replace="~{fragments/footer :: footerFragment}"></div>
 <!--script include-->
 <script  data-th-replace="~{fragments/script :: scriptFragment}"></script>
