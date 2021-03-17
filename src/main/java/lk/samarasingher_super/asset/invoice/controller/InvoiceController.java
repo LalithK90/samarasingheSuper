@@ -1,6 +1,7 @@
 package lk.samarasingher_super.asset.invoice.controller;
 
 
+import com.itextpdf.text.DocumentException;
 import lk.samarasingher_super.asset.customer.service.CustomerService;
 import lk.samarasingher_super.asset.discount_ratio.service.DiscountRatioService;
 import lk.samarasingher_super.asset.invoice.entity.Invoice;
@@ -15,12 +16,17 @@ import lk.samarasingher_super.asset.ledger.entity.Ledger;
 import lk.samarasingher_super.asset.ledger.service.LedgerService;
 import lk.samarasingher_super.util.service.DateTimeAgeService;
 import lk.samarasingher_super.util.service.MakeAutoGenerateNumberService;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
@@ -127,10 +133,7 @@ public class InvoiceController {
       ledgerService.persist(ledger);
     }
 
-
-    //todo - if invoice is required needed to send pdf to backend
-
-    return "redirect:/invoice/add";
+    return "redirect:/invoice/fileView/"+saveInvoice.getId();
   }
 
 
@@ -141,4 +144,23 @@ public class InvoiceController {
     invoiceService.persist(invoice);
     return "redirect:/invoice";
   }
+
+  @GetMapping(value = "/file/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
+  public ResponseEntity< InputStreamResource > invoicePrint(@PathVariable("id")Integer id) throws DocumentException {
+    var headers = new HttpHeaders();
+    headers.add("Content-Disposition", "inline; filename=invoice.pdf");
+    return ResponseEntity
+        .ok()
+        .headers(headers)
+        .contentType(MediaType.APPLICATION_PDF)
+        .body(new InputStreamResource(invoiceService.createPDF(id)));
+  }
+
+  @GetMapping("/fileView/{id}")
+  public String fileRequest(@PathVariable("id") Integer id, Model model, HttpServletRequest request) {
+    String fullPath = request.getServletContext().getRealPath("/invoice/file/" + id);
+    model.addAttribute("pdfFile",fullPath);
+    return "invoice/pdfSilentPrint";
+  }
+
 }
