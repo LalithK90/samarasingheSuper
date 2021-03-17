@@ -8,8 +8,10 @@ import lk.samarasingher_super.asset.invoice.entity.enums.InvoicePrintOrNot;
 import lk.samarasingher_super.asset.invoice.entity.enums.InvoiceValidOrNot;
 import lk.samarasingher_super.asset.invoice.entity.enums.PaymentMethod;
 import lk.samarasingher_super.asset.invoice.service.InvoiceService;
+import lk.samarasingher_super.asset.invoice_ledger.entity.InvoiceLedger;
 import lk.samarasingher_super.asset.item.service.ItemService;
 import lk.samarasingher_super.asset.ledger.controller.LedgerController;
+import lk.samarasingher_super.asset.ledger.entity.Ledger;
 import lk.samarasingher_super.asset.ledger.service.LedgerService;
 import lk.samarasingher_super.util.service.DateTimeAgeService;
 import lk.samarasingher_super.util.service.MakeAutoGenerateNumberService;
@@ -105,16 +107,27 @@ public class InvoiceController {
     if ( invoice.getId() == null ) {
       if ( invoiceService.findByLastInvoice() == null ) {
         //need to generate new one
-        invoice.setCode("JNSI" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
+        invoice.setCode("SSCI" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
       } else {
-        System.out.println("last customer not null");
+
         //if there is customer in db need to get that customer's code and increase its value
         String previousCode = invoiceService.findByLastInvoice().getCode().substring(4);
-        invoice.setCode("JNSI" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
+        invoice.setCode("SSCI" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
       }
     }
     invoice.setInvoiceValidOrNot(InvoiceValidOrNot.VALID);
-    invoiceService.persist(invoice);
+    Invoice saveInvoice = invoiceService.persist(invoice);
+
+    for ( InvoiceLedger invoiceLedger : saveInvoice.getInvoiceLedgers() ) {
+      Ledger ledger = ledgerService.findById(invoiceLedger.getLedger().getId());
+      String quantity = invoiceLedger.getQuantity();
+      int availableQuantity = Integer.parseInt(ledger.getQuantity());
+      int sellQuantity = Integer.parseInt(quantity);
+      ledger.setQuantity(String.valueOf(availableQuantity - sellQuantity));
+      ledgerService.persist(ledger);
+    }
+
+
     //todo - if invoice is required needed to send pdf to backend
 
     return "redirect:/invoice/add";

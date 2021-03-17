@@ -66,4 +66,6 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
   public List< Invoice > findByCreatedAtIsBetweenAndCreatedBy(LocalDateTime from, LocalDateTime to, String userName) {
    return invoiceDao.findByCreatedAtIsBetweenAndCreatedBy(from, to, userName);
   }
+
+
 }

@@ -87,7 +87,7 @@ public class PurchaseOrderController {
                 //need to generate new one
                 purchaseOrder.setCode("JNPO" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
             } else {
-                System.out.println("last customer not null");
+
                 //if there is customer in db need to get that customer's code and increase its value
                 String previousCode = purchaseOrderService.lastPurchaseOrder().getCode().substring(4);
                 purchaseOrder.setCode("JNPO" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
