@@ -1,3 +1,4 @@
+/*
 * {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
@@ -7,35 +8,45 @@
     --error-color: #fa370d;
 }
 
-/* Main window- start*/
+!* Main window- start*!
 body {
-    background-image: url(../img/back-01.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
 
+    background-repeat: no-repeat;
+   background-position-y:-5px;
+ background-position-x:20px;
 }
 .main-section{
-
     position: relative;
-    top: -50px;
+    top: -800px;
     left: 65%;
-    transform: translate(-65%,10%);
     padding: 20px;
-    background: rgba(53, 6, 207, 0.4);
-    box-sizing: border-box;
-    box-shadow: 0 5px 25px rgba(0,0,0,.8);
+    transform: translate(-65%,10%);
     border-radius:10px;
-
+}
+#mainbody{
+    background-image: url(../img/mainwindow.png);
+    width:px;
+    height:500px;
+    margin-left:225px;
 }
 .card{
-    color: white;
-    border-radius: 10px;
-    width: 300px;
+    background: transparent;
+    border: none;
+}
+
+.card img{
+    border-radius:50%;
+    width:150px;
+    display: flex;
+    margin-top:10px;
+}
+.row{
+    width:550px;
 }
 
 
-/* Main window- end*/
-/* LOGIN PAGE*/
+!* Main window- end*!
+!* LOGIN PAGE*!
 * {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
@@ -43,101 +54,10 @@ body {
     georgia, helvetica, impact, "times new roman", "trebuchet ms", verdana,
     "Iskoola Pota";
     --error-color: #fa370d;
-
-}
-/* for login form - start*/
-#loginBack {
-    background-image: url('../img/12.jpg');
-    margin: 0;
-    padding: 0;
-    background-size: cover;
-
-
 }
 
-#loginPage .logo1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(200%,-20%);
-    width: 200px;
-    height: 200px;
-    padding: 0;
-    border-radius: 10px;
-
-}
-#loginPage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 800px;
-    padding: 20px;
-    background: rgba(0,0,0,.2);
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.8);
-    border-radius: 10px;
-
-
-}
-
-#loginPage h1{
-    margin: 0 0 30px;
-    padding: 0;
-    color: #ffffff;
-    text-align: center;
-}
-
-#loginPage  .form-label-group {
-    position: relative;
-}
-
-#loginPage  .form-label-group input {
-    width: 100%;
-    padding: 0 20px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #ffffff;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid #ffffff;
-    outline: none;
-    background: transparent;
-}
-
-#loginPage .form-label-group label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0 20px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #ffffff;
-    pointer-events: none;
-    transition: .5s;
-}
-
-#loginPage .form-label-group input:focus ~ label,
-#loginPage .form-label-group input:valid ~ label{
-    top: -18px;
-    left: 0;
-    color: #ffffff;
-    font-size: 12px;
-}
-
-#loginPage input [type="submit"] {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #f7b200;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-
-}
-/* for login form - end*/
 #formBack {
-    background-image: url('../img/back-05.jpg');
+    !*background-image: url('../img/back-05.jpg');*!
     margin: 0px;
     padding: 0;
     background-size: cover;
@@ -164,14 +84,6 @@ body {
     background-size: cover;
 }
 
-#loginback{
-
-    background-image: url(../img/12.jpg);
-    -webkit-background-size:cover;
-    background-size: cover;
-    background-position:center center;
-    background-repeat: no-repeat;
-}
 .form-area{
 
     float: left;
@@ -192,12 +104,10 @@ body {
 .form-area{
 
     margin-bottom: 1px;
-    color: #fff;
-
-
+    color: #000000;
 
 }
-/** fade login page-end**/
+!** fade login page-end**!
 .form-area {
     animation: fadeIn ease 2s;
     -webkit-animation: fadeIn ease 2s;
@@ -230,7 +140,7 @@ body {
     100% {opacity:1;}
 }
 
-/** fade login page-end**/
+!** fade login page-end**!
 
 .img-area{
 
@@ -278,19 +188,20 @@ body {
 
     display: inline-block;
     height: 40px;
-    width: 300px;
+    width: 200px;
     padding: 3px;
     line-height: 40px;
     overflow: hidden;
     position: relative;
     text-align: center;
-    font-size: 16px;
-    background-color: #213e8b;
+    font-size: 14px;
+    background-color: #1f7370;
     border-radius: 250px;
     color: #fff;
+    font-weight: bold;
     margin-top: 20px;
+    margin-right:100px;
     cursor: pointer;
-    margin-left: 15px;
     text-decoration: none;
     -webkit-transition:top 0.6s;
     -moz-transition:top 0.6s;
@@ -313,10 +224,10 @@ body {
     color: #fff;
 }
 
-/**html Background - end login page styles*/
+!**html Background - end login page styles*!
 
 
-/*radio button style -start*/
+!*radio button style -start*!
 .checkbox-round {
     width: 1.3em;
     height: 1.3em;
@@ -332,7 +243,7 @@ body {
 .checkbox-round:checked {
     background-color: green;
 }
-/* newemployee  and add buttons */
+!* newemployee  and add buttons *!
 
 #button1,#searchShow{
     height:80px;
@@ -344,9 +255,9 @@ body {
 
 }
 
-/*radio button style -end*/
+!*radio button style -end*!
 
-/*mainWindow properties*/
+!*mainWindow properties*!
 .lblText {
     font-size: 16px;
 }
@@ -362,13 +273,13 @@ body {
 }
 
 
-/* for summary form - start*/
+!* for summary form - start*!
 .casChqCdt {
     color: var(--error-color);
 }
 
-/* for summary form - end*/
-/* for billing test show - start*/
+!* for summary form - end*!
+!* for billing test show - start*!
 #tableTestBill {
     font-size: 16px;
 }
@@ -380,8 +291,8 @@ body {
     font-style: italic;
 }
 
-/* for sbilling test show - end*/
-/*main window  - start*/
+!* for sbilling test show - end*!
+!*main window  - start*!
 .mainWindowText {
     font-size: 1.5rem;
     text-shadow: 0 1px 0 #EEE428,
@@ -415,8 +326,8 @@ body {
 }
 
 
-/*main windo - properties end */
-/*Nav bar - start*/
+!*main windo - properties end *!
+!*Nav bar - start*!
 
 .dropdown-toggle {
     font-size: 18px;
@@ -462,12 +373,12 @@ nav {
 
 }
 
-/*Nav bar - end*/
+!*Nav bar - end*!
 
-/*error pages - properties start */
+!*error pages - properties start *!
 
-/*error pages - properties end */
-/*Error Message Colour - star*/
+!*error pages - properties end *!
+!*Error Message Colour - star*!
 .error {
     font-family: 'Open Sans', 'Segoe UI';
     font-size: 16px;
@@ -518,9 +429,9 @@ nav {
     border-radius: 5px 20px 0px 15px;
 }
 
-/*Error Message Colour - star*/
+!*Error Message Colour - star*!
 
-/*all button same size according to boostrap btn-sm  - start*/
+!*all button same size according to boostrap btn-sm  - start*!
 button .btn {
     padding: 5px 10px !important;
     font-size: 12px !important;
@@ -528,9 +439,9 @@ button .btn {
     border-radius: 50px !important;
 }
 
-/*all button same size according to boostrap btn-sm  - end*/
+!*all button same size according to boostrap btn-sm  - end*!
 
-/*remove lab test from selected table - start*/
+!*remove lab test from selected table - start*!
 .removeLabTest {
     color: #f0ad4e;
     font-weight: lighter;
@@ -541,9 +452,9 @@ button .btn {
     background-color: #00FFFF;
 }
 
-/*remove lab test from selected table - end*/
+!*remove lab test from selected table - end*!
 
-/*form  - start*/
+!*form  - start*!
 #header{
     border-radius: 100px;
 }
@@ -558,12 +469,10 @@ button .btn {
     left: 65%;
     transform: translate(-65%,10%);
     padding: 20px;
-    background-image: url("../img/back-06.jpg");
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.8);
     border-radius:10px;
     background-size: cover;
-
 
 }
 label {
@@ -684,15 +593,15 @@ div input {
     border-radius: 15px;
 }
 
-/*form - end*/
+!*form - end*!
 
-/*Table show and hide - start*/
+!*Table show and hide - start*!
 .display {
     display: none;
 }
 
-/*Table show and hide - end*/
-/*medical Package show area - start*/
+!*Table show and hide - end*!
+!*medical Package show area - start*!
 #medicalPackage {
     border: 2px solid blue;
     border-radius: 5px;
@@ -710,8 +619,8 @@ div input {
     margin-bottom: 5px;
 }
 
-/*medical Package show area - end*/
-/* enter filed validation - start*/
+!*medical Package show area - end*!
+!* enter filed validation - start*!
 .valid {
     background-color: #7ae899;
 }
@@ -720,7 +629,7 @@ div input {
     background-color: #ff88b3;
 }
 
-/*html 5 filed validation - start */
+!*html 5 filed validation - start *!
 input:required:invalid, input:focus:invalid {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeVJREFUeNqkU01oE1EQ/mazSTdRmqSxLVSJVKU9RYoHD8WfHr16kh5EFA8eSy6hXrwUPBSKZ6E9V1CU4tGf0DZWDEQrGkhprRDbCvlpavan3ezu+LLSUnADLZnHwHvzmJlvvpkhZkY7IqFNaTuAfPhhP/8Uo87SGSaDsP27hgYM/lUpy6lHdqsAtM+BPfvqKp3ufYKwcgmWCug6oKmrrG3PoaqngWjdd/922hOBs5C/jJA6x7AiUt8VYVUAVQXXShfIqCYRMZO8/N1N+B8H1sOUwivpSUSVCJ2MAjtVwBAIdv+AQkHQqbOgc+fBvorjyQENDcch16/BtkQdAlC4E6jrYHGgGU18Io3gmhzJuwub6/fQJYNi/YBpCifhbDaAPXFvCBVxXbvfbNGFeN8DkjogWAd8DljV3KRutcEAeHMN/HXZ4p9bhncJHCyhNx52R0Kv/XNuQvYBnM+CP7xddXL5KaJw0TMAF8qjnMvegeK/SLHubhpKDKIrJDlvXoMX3y9xcSMZyBQ+tpyk5hzsa2Ns7LGdfWdbL6fZvHn92d7dgROH/730YBLtiZmEdGPkFnhX4kxmjVe2xgPfCtrRd6GHRtEh9zsL8xVe+pwSzj+OtwvletZZ/wLeKD71L+ZeHHWZ/gowABkp7AwwnEjFAAAAAElFTkSuQmCC);
     background-position: right center;
@@ -736,10 +645,10 @@ input:required:valid {
     background-size: 25px;
 }
 
-/*html 5 filed validation - end */
+!*html 5 filed validation - end *!
 
-/* Flaired edges */
-/*<hr/> tag style - start */
+!* Flaired edges *!
+!*<hr/> tag style - start *!
 hr{
     height: 30px;
     border-style: solid;
@@ -757,8 +666,8 @@ hr:before {
     border-width: 0 0 1px 0;
     border-radius: 20px;
 }
-/*<hr/> tag style - end */
-/** logo animation**/
+!*<hr/> tag style - end *!
+!** logo animation**!
 #logo {
 
     -webkit-animation:spin 2s linear infinite;
@@ -786,10 +695,10 @@ hr:before {
     }
 }
 
-/** logo animation end**/
+!** logo animation end**!
 
 
-/** Carousal H2 animation**/
+!** Carousal H2 animation**!
 
 .animated {
     -webkit-animation-duration: 2.5s;
@@ -817,7 +726,7 @@ hr:before {
     animation-name: bounce;
 }
 
-/** Cards style start**/
+!** Cards style start**!
 .wrimagecard{
     margin-top: 0;
     margin-bottom: 1.5rem;
@@ -851,30 +760,17 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 .wrimagecard-topimage a {
     border-bottom: none;}
 
-/** Cards style end**/
+!** Cards style end**!
 .card{
     margin: 10px;
-
-
 }
 
-/*main window start */
-#windowBack {
-   background-image: url('../img/back-06.jpg');
-    margin: 0;
-    padding: 0;
-    background-size: cover;
-    /*background-color: #d9b38c;*/
 
+!*main window end *!
 
-}
-
-/*main window end */
-
-/*Card start*/
+!*Card start*!
 .card-color{
-    width: 23rem;
-    background-image:url('../img/back-03.jpg');
+  width: 23rem;
     opacity: 0.91;
     align-content: center;
     position: relative;
@@ -882,11 +778,12 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     margin-bottom: 20px;
     margin-top: 32px;
     padding-left: 25px;
+    border: none;
     text-decoration-color: #4d2600;
-
 }
-/*Card start*/
-/*main window notification div style- start*/
+
+!*Card end*!
+!*main window notification div style- start*!
 .mainWindSumReport {
     color: #33cc33;
     align-content: center;
@@ -900,15 +797,13 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-/*main window notification div style- end*/
-.view-btn {
-    background-image: url("../img/back-04.jpg");
-}
+!*main window notification div style- end*!
+
 .fakeimg {
     height: 200px;
     background: #aaa;
 }
-/* Make the image fully responsive */
+!* Make the image fully responsive *!
 .carousel-inner img {
     width: 100%;
     height: 100%;
@@ -923,3 +818,250 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     margin-bottom: 20px;
     margin-top: 32px;
 }
+
+
+!* Main Window div - start *!
+.main-content{
+    background-image: url(../img/main2.png);
+    float: right;
+    width:1150px;
+    height: 500px;
+    margin-top:-660px;
+
+
+}
+
+!* Main Window div - end *!*/
+
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Comic Sans", "Courier New",
+    georgia, helvetica, impact, "times new roman", "trebuchet ms", verdana,
+    "Iskoola Pota";
+    --error-color: #fa370d;
+}
+
+/*login page start*/
+
+#loginPage {
+    background: url(../img/login.jpg)no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    top: 50%;
+
+}
+.loginback{
+    margin-left: 750px;
+    width: 500px;
+    padding: 20px;
+    margin-top:150px;
+
+
+}
+
+#loginPage h1{
+
+    padding: 5px;
+    margin-left:30px;
+    color: #20B2AA;
+    text-align: justify;
+    font-size:32px;
+}
+
+#loginPage  .form-label-group {
+    position: relative;
+}
+
+#loginPage  .form-label-group input {
+    width: 100%;
+    padding: 0 20px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #000000;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #20B2AA;
+    outline: none;
+    background: transparent;
+}
+
+#loginPage .form-label-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #20B2AA;
+    pointer-events: none;
+    transition: .5s;
+}
+
+#loginPage .form-label-group input:focus ~ label,
+#loginPage .form-label-group input:valid ~ label{
+    top: -18px;
+    left: 0;
+    color:#20B2AA;
+    font-size: 12px;
+}
+
+#loginPage input [type="submit"] {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f7b200;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+
+
+#btnLogin{
+
+    display: inline-block;
+    height: 40px;
+    width: 200px;
+    padding: 3px;
+    line-height: 40px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+    background-color: #1f7370;
+    border-radius: 250px;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-right:100px;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-transition:top 0.6s;
+    -moz-transition:top 0.6s;
+    -o-transition:top 0.6s;
+}
+
+
+#btnLogin:hover{
+    background-color: lightseagreen;
+
+}
+
+.for-pass{
+
+    text-decoration: none;
+    display: block;
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #fff;
+}
+/* login page-end */
+
+/*Nav Bar style start*/
+ #body-row {
+     margin-left:0;
+     margin-right:0;
+ }
+#sidebar-container {
+    min-height: 100vh;
+    background-color: #333;
+    padding: 0;
+}
+
+/* Sidebar sizes when expanded and expanded */
+ .sidebar-expanded {
+     width:230px;
+ }
+.sidebar-collapsed {
+    width: 60px;
+}
+
+/* Menu item*/
+ #sidebar-container .list-group a {
+     height: 50px;
+     color: white;
+ }
+
+/*  Submenu item*/
+ #sidebar-container .list-group .sidebar-submenu a {
+     height: 45px;
+     padding-left: 30px;
+ }
+.sidebar-submenu {
+    font-size: 0.9rem;
+}
+
+/* Separators */
+ .sidebar-separator-title {
+     background-color: #333;
+     height: 35px;
+ }
+.sidebar-separator {
+    background-color: #333;
+    height: 25px;
+}
+.logo-separator {
+    background-color: #333;
+    height:250px;
+    float: left;
+    background-image: url("../img/logo-removebg-preview.png");
+    margin-left:-150px;
+
+}
+
+/*  Closed submenu icon */
+ #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
+     content: " \f0d7";
+     font-family: FontAwesome;
+     display: inline;
+     text-align: right;
+     padding-left: 10px;
+ }
+/*  Opened submenu icon */
+ #sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
+     content: " \f0da";
+     font-family: FontAwesome;
+     display: inline;
+     text-align: right;
+     padding-left: 10px;
+ }
+/* Nav Bar style end*/
+
+/*MainWindow Style - Start*/
+.mainbody{
+    background: url(../img/mainwindow.png)no-repeat center center fixed;
+    margin-left:230px;
+    margin-top:-650px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.card{
+    max-width: 18rem;
+    margin-bottom:20px;
+    margin-left:10px;
+    border:1px solid #4f4f4f;
+    border-radius:10%;
+}
+.cardrow{
+    width:950px;
+    padding:20px;
+}
+.card-header{
+    font-family: Tahoma;
+    font-weight: bolder;
+
+}
+
+
+
+/*MainWindow Style - End*/
