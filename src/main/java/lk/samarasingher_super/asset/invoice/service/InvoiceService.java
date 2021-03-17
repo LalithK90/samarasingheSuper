@@ -247,10 +247,6 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
     commonStyleForParagraphTwo(message);
     document.add(message);
 
-
-
-
-
     document.close();
     return new ByteArrayInputStream(out.toByteArray());
   }
