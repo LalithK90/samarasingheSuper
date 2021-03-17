@@ -13,6 +13,7 @@ import lk.samarasingher_super.asset.supplier_item.controller.SupplierItemControl
 import lk.samarasingher_super.util.service.EmailService;
 import lk.samarasingher_super.util.service.MakeAutoGenerateNumberService;
 import lk.samarasingher_super.util.service.OperatorService;
+import lk.samarasingher_super.util.service.TwilioMessageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,17 +35,20 @@ public class PurchaseOrderController {
   private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
   private final OperatorService operatorService;
   private final EmailService emailService;
+  private final TwilioMessageService twilioMessageService;
 
   public PurchaseOrderController(PurchaseOrderService purchaseOrderService,
                                  SupplierService supplierService
       , CommonService commonService, MakeAutoGenerateNumberService makeAutoGenerateNumberService,
-                                 OperatorService operatorService, EmailService emailService) {
+                                 OperatorService operatorService, EmailService emailService,
+                                 TwilioMessageService twilioMessageService) {
     this.purchaseOrderService = purchaseOrderService;
     this.supplierService = supplierService;
     this.commonService = commonService;
     this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
     this.operatorService = operatorService;
     this.emailService = emailService;
+    this.twilioMessageService = twilioMessageService;
   }
 
   @GetMapping
@@ -115,12 +119,19 @@ public class PurchaseOrderController {
             .append(operatorService.multiply(
                 purchaseOrderSaved.getPurchaseOrderItems().get(i).getItem().getSellPrice(),
                 new BigDecimal(Integer.parseInt(purchaseOrderSaved.getPurchaseOrderItems().get(i)
-                                                    .getQuantity()))
-                                            ))
+                                                    .getQuantity()))))
             .append("\n");
       }
       emailService.sendEmail(purchaseOrderSaved.getSupplier().getEmail(),
                              "Requesting Items According To PO Code " + purchaseOrder.getCode(), message.toString());
+      if ( purchaseOrderSaved.getSupplier().getContactOne() != null ) {
+        try {
+          twilioMessageService.sendSMS(purchaseOrderSaved.getSupplier().getContactOne(), "There is immediate PO from " +
+              "Samarasingher Super \nPlease Check Your Email Form Further Details");
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        }
+      }
     }
     return "redirect:/purchaseOrder/all";
   }
