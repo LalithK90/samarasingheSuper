@@ -255,6 +255,7 @@ public class ReportController {
       NameCount nameCount = new NameCount();
       Employee employee = userService.findByUserName(x).getEmployee();
       nameCount.setName(employee.getTitle().getTitle() + " " + employee.getName());
+      //todo -> here issue
       AtomicReference< BigDecimal > userTotalCount = new AtomicReference<>(BigDecimal.ZERO);
       List< Payment > paymentUser =
           payments.stream().filter(a -> a.getCreatedBy().equals(x)).collect(Collectors.toList());

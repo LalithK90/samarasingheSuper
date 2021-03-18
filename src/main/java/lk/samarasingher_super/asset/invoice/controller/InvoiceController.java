@@ -29,6 +29,8 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -59,8 +61,7 @@ public class InvoiceController {
   @GetMapping
   public String invoice(Model model) {
     model.addAttribute("invoices",
-            invoiceService.findAll());
-    /*invoiceService.findByCreatedAtIsBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(dateTimeAgeService.getPastDateByMonth(3)), dateTimeAgeService.dateTimeToLocalDateEndInDay(LocalDate.now())));*/
+    invoiceService.findByCreatedAtIsBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(dateTimeAgeService.getPastDateByMonth(3)), dateTimeAgeService.dateTimeToLocalDateEndInDay(LocalDate.now())));
     model.addAttribute("firstInvoiceMessage", true);
     return "invoice/invoice";
   }
@@ -84,7 +85,6 @@ public class InvoiceController {
             .fromMethodName(LedgerController.class, "findId", "")
             .build()
             .toString());
-    System.out.println("Sixe" + ledgerService.findAll().size());
     //send not expired and not zero quantity
     model.addAttribute("ledgers", ledgerService.findAll()
             .stream()
@@ -123,6 +123,13 @@ public class InvoiceController {
       }
     }
     invoice.setInvoiceValidOrNot(InvoiceValidOrNot.VALID);
+    List<InvoiceLedger> invoiceLedgers = new ArrayList<>();
+
+    invoice.getInvoiceLedgers().forEach(x-> {
+      x.setInvoice(invoice);
+      invoiceLedgers.add(x);
+    });
+    invoice.setInvoiceLedgers(invoiceLedgers);
     Invoice saveInvoice = invoiceService.persist(invoice);
 
     for ( InvoiceLedger invoiceLedger : saveInvoice.getInvoiceLedgers() ) {
@@ -135,7 +142,8 @@ public class InvoiceController {
     }
     if ( saveInvoice.getCustomer() != null ) {
       try {
-        twilioMessageService.sendSMS(saveInvoice.getCustomer().getMobile(), "Thank You Come Again \n Samarasinghe Super ");
+        String mobileNumber = saveInvoice.getCustomer().getMobile().substring(1,10);
+        twilioMessageService.sendSMS("+94"+mobileNumber, "Thank You Come Again \n Samarasinghe Super ");
       } catch ( Exception e ) {
         e.printStackTrace();
       }
@@ -166,6 +174,7 @@ public class InvoiceController {
   @GetMapping("/fileView/{id}")
   public String fileRequest(@PathVariable("id") Integer id, Model model, HttpServletRequest request) {
     String fullPath = request.getServletContext().getRealPath("/invoice/file/" + id);
+    System.out.println(" path "+ fullPath);
     model.addAttribute("pdfFile",fullPath);
     return "invoice/pdfSilentPrint";
   }
