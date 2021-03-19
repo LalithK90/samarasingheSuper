@@ -66,10 +66,10 @@
                   <a id="customerEdit" data-th-href="${'/customer/edit/' + customer.id}"
                      class="btn btn-success btn-sm" ><i class="fa fa-edit"
                                                         style="font-size: 15px" ></i >&nbsp;Edit</a >
-                  <a id="customerRemove" data-th-if="${!#authorization.expression('hasRole(''ROLE_CASHIER'')')}"
+                  <a  data-th-if="${!#authorization.expression('hasRole(''ROLE_CASHIER'')')}"
                      data-th-href="${'/customer/delete/' + customer.id}"
                      class="btn btn-danger btn-sm" >
-                    <!-- data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" -->
+
                     <i class="fa fa-trash" style="font-size: 15px" ></i > Delete </a >
                 </th >
               </tr >
