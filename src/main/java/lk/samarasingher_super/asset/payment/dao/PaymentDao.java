@@ -1,8 +1,8 @@
 package lk.samarasingher_super.asset.payment.dao;
 
 
-import lk.samarasingher_super.asset.purchase_order.entity.PurchaseOrder;
 import lk.samarasingher_super.asset.payment.entity.Payment;
+import lk.samarasingher_super.asset.purchase_order.entity.PurchaseOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
@@ -14,4 +14,5 @@ public interface PaymentDao extends JpaRepository< Payment,Integer> {
     Payment findFirstByOrderByIdDesc();
 
   List< Payment> findByCreatedAtIsBetween(LocalDateTime from, LocalDateTime to);
+  List< Payment> findByCreatedAtIsBetweenAndCreatedBy(LocalDateTime from, LocalDateTime to, String userName);
 }

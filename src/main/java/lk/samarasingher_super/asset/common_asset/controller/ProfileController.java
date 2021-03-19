@@ -1,8 +1,8 @@
 package lk.samarasingher_super.asset.common_asset.controller;
 
-import lk.samarasingher_super.asset.user_management.entity.PasswordChange;
 import lk.samarasingher_super.asset.user_management.user.entity.User;
 import lk.samarasingher_super.asset.user_management.user.service.UserService;
+import lk.samarasingher_super.asset.user_management.entity.PasswordChange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;

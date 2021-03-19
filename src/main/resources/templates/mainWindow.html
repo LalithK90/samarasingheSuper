@@ -1,160 +1,86 @@
 <!DOCTYPE html>
-<html lang="en"  >
+<html lang="en" >
 <head data-th-replace="~{fragments/header :: headerFragment}" >
-  <meta charset="UTF-8" >
-  <title >Thymeleaf Springboot </title >
 
 </head >
-<body >
+
+<body class="sb-nav-fixed" >
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
-
-<div class="container" >
-  <div class="main-section" >
-    <div class="col-12" >
-      <div class="row" style="margin-top:30px" >
-
-        <div class="col-5" >
-
-          <div class="row" >
-
-            <div class="col-md-3 card" style="width: 18rem;background-color: rgba(118,14,204,0.91)" >
-
+<div id="layoutSidenav" >
+  <div data-th-replace="~{fragments/sideNav :: sideNavFragment}" >
+  </div >
+  <div id="layoutSidenav_content" >
+    <main >
+      <div class="container-fluid mainbody" >
+        <div class="row cardrow" >
+          <div class="col-4 " >
+            <div class="card text-white bg-primary" >
+              <div class="card-header" >Customer</div >
               <div class="card-body" >
-
-                <h3 class="card-title" >Customer</h3 >
-                <img src="../img/customer.jpg" style="width:150px" ><br >
+                <img src="../img/customer.png" style="width:200px; " >
               </div >
             </div >
-
-
-            <div class="col-md-3 card" style="width: 18rem;background-color: darkslategrey" >
-
-              <div class="card-body">
-
-                <h3 class="card-title" >Report</h3 >
-                <img src="../img/report.png" style="width:150px;margin-top:20px" ><br >
-
-              </div >
-            </div >
-
 
           </div >
 
-          <div class="row" >
-            <div class="card" style="width: 20rem;background-color: rgba(157,27,63,0.75)" >
 
+          <div class="col-4" >
+            <div class="card text-white bg-secondary" >
+              <div class="card-header" >Employee</div >
               <div class="card-body" >
-
-                <h3 class="card-title" >Employee</h3 >
-                <img src="../img/employee.png" style="width:150px;margin-left:10px" ><br >
-
+                <img src="../img/employee.png" style="width:220px; " >
               </div >
             </div >
-
-            <div class="card" style="width: 17rem;background-color: rgba(175,24,34,0.76)" >
-
-              <div class="card-body" >
-
-                <h3 class="card-title" >Invoice</h3 >
-                <img src="../img/cart.png" style="width:100px;margin-left:20px" ><br >
-
-              </div >
-            </div >
-
-
           </div >
-          <div class="row" >
 
-            <div class="card" style="width: 18rem;background-color: #0aa361" >
-
+          <div class="col-4" >
+            <div class="card text-white bg-success" >
+              <div class="card-header" >Supplier</div >
               <div class="card-body" >
-                <h3 class="card-title" >GRN</h3 >
-                <img src="../img/grn.jpg" style="width:150px" ><br >
-
+                <img src="../img/supplier2.png" style="width:130px;margin-left:50px" >
               </div >
             </div >
-            <div class="card" style="width: 15rem;background-color: darkcyan" >
-
-              <div class="card-body" >
-
-                <h3 class="card-title" >Payment</h3 >
-                <img src="../img/porder.png" style="width:100px;margin-left:10px" ><br >
-
-              </div >
-            </div >
-
           </div >
 
         </div >
-        <div class="col-4" style="margin-left:-75px" >
-          <div class="col-12" >
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" >
-              <div class="carousel-inner" >
-                <div class="carousel-item active" >
-                  <img class="d-block w-100" src="../img/12.jpeg" alt="First slide" >
-                  <div class="carousel-caption d-none d-md-block" >
-                    <h2 id="animated-example" class="animated animate__bounce" >Welcome</h2 >
-                  </div >
-                </div >
-                <div class="carousel-item" >
-                  <img class="d-block w-100" src="../img/13.jpeg" alt="Second slide" >
 
-                </div >
-                <div class="carousel-item" >
-                  <img class="d-block w-100" src="../img/9.jpg" alt="Third slide" >
-                  <div class="carousel-caption d-none d-md-block" >
-                    <h2 class="animated animate__bounceOutRight" >Your Choice</h2 >
-                  </div >
-                </div >
-              </div >
-
-            </div >
-
-
-            <div class="card"
-                 style="width: 15rem;background-color: rgba(7,60,179,0.76);float: right;margin-right:-160px;margin-top:-200px" >
-
+        <div class="row cardrow" >
+          <div class="col-4" >
+            <div class="card text-white bg-danger" >
+              <div class="card-header" >Payment</div >
               <div class="card-body" >
-
-                <h3 class="card-title" >Mail</h3 >
-                <img src="../img/email.png" style="width:100px;" ><br >
-
+                <img src="../img/payment.png" style="width:188px; " >
               </div >
             </div >
-
-
-            <div class="card"
-                 style="width: 20rem;background-color: transparent;float: right;margin-right:-350px;margin-top:-210px;" >
-
-              <div class="card-body">
-
-                <img src="../img/logoback99.png" style="width:200px;margin-left:10px" ><br >
-
-              </div>
-
-            </div >
-
-
           </div >
+          <div class="col-4" >
+            <div class="card text-white bg-warning" >
+              <div class="card-header" >Purchase Order</div >
+              <div class="card-body" >
+                <img src="../img/porder.png" style="width:200px; " >
+              </div >
+            </div >
+          </div >
+          <div class="col-4" >
 
-          <img src="../img/back2.png" style="margin-top:-167px;margin-left:-200px" ><br >
+            <div class="card text-white bg-info" >
+              <div class="card-header" >Item</div >
+              <div class="card-body" >
+                <img src="../img/item.png" style="width:190px; " >
+              </div >
+            </div >
+          </div >
 
 
         </div >
 
       </div >
-    </div >
+    </main >
+    <!--footer include-->
+    <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
+    <!--script include-->
+    <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
   </div >
 </div >
-
-<!--footer include-->
-<div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
-<!--script include-->
-<div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
-<script >
-    $(document).ready(function () {
-        $("h2").addClass("animated bounce");
-    });
-</script >
 </body >
 </html >

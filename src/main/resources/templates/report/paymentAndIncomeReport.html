@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en"  >
-<head data-th-replace="~{fragments/header :: headerFragment}" >
+<head  data-th-replace="~{fragments/header :: headerFragment}" >
   <meta charset="UTF-8" >
   <title >Thymeleaf Springboot </title >
 </head >
-<body >
+ <body class="sb-nav-fixed" >
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
+<div id="layoutSidenav" >
+  <div data-th-replace="~{fragments/sideNav :: sideNavFragment}" >
+  </div >
+  <div id="layoutSidenav_content" >
+    <main >
 
 <div class="container-fluid bg-secondary form-Border" >
   <div class="row text-center formManagement border-info" >
@@ -35,7 +40,7 @@
     <div class="collapse mx-auto" id="dataTargetCollapse" >
       <div class="container-fluid text-center" >
         <div class="row" >
-          <div class="col" >
+          <div class="col-sm-6 col-sm-offset-3" >
             <h4 class="text-info" ><b > Custom Search</b ></h4 >
             <form class="form-inline" data-th-action="@{/report/manager/search}" data-th-method="POST" >
               <div class="form-group" >
@@ -157,15 +162,15 @@
           <th > Index</th >
           <th > User Name</th >
           <th >Payment Count</th >
-          <th >Total Payment Value</th >
+          <th >Total</th >
         </tr >
         </thead >
         <tbody >
-        <tr data-th-each="invoiceCashier, rowCount : ${paymentByUserAndTotalAmount}" >
+        <tr data-th-each="paymentByUser, rowCount : ${paymentByUserAndTotalAmount}" >
           <th data-th-text="${rowCount.count}" ></th >
-          <th data-th-text="${invoiceCashier.name}" ></th >
-          <th data-th-text="${invoiceCashier.count}" ></th >
-          <th data-th-text="${invoiceCashier.total}" ></th >
+          <th data-th-text="${paymentByUser.name}" ></th >
+          <th data-th-text="${paymentByUser.count}" ></th >
+          <th data-th-text="${paymentByUser.total}" ></th >
         </tr >
         </tbody >
       </table >
@@ -200,9 +205,9 @@
 </div >
 
 
-<div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
+</main><div  data-th-replace="~{fragments/footer :: footerFragment}" ></div >
 <!--script include-->
-<div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
+<div  data-th-replace="~{fragments/script :: scriptFragment}" ></div >
 
-</body >
+</div></div></body >
 </html >

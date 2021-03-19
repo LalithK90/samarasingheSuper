@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import lk.samarasingher_super.asset.common_asset.model.TwoDate;
-import lk.samarasingher_super.asset.ledger.entity.Ledger;
 import lk.samarasingher_super.asset.ledger.service.LedgerService;
 import lk.samarasingher_super.util.service.DateTimeAgeService;
 import org.springframework.http.converter.json.MappingJacksonValue;
@@ -13,11 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
