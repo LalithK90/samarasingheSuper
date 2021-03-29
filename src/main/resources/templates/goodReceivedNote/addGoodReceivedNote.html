@@ -57,11 +57,11 @@
                                hidden required>
                     </td>
                     <td>
-                        <input type="date" class="form-control " onchange="dateMatch(this)"
+                        <input type="date" class="form-control mdate" onchange="dateMatch(this)"
                                data-th-name="${'ledgers[__${index.index}__].manufactureDate'}" data-th-id="${'md'+index.count}" required>
                     </td>
                     <td>
-                        <input type="date" class="form-control " onchange="dateMatch(this)"
+                        <input type="date" class="form-control expdate" onchange="dateMatch(this)"
                                data-th-name="${'ledgers[__${index.index}__].expiredDate'}" data-th-id="${'ed'+index.count}" required>
                     </td>
                 </tr>
@@ -119,6 +119,24 @@
         }
     }
 
+    $(document).ready(function (){
+
+        //input type date can not be selected future date
+        $('.mdate').prop('max', function () {
+            return new Date().toJSON().split('T')[0];
+        });
+
+    })
+
+
+    $(document).ready(function (){
+
+        //input type date can not be selected future date
+        $('.expdate').prop('min', function () {
+            return new Date().toJSON().split('T')[0];
+        });
+
+    })
 
 </script>
 
