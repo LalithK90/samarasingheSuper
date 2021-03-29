@@ -17,6 +17,7 @@
 
 <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
 <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
+
 <script >
     $(document).ready(function () {
         loadOtherPage();
@@ -31,7 +32,8 @@
                 id: "printf",
                 loading: "eager",
                 importance: "high",
-                width: "100%"
+                width: "100%",
+                height: "100%"
             }) // point the iframe to the page link you want to print
             .appendTo("body");
 
@@ -50,6 +52,16 @@
                 let printOrNot = printFrame(id);
                 if (printOrNot) {
                     $('.printPage', window.parent.document).hide();
+                    swal("Congratulation printing process is completed")
+                        .then((value) => {
+                            swal({
+                                title: "Thank for your confirmation !",
+                                icon: "success",
+                            });
+                            if (value) {
+                                location.replace("[[${redirectUrl}]]");
+                            }
+                        });
                 }
                 // The loading is complete, call the function we want executed once the iframe is loaded
             };
