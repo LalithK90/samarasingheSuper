@@ -18,7 +18,7 @@
           data-th-object="${employee}" method="POST" enctype="multipart/form-data" >
       <div class="row" >
         <div class="container  form-Border" >
-          <div class="row text-center formManagement border-info" >
+          <div class="row text-center      " >
             <div class="col" >
               <a class="btn btn-success" href="/home" >
                 Back To Home
@@ -220,7 +220,7 @@
             </div >
             <div class="col-md-8" >
               <input id="mobileOne" data-th-field="*{mobileOne}" class="form-control mobile" tabindex="13"
-                     type="text"
+                     type="tel"
                      maxlength="10" min="9"
                      required />
               <span class="error" data-th-errors="*{mobileOne}"
@@ -235,7 +235,7 @@
             </div >
             <div class="col-md-8" >
               <input id="mobileTwo" data-th-field="*{mobileTwo}" class="form-control mobile" tabindex="14"
-                     type="text"
+                     type="tel"
                      maxlength="10" min="9" />
               <span class="error" data-th-errors="*{mobileTwo}"
                     data-th-if="${#fields.hasErrors('mobileTwo')}"
@@ -248,7 +248,7 @@
               <label class="control-label" for="land" >Land No :</label >
             </div >
             <div class="col-md-8" >
-              <input id="land" data-th-field="*{land}" class="form-control land" type="text" tabindex="15"
+              <input id="land" data-th-field="*{land}" class="form-control land" type="tel" tabindex="15"
                      maxlength="10"
                      min="9" />
               <span class="error" data-th-errors="*{land}"

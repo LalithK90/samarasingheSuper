@@ -17,7 +17,7 @@
 <!--Multi CSS-->
             <link data-th-href="@{/css/multi.css}" media="all" rel="stylesheet" type="text/css"/>
 <div class="container-fluid ">
-    <div class="row text-center formManagement border-info">
+    <div class="row text-center      ">
         <!--View List Button-->
         <div class="col">
             <a class="btn btn-primary" href="/purchaseOrder">
@@ -42,7 +42,7 @@
 </div>
 
 <!--Form Content - start -->
-<div class="container-fluid bg-info">
+<div class="container-fluid ">
     <!--Supplier Search - Start-->
     <div class="offset-1 flex-column"  data-th-if="${searchAreaShow==true}">
         <form class="form-inline" data-th-action="${'/purchaseOrder/find'}" data-th-object="${purchaseOrder}"
