@@ -1,6 +1,5 @@
 package lk.samarasingher_super.asset.purchase_order.controller;
 
-
 import lk.samarasingher_super.asset.common_asset.service.CommonService;
 import lk.samarasingher_super.asset.item.entity.Item;
 import lk.samarasingher_super.asset.item.service.ItemService;
@@ -41,7 +40,8 @@ public class PurchaseOrderController {
 
     public PurchaseOrderController(PurchaseOrderService purchaseOrderService,
                                    PurchaseOrderItemService purchaseOrderItemService, SupplierService supplierService
-            , CommonService commonService, ItemService itemService, MakeAutoGenerateNumberService makeAutoGenerateNumberService, EmailService emailService,
+            , CommonService commonService, ItemService itemService,MakeAutoGenerateNumberService makeAutoGenerateNumberService,
+                                   EmailService emailService,
                                    TwilioMessageService twilioMessageService) {
         this.purchaseOrderService = purchaseOrderService;
       this.purchaseOrderItemService = purchaseOrderItemService;

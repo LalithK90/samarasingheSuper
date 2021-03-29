@@ -1,6 +1,5 @@
 package lk.samarasingher_super.asset.customer.controller;
 
-
 import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
 import lk.samarasingher_super.asset.common_asset.model.enums.Title;
 import lk.samarasingher_super.asset.customer.entity.Customer;
@@ -30,7 +29,7 @@ public  class CustomerController implements AbstractController<Customer, Integer
     private final TwilioMessageService twilioMessageService;
 
     @Autowired
-    public CustomerController(CustomerService customerService, MakeAutoGenerateNumberService makeAutoGenerateNumberService, EmailService emailService, TwilioMessageService twilioMessageService) {
+    public CustomerController(CustomerService customerService, MakeAutoGenerateNumberService makeAutoGenerateNumberService,EmailService emailService,TwilioMessageService twilioMessageService) {
         this.customerService = customerService;
         this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
         this.emailService = emailService;

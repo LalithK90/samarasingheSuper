@@ -198,16 +198,7 @@
 /* Nav Bar style end*/
 
 /*MainWindow Style - Start*/
-.mainbody{
-    background: url(../img/mainwindow.png)no-repeat center center fixed;
-    margin-left:230px;
-    margin-top:-650px;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-attachment: fixed;
-}
+
 
 .card{
     max-width: 18rem;
