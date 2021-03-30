@@ -12,7 +12,7 @@
     <div id="layoutSidenav_content">
         <main>
 <!--Form Content - start -->
-<div class="container-fluid  ">
+<div class="container-fluid " style="margin-top:100px">
     <div class="col-sm-12 flex-column ">
         <form id="form" class="form-horizontal"  data-th-action="${addStatus==true?'/supplier/save':'/supplier/update'}"
                data-th-object="${supplier}" method="POST" enctype="multipart/form-data">
@@ -41,6 +41,8 @@
                         </div>
                     </div>
                 </div>
+
+
 
                 <!--Left Side-->
                 <div class="form-group col-md-6 col-sm-6 text-left flex-column">
@@ -76,6 +78,24 @@
                                    data-th-if="${#fields.hasErrors('brn')}" class="error">Error Name</span>
                         </div>
                     </div>
+
+
+                    <!--Supplier Code-->
+                    <div class="form-row text-right" data-th-if="${addStatus==false}" >
+                        <div class="col-md-4" >
+                            <label class="control-label" for="name" >Supplier code :</label >
+                        </div >
+                        <div class="col-md-8" >
+                            <input id="code" data-th-field="*{code}" class="form-control" tabindex="4"
+                                   type="text" required readonly />
+                            <span id="codeE" data-th-errors="*{code}"
+                                  data-th-if="${#fields.hasErrors('code')}" class="error" >Error Supplier code
+                            </span >
+                        </div >
+                    </div >
+
+
+
                     <!--Contact Number One-->
                     <div class="form-row text-right">
                         <div class="col-md-4">
