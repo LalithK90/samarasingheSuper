@@ -48,7 +48,7 @@
                         <!--Expired date-->
                         <div class="form-group col-md-6">
                             <label for="requestCount" class="text-dark">Request Count :</label>
-                            <input id="requestCount" class="form-control" type="number" step="0.01"/>
+                            <input id="requestCount" class="form-control" type="number" step="1"/>
                         </div>
                         <!--Total -->
                         <div class="form-group col-md-6">
@@ -524,7 +524,7 @@
     }
 
     //modal total mount calculate
-    $("#requestCount").bind('keyup', function () {
+    $("#requestCount").bind('keyup keydown change', function () {
         $("#totalModal").val(parseFloat($("#sellPriceModal").val()) * parseFloat($(this).val()));
         addButtonDisable();
     });
