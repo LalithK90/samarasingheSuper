@@ -107,12 +107,23 @@ input{
     width:950px;
     padding:20px;
 }
-.card-header{
+.card-header {
     font-family: Tahoma;
     font-weight: bolder;
 
 }
 
-
-
 /*MainWindow Style - End*/
+/*Form START*/
+.formborder{
+background-color: #2f604a;
+
+}
+/*Form END*/
+
+
+/* Navbar Style--START*/
+.navbar a{
+   color: white;
+}
+/* Navbar Style--END*/
