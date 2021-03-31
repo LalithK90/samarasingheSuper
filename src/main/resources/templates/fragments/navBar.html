@@ -5,19 +5,19 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm " data-th-fragment="navBarFragment" style="background-color: #144b41;color: white">
+<nav class="navbar navbar-expand-sm " data-th-fragment="navBarFragment">
 
     <a class="navbar-brand" href="#">
         <img data-th-src="${'../img/logo.png'}" alt="Company log" style="width:50px;height:50px;" id="logo" class="animated-spin">
     </a>
-    <a class="navbar-brand" data-th-href="${'/home'}"><i class="fa fa-home" style="font-size: 18px"></i></a>
+    <a class="navbar-brand text-white" data-th-href="${'/home'}"><i class="fa fa-home" style="font-size: 18px"></i></a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId"
             aria-expanded="false" aria-label="Toggle navigation"></button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-itemBatch dropdown active">
-                <a class="nav-link text-primary dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"> <i class="fa fa-user"></i> General</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' ,'ROLE_ADMIN')"  data-th-href="@{'/employee'}" class="nav-link text-primary"> Employee Management </a>
@@ -37,7 +37,7 @@
             </li>
 
             <li class="nav-itemBatch dropdown active">
-                <a class="nav-link text-primary dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                <a class="nav-link text-white dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"> <i class="fa fa-bell"></i> Transaction</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' ,'ROLE_ADMIN')" data-th-href="@{'/employee/add'}" class="nav-link text-primary"> New Employee </a>
@@ -53,7 +53,7 @@
             </li>
 
             <li class="nav-itemBatch dropdown active">
-                <a class="nav-link text-primary dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                <a class="nav-link text-white dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"> <i class="fa fa-book-open"></i> Report</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" data-th-href="@{'/report/manager'}" class="nav-link text-primary"> Manager Report</a>
@@ -72,7 +72,7 @@
     <div>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 justify-content-end">
             <li class="nav-item dropdown" data-sec-authorize="isAuthenticated()">
-                <a class="nav-link text-primary dropdown-toggle" href="#" id="navbarDropdown1" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown1" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user-tie fa-lg"></i>&nbsp;&nbsp;
                     <span data-th-text="${#authentication.name}"></span>
                     <span class="caret"></span>
@@ -86,7 +86,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown " data-sec-authorize="isAuthenticated()">
-                <a href="/logout" class="nav-link text-primary"> <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Log
+                <a href="/logout" class="nav-link text-white"> <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Log
                     out</a>
             </li>
             <li class="nav-item dropdown " data-sec-authorize="!isAuthenticated()">

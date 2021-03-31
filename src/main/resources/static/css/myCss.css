@@ -7,6 +7,22 @@
     --error-color: #fa370d;
 }
 
+
+/* Navbar Style--START*/
+.navbar{
+ background-color: #194b44;
+
+}
+.dropdown-menu{
+    background-color: rgba(18,47,63,0.65);
+}
+.dropdown-menu a{
+    color: #20c997;
+
+}
+
+/* Navbar Style--END*/
+
 /*login page start*/
 
 body{
@@ -96,7 +112,7 @@ input{
 
 .card{
 
-    background-color:rgba(4, 83, 54, 0.55);
+background-color: rgba(16,48,47,0.94);
     max-width: 18rem;
     margin-bottom:20px;
     margin-left:10px;
@@ -110,6 +126,7 @@ input{
 .card-header {
     font-family: Tahoma;
     font-weight: bolder;
+    color: #ffffff;
 
 }
 
@@ -119,11 +136,9 @@ input{
 background-color: #2f604a;
 
 }
+
+#mainbody{
+    background-image: url(../img/mainwindow.jpg);
+}
 /*Form END*/
 
-
-/* Navbar Style--START*/
-.navbar a{
-   color: white;
-}
-/* Navbar Style--END*/
