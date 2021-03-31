@@ -76,8 +76,8 @@
                         class="fa fa-folder-open" style="font-size: 15px" ></i >&nbsp;View</a >
                   <a class="btn btn-success btn-sm" data-th-href="${'/supplier/edit/' + supplier.id}" ><i
                         class="fa fa-edit" style="font-size: 15px" ></i >&nbsp;Edit</a >
-                  <a class="btn btn-danger btn-sm" data-th-href="${'/supplier/delete/' + supplier.id}" >
-                    <!--data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"--> <i
+                  <a class="btn btn-danger btn-sm" data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" data-th-href="${'/supplier/delete/' + supplier.id}" >
+                  <i
                         class="fa fa-trash" style="font-size: 15px" ></i > Delete</a >
                 </th >
                 <th data-th-if="${supplierDetailShow==true}" >

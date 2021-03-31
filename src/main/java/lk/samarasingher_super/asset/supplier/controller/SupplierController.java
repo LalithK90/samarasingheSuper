@@ -1,5 +1,6 @@
 package lk.samarasingher_super.asset.supplier.controller;
 
+
 import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
 import lk.samarasingher_super.asset.supplier.entity.Supplier;
 import lk.samarasingher_super.asset.supplier.service.SupplierService;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/supplier")
-public  class SupplierController implements AbstractController<Supplier, Integer> {
+public  class SupplierController implements AbstractController< Supplier, Integer> {
     private final SupplierService supplierService;
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
 

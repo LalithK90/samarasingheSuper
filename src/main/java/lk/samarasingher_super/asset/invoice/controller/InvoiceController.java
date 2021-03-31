@@ -164,18 +164,23 @@ public class InvoiceController {
   public ResponseEntity< InputStreamResource > invoicePrint(@PathVariable("id")Integer id) throws DocumentException {
     var headers = new HttpHeaders();
     headers.add("Content-Disposition", "inline; filename=invoice.pdf");
+    InputStreamResource pdfFile = new InputStreamResource(invoiceService.createPDF(id));
+
     return ResponseEntity
         .ok()
         .headers(headers)
         .contentType(MediaType.APPLICATION_PDF)
-        .body(new InputStreamResource(invoiceService.createPDF(id)));
+        .body(pdfFile);
   }
 
   @GetMapping("/fileView/{id}")
   public String fileRequest(@PathVariable("id") Integer id, Model model, HttpServletRequest request) {
-    String fullPath = request.getServletContext().getRealPath("/invoice/file/" + id);
-    System.out.println(" path "+ fullPath);
-    model.addAttribute("pdfFile",fullPath);
+    model.addAttribute("pdfFile",MvcUriComponentsBuilder
+        .fromMethodName(InvoiceController.class, "invoicePrint", id)
+        .toUriString());
+    model.addAttribute("redirectUrl",MvcUriComponentsBuilder
+        .fromMethodName(InvoiceController.class, "getInvoiceForm")
+        .toUriString());
     return "invoice/pdfSilentPrint";
   }
 
