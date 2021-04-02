@@ -17,7 +17,7 @@
     background-color: rgba(18,47,63,0.65);
 }
 .dropdown-menu a{
-    color: #20c997;
+    color:white;!important;
 
 }
 
@@ -26,7 +26,6 @@
 /*login page start*/
 
 body{
-
     background-image: url(../img/login.png);
     -webkit-background-size:cover;
     -webkit-background-size: cover;
@@ -123,6 +122,7 @@ background-color: rgba(16,48,47,0.94);
     width:950px;
     padding:20px;
 }
+
 .card-header {
     font-family: Tahoma;
     font-weight: bolder;
@@ -141,4 +141,3 @@ background-color: #2f604a;
     background-image: url(../img/mainwindow.jpg);
 }
 /*Form END*/
-
