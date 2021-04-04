@@ -15,6 +15,47 @@
   <div id="layoutSidenav_content" >
     <main >
 
+<div class="container-fluid mt-3" >
+  <div class="container-fluid" >
+    <form action="/invoice" method="post" data-th-object="${invoice}" >
+      <!--ledgers will list-->
+      <div class="form-group" >
+        <!--Ledgers item-->
+        <div class="form-row " >
+          <div class="col-2 text-right" >
+            <label class="control-label" for="item" >Items :</label >
+          </div >
+          <div class="col-10 text-left" >
+            <select id="item" class="form-control" tabindex="9" >
+              <option value="" >Please select</option >
+              <option data-th-each="ledger : ${ledgers}"
+                      data-th-text="${'Item Name: '+ledger.item.name+'  Sell Price : '+ledger.item.sellPrice+'  Available quantity : '+ledger.quantity+'  Expired Date : '+ledger.expiredDate}"
+                      data-th-value="${ledger.id}" >
+                Please select
+              </option >
+            </select >
+          </div >
+        </div >
+      </div >
+      <!--selected ledger items-->
+      <div class="form-group" >
+        <div class="form-row" >
+          <div class="container" >
+            <div class="col" >
+              <table class="table table-hover table-striped " id="myTable" >
+                <thead >
+                <tr >
+                  <th >Index</th >
+                  <th >Item Name</th >
+                  <th >Ex Date</th >
+                  <th >Available Quantity</th >
+                  <th >Unit Price</th >
+                  <th >Quantity</th >
+                  <th >Line Total</th >
+                  <th >Modify</th >
+                </tr >
+                </thead >
+                <tbody >
 
       <!--Creates the popup body-->
       <div class="popup-overlay" >
@@ -447,7 +488,6 @@
         for (let i = 0; i < selectedInvoiceLedger.length; i++) {
             html += tableRowCreate(i, selectedInvoiceLedger[i]);
         }
-        //$("#myTable tbody tr:last").after(html);
 
         $("#myTable tbody ").html(html);
         totalPrice();
@@ -498,9 +538,17 @@
     //calculate line total
     function lineTotalCalculateByLine(obj) {
         let selectedFiledId = obj.getAttribute('id').slice(2);
-        let price = $(`#sp${selectedFiledId}`).val();
-        $(`#lt${selectedFiledId}`).val(price * obj.value);
-        totalPrice();
+        let quantity = $(`#aq${selectedFiledId}`).val();
+        if (quantity >= obj.value) {
+            let price = $(`#sp${selectedFiledId}`).val();
+            $(`#lt${selectedFiledId}`).val(price * obj.value);
+            totalPrice();
+        } else {
+            swal({
+                title: "Please check the quantity ",
+                icon: "warning",
+            });
+        }
     }
 
     function totalPrice() {
@@ -528,6 +576,21 @@
             });
         }
     });
+
+    function totalPriceCard() {
+        let requestCountVal = $("#requestCount").val();
+        let abQuantity = $("#abQuantity").val();
+
+        if (parseFloat(abQuantity) >= parseFloat(requestCountVal)) {
+            $("#totalModal").val(parseFloat($("#sellPriceModal").val()) * parseFloat(requestCountVal));
+            addButtonDisable();
+        } else {
+            swal({
+                title: "Request more than available   ",
+                icon: "warning",
+            });
+        }
+    }
 
     //modal all values zero
     function modalValueZero() {

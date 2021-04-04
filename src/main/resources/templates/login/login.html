@@ -11,14 +11,6 @@
 
 <div class="form-area">
     <form th:action="${'/login'}" method="post">
-    <div class="img-area">
-       <!-- <img src="../img/avatar.png" alt="">-->
-    </div>
-
-    <br/>
-    <br/>
-    <br/>
-
     <h2>Samarasinghe Super</h2>
 
     <p> User Name :</p>
@@ -29,10 +21,6 @@
 
     <div style="margin-top:10px">
         <button id="btnLogin" class="col-md-12 btn btn-primary"><i class= "fa fa-key" style="margin-right: 10px;font-size: 18px"></i>Login</button>
-    </div>
-
-    <div>
-        <a href="#" class="for-pass">Forgot Password ?</a>
     </div>
 
 <div class="container-fluid " th:if="${param.error}">
