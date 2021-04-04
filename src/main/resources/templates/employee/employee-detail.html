@@ -9,7 +9,7 @@
 
       <!--heading Area-->
       <div class="container-fluid  form-Border" >
-        <div class="row text-center formManagement border-info" >
+        <div class="row text-center      " >
           <div class="col" >
             <a class="btn btn-outline-info" href="/home" >&nbsp; Back To Home
             </a >
@@ -31,7 +31,7 @@
         </div >
       </div >
       <!--details-->
-      <div data-th-fragment="employeeDetailsFragment" class="container-fluid formBorder" >
+      <div data-th-fragment="employeeDetailsFragment" class="container-fluid   " >
         <div class="col-sm-12 flex-column text-dark" >
           <div class="row" >
             <!--Left Side-->
@@ -234,7 +234,7 @@
                                  style="height: 150px; widdata-th- 150px; border-radius: 10px"
                                  alt="Employee images" data-th-src="${file.url}" />
                           </div >
-                          <div class="card-footer bg-secondary text-light text-center" >
+                          <div class="card-footer  text-light text-center" >
                             <p id="imgName" data-th-text="${file.filename}" ></p >
                             <span > Uploaded Date :
                                             <p id="imgCreateAt" data-th-text="${{file.createAt}}" ></p >
@@ -259,9 +259,10 @@
         </div >
         <br />
       </div >
-    <div data-th-replace="~{fragments/footer :: footerFragment}" ></footer>
+    </main >
+    <div data-th-replace="~{fragments/footer :: footerFragment}" ></div>
       <!--script include-->
-      <script data-th-replace="~{fragments/script :: scriptFragment}" ></script >
+      <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
     </div >
 
 </body >
