@@ -77,9 +77,8 @@
               <select id="subCategory" data-th-name="${'category'}" class="form-control" tabindex="4"
                       style="font-size: large" required >
                 <option value="" >Please select</option >
-                <!-- <option                               data-th-text="${item.category.name}"
-                                                       data-th-value="${item.category.id}"
-                 >-->
+                <option data-th-if="${addStatus==false}" data-th-text="${item.category.name}"
+                        data-th-value="${item.category.id}" >
               </select >
             </div >
           </div >
@@ -93,25 +92,24 @@
               <select id="brand" data-th-field="*{brand}" class="form-control" tabindex="4"
                       required >
                 <option value="" >Please select</option >
-                <!--  <option                               data-th-text="${item.brand.name}"
-                          data-th-value="${item.brand.id}"
-                  >
-                  </option >-->
+                <option data-th-if="${addStatus==false}" data-th-text="${item.brand.name}"
+                        data-th-value="${item.brand.id}"
+                >
+                </option >
               </select >
             </div >
           </div >
 
 
-          <!--Ammount-->
+          <!--Amount-->
           <div class="form-row text-right" >
+
             <div class="col-md-4" >
-              <label class="control-label" for="eName" >Ammount :</label >
+              <label class="control-label" for="eName" >Enter Name :</label >
             </div >
             <div class="col-md-4" >
-              <input id="ammount" data-th-field="*{ammount}" class="form-control" tabindex="6" type="text"
+              <input id="eName" class="form-control" tabindex="6" type="text"
                      required />
-              <span id="ammountError" data-th-errors="*{ammount}"
-                    data-th-if="${#fields.hasErrors('ammount')}" class="error" >Error Ammount</span >
             </div >
           </div >
 
@@ -123,7 +121,6 @@
             <div class="col-md-4" >
               <select id="measurement" class="form-control" tabindex="4" style="font-size: large"
                       required >
-                <!--data-th-value="${category.mainCategory}" -->
                 <option value="" >Please select</option >
                 <option data-th-each="measurement : ${measurements}"
                         data-th-text="${measurement.measurement}"
@@ -135,20 +132,18 @@
           </div >
 
 
-
           <!--Name-->
           <div class="form-row text-right" >
             <div class="col-md-4" >
-              <label class="control-label" for="eName" >Name :</label >
+              <label class="control-label" for="name" >Name :</label >
             </div >
             <div class="col-md-4" >
-              <input id="eName" data-th-field="*{name}" class="form-control" tabindex="6" type="text"
-                     required />
+              <input id="name" data-th-field="*{name}" class="form-control" tabindex="6" type="text"
+                     required readonly />
               <span id="nameError" data-th-errors="*{name}"
                     data-th-if="${#fields.hasErrors('name')}" class="error" >Error Name</span >
             </div >
           </div >
-
 
 
           <!--ReOrder Point-->
@@ -275,9 +270,9 @@
     })
 
     function brandAdd(val) {
-        if (val && brandList.length !==0) {
+        if (val && brandList.length !== 0) {
             for (let i = 0; i < brandList.length; i++) {
-                if (brandList[i].id === parseFloat(val)){
+                if (brandList[i].id === parseFloat(val)) {
                     for (let brandListElement of brandList[i].brands) {
                         $("#brand").append(`<option value="${brandListElement.id}">${brandListElement.name}</option>`);
                     }
@@ -287,23 +282,29 @@
     }
 
     let removeOption = function (idValue) {
-        $(`#${idValue}`).find('option')
-            .remove();
+        $(`#${idValue}`).find('option').remove();
     }
 
 
-    $("#eName").change(function () {
+    $("#eName").keyup(function () {
+        console.log("hehe")
+        nameCreation();
+    });
+    $("#subCategory, #brand, #measurement ").change(function () {
+        console.log("sdasds "+$(this).val());
         nameCreation();
     });
 
     function nameCreation() {
         let subCategory = $("#subCategory option:selected").text();
         let brand = $("#brand option:selected").text();
-        let color = $("#itemColor option:selected").text();
         let eName = $("#eName").val();
+        let measurement = $("#measurement option:selected").text();
 
-        if (subCategory && brand && color && eName) {
-            $("#name").val(subCategory + "-" + brand + "-" + color + "-" + eName);
+        if (subCategory && brand && measurement && eName) {
+            //Elephanthouse-icecream-1l
+            //subcategory - brand - name - measurement
+            $("#name").val(subCategory + "-" + brand + "-" + eName + "-" + measurement);
         }
     }
 
