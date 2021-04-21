@@ -6,6 +6,7 @@ import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
 import lk.samarasingher_super.asset.item.entity.Item;
 import lk.samarasingher_super.asset.item.entity.enums.ItemStatus;
 import lk.samarasingher_super.asset.item.entity.enums.MainCategory;
+import lk.samarasingher_super.asset.item.entity.enums.Measurement;
 import lk.samarasingher_super.util.interfaces.AbstractController;
 import lk.samarasingher_super.util.service.MakeAutoGenerateNumberService;
 import lk.samarasingher_super.asset.item.service.ItemService;
@@ -41,14 +42,13 @@ public class ItemController implements AbstractController< Item, Integer > {
     model.addAttribute("statuses", ItemStatus.values());
     model.addAttribute("item", item);
     model.addAttribute("addStatus", addState);
+    model.addAttribute("measurements", Measurement.values());
     model.addAttribute("mainCategories", MainCategory.values());
     model.addAttribute("brands",brandService.findAll() );
     model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
         .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
         .build()
         .toString());
-
-
 
     return "item/addItem";
   }

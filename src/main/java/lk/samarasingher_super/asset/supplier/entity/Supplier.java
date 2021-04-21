@@ -24,12 +24,16 @@ import java.util.List;
 public class Supplier extends AuditEntity {
 
     @Size( min = 5, message = "Your Company name cannot be accepted" )
+    @Column(unique = true)
     private String name;
+
+    @Size( min = 5, message = "Your Supplier name cannot be accepted" )
+    private String suppliername;
 
     @Column( nullable = false, unique = true )
     private String code;
 
-    @Size( min = 2, message = "Your BRN cannot be accepted" )
+    //@Size( min = 2, message = "Your BRN cannot be accepted" )
     private String brn;
 
     @Size( max = 10, min = 9, message = "Mobile number length should be contained 10 and 9" )
