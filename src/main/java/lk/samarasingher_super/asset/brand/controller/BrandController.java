@@ -3,12 +3,15 @@ package lk.samarasingher_super.asset.brand.controller;
 
 import lk.samarasingher_super.asset.brand.entity.Brand;
 import lk.samarasingher_super.asset.brand.service.BrandService;
+import lk.samarasingher_super.asset.category.controller.CategoryRestController;
+import lk.samarasingher_super.asset.item.entity.enums.MainCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -33,13 +36,24 @@ public class BrandController {
     public String form(Model model) {
         model.addAttribute("addStatus", true);
         model.addAttribute("brand", new Brand());
+        model.addAttribute("mainCategories", MainCategory.values());
+        model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
+            .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
+            .build()
+            .toString());
+
         return "brand/addBrand";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("addStatus", false);
-        model.addAttribute("brand", brandService.findById(id));
+        model.addAttribute("brand", brandService.findById(id));model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
+            .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
+            .build()
+            .toString());
+
+        model.addAttribute("mainCategories", MainCategory.values());
         return "brand/addBrand";
     }
 
@@ -60,7 +74,12 @@ public class BrandController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("addStatus", true);
-            model.addAttribute("brand", brand);
+            model.addAttribute("brand", brand);model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
+                .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
+                .build()
+                .toString());
+
+            model.addAttribute("mainCategories", MainCategory.values());
             return "brand/addBrand";
         }
 
@@ -73,7 +92,12 @@ public class BrandController {
             e.printStackTrace();
             if (bindingResult.hasErrors()) {
                 model.addAttribute("addStatus", true);
-                model.addAttribute("brand", brand);
+                model.addAttribute("brand", brand);model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
+                    .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
+                    .build()
+                    .toString());
+
+                model.addAttribute("mainCategories", MainCategory.values());
                 return "brand/addBrand";
             }
         }
