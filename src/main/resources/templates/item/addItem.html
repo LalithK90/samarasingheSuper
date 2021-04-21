@@ -135,7 +135,6 @@
           </div >
 
 
-
           <!--Name-->
           <div class="form-row text-right" >
             <div class="col-md-4" >
@@ -143,12 +142,11 @@
             </div >
             <div class="col-md-4" >
               <input id="eName" data-th-field="*{name}" class="form-control" tabindex="6" type="text"
-                     required />
+                     required readonly/>
               <span id="nameError" data-th-errors="*{name}"
                     data-th-if="${#fields.hasErrors('name')}" class="error" >Error Name</span >
             </div >
           </div >
-
 
 
           <!--ReOrder Point-->
@@ -275,9 +273,9 @@
     })
 
     function brandAdd(val) {
-        if (val && brandList.length !==0) {
+        if (val && brandList.length !== 0) {
             for (let i = 0; i < brandList.length; i++) {
-                if (brandList[i].id === parseFloat(val)){
+                if (brandList[i].id === parseFloat(val)) {
                     for (let brandListElement of brandList[i].brands) {
                         $("#brand").append(`<option value="${brandListElement.id}">${brandListElement.name}</option>`);
                     }
@@ -292,14 +290,16 @@
     }
 
 
-    $("#eName").change(function () {
+    $("#eName").keyup(function () {
+        nameCreation();
+    });
+    $("#subCategory, #brand ").change(function () {
         nameCreation();
     });
 
     function nameCreation() {
         let subCategory = $("#subCategory option:selected").text();
         let brand = $("#brand option:selected").text();
-        let color = $("#itemColor option:selected").text();
         let eName = $("#eName").val();
 
         if (subCategory && brand && color && eName) {
