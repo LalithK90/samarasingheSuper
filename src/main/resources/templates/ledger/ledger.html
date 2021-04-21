@@ -1,121 +1,124 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head data-th-replace="~{fragments/header :: headerFragment}" >
-  <meta charset="UTF-8" >
-  <title >item</title >
-</head >
+<html lang="en">
+<head data-th-replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Samarasinghe Super</title>
+</head>
 <body>
-<nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
+<nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 
+<div class="container-fluid  text-center ">
 
-      <!--heading Area-->
-      <div class="container-fluid " >
-        <div class="row text-center formManagement border-info" >
-          <!-- New Item Button-->
-          <div class="col" >
-            <a class="btn btn-success" href="/supplier" tabindex="1" ><i class="fas fa-plus"
-                                                                         style="font-size: 20px" ></i >&nbsp;&nbsp;Supplier
-                                                                                                       Lis</a >&nbsp;
-          </div >
-          <!-- List Name-->
-          <div class="col" >
-            <h2 class="text-white text-center" >
-              <strong >
-                <span data-th-text="${title}" ></span >
-              </strong >
-            </h2 >
-          </div >
-          <!-- Home Button-->
-          <div class="col" >
-            <a href="/home" id="searchShow" class="btn btn-primary" tabindex="2" >
-              <!--<i class="fa fa-user " style="font-size: 20px"></i>&nbsp;Add&nbsp;-->
-              <i class="fas fa-home" style="font-size: 20px" ></i >&nbsp;&nbsp;Home
-              &nbsp;
-            </a >
-          </div >
-        </div >
-      </div >
+    <div class="row">
 
-      <div class="container-fluid   text-center" >
+        <form class="form-inline" action="/ledger/expiredDate" method="post" style="margin-left:200px;margin-top:20px">
+            <div class="form-group mb-2">
+                <a href="/ledger/reorderPoint">
+                    <button class="btn btn-danger"><i class="fas fa-shopping-bag" style="font-size: 20px;margin-right: 10px"></i>
+                        Re Order Point Achieved</button>
+                </a>
+            </div>
 
-        <div class="row" >
-          <div class="col-3" >
-            <a href="/ledger/reorderPoint" >
-              <button class="btn btn-primary" >Re Order Point Achieved</button >
-            </a >
-          </div >
-          <form action="/ledger/expiredDate" method="post" >
-            <div class="col-3" >
-              <label class="control-label" > Since :
-                <input type="date" class="form-control" name="startDate" id="startDate" required >
-              </label >
-            </div >
-            <div class="col-3" >
-              <label class="control-label" > To :
-                <input type="date" class="form-control" name="endDate" id="endDate" required >
-              </label >
-            </div >
-            <div class="col-3" >
-              <button type="submit" class="btn btn-success" > Send</button >
-            </div >
-          </form >
-        </div >
-      </div >
-      <div class="container-fluid   text-center" >
+            <div class="form-group mx-sm-3 mb-2">
+                <label class="control-label" style="margin-right:10px"> Since :</label>
+                <input type="date" class="form-control" name="startDate" id="startDate" required>
+
+            </div>
+
+            <div class="form-group mx-sm-3 mb-2">
+                <label class="control-label" style="margin-right:10px"> To :     </label>
+                <input type="date" class="form-control" name="endDate" id="endDate" required>
+
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+            <button type="submit" class="btn btn-success"> <i class="fas fa-cog" style="font-size: 20px;margin-right: 10px"></i>Send</button>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2"> <i class="fas fa-address-book" style="font-size: 20px"></i>&nbsp;Confirm identity</button>
+        </form>
+    </div>
+
+<!--heading Area-->
+<div class="row text-center formManagement ">
+        <!-- Home Button-->
+        <div class="col">
+            <a href="/home" id="searchShow" class="btn btn-info" tabindex="2">
+                <!--<i class="fa fa-user " style="font-size: 20px"></i>&nbsp;Add&nbsp;-->
+                <i class="fas fa-home" style="font-size: 20px"></i>&nbsp;&nbsp;Home
+            </a>
+        </div>
+        <!-- List Name-->
+        <div class="col">
+            <h4 class="text-dark text-center">
+                <span data-th-text="${title}"></span>
+            </h4>
+        </div>
+        <!-- New Item Button-->
+        <div class="col">
+            <a class="btn btn-success" href="/supplier" tabindex="1"><i class="fas fa-list"
+                                                                        style="font-size: 20px;margin-right:10px "></i>Supplier
+                List</a>&nbsp;
+        </div>
+
+</div>
+
+<div class="container-fluid tableview text-center" >
+    <div class="col">
         <!--Table view-->
-        <div class="col" data-th-if="${not #lists.isEmpty(ledgers)}" >
-          <div class="col" id="itemListPresent" >
-            <table class="table table-hover table-striped" id="myTable" >
-              <thead >
-              <tr >
-                <th > Index</th >
-                <th > Item Name</th >
-                <th > ROP</th >
-                <th > Quantity</th >
-                <th > Price</th >
-                <th > M Date</th >
-                <th > E Date</th >
-                <th > Modify</th >
-              </tr >
-              </thead >
-              <tbody >
-              <tr data-th-each="ledger, rowCount : ${ledgers}" >
-                <th data-th-text="${rowCount.count}" ></th >
-                <th data-th-text="${ledger.item.name}" ></th >
-                <th data-th-text="${ledger.item.rop}" ></th >
-                <th data-th-text="${ledger.quantity}" ></th >
-                <th data-th-text="${ledger.sellPrice}" ></th >
-                <th data-th-text="${ledger.manufactureDate}" ></th >
-                <th data-th-text="${ledger.expiredDate}" ></th >
-                <th >
-                  <a data-th-href="${'/purchaseOrder/supplier/' + ledger.goodReceivedNote.purchaseOrder.supplier.id}"
-                     class="btn btn-primary btn-sm" ><i
-                        class="fa fa-folder-open" style="font-size: 15px" ></i >Purchase Order</a >
-                </th >
-              </tr >
-              </tbody >
-            </table >
-          </div >
-        </div >
-        <!--Error-->
-        <div class="row" data-th-if="${ #lists.isEmpty(ledgers)}" >
-          <div class="col-sm-12" >
-            <div class="alert alert-warning alert-dismissible fade show" role="alert" >
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-                <span aria-hidden="true" >&times;</span >
-              </button >
-              <h3 class="text-center text-danger" >
-                <strong >There is no item upto now please add item to the system using "New" button.</strong >
-              </h3 >
-            </div >
-          </div >
-        </div >
-      </div >
+        <div class="col" data-th-if="${not #lists.isEmpty(ledgers)}">
+            <div class="col" id="itemListPresent">
+                <table class="table table-hover text-white table-striped" id="myTable">
+                    <thead>
+                    <tr>
+                        <th> Index</th>
+                        <th> Item Name</th>
+                        <th> ROP</th>
+                        <th> Quantity</th>
+                        <th> Price</th>
+                        <th> M Date</th>
+                        <th> E Date</th>
+                        <th> Modify</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-th-each="ledger, rowCount : ${ledgers}">
+                        <th data-th-text="${rowCount.count}"></th>
+                        <th data-th-text="${ledger.item.name}"></th>
+                        <th data-th-text="${ledger.item.rop}"></th>
+                        <th data-th-text="${ledger.quantity}"></th>
+                        <th data-th-text="${ledger.sellPrice}"></th>
+                        <th data-th-text="${ledger.manufactureDate}"></th>
+                        <th data-th-text="${ledger.expiredDate}"></th>
+                        <th>
+                            <a data-th-href="${'/purchaseOrder/supplier/' + ledger.goodReceivedNote.purchaseOrder.supplier.id}"
+                               class="btn btn-warning btn-sm"><i
+                                    class="fa fa-folder-open" style="font-size: 15px"></i>Purchase Order</a>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--Error-->
+    <div class="row" data-th-if="${ #lists.isEmpty(ledgers)}">
+        <div class="col-sm-12">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="text-center text-danger">
+                    <strong>There is no item upto now please add item to the system using "New" button.</strong>
+                </h3>
+            </div>
+        </div>
+    </div>
 
-<div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
-<div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
+</div>
+<div data-th-replace="~{fragments/footer :: footerFragment}"></div>
+<div data-th-replace="~{fragments/script :: scriptFragment}"></div>
 
-<script >
+<script>
     $("#startDate, #endDate").bind('keyup',
         function () {
             let manufactureDate = $(`#startDate`).val();
@@ -134,6 +137,6 @@
         });
 
     $(".alert").alert();
-</script >
-</body >
-</html >
+</script>
+</body>
+</html>

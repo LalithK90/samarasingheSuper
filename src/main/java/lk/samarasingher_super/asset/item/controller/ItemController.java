@@ -1,5 +1,6 @@
 package lk.samarasingher_super.asset.item.controller;
 
+import lk.samarasingher_super.asset.brand.service.BrandService;
 import lk.samarasingher_super.asset.category.controller.CategoryRestController;
 import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
 import lk.samarasingher_super.asset.item.entity.Item;
@@ -26,11 +27,13 @@ import java.util.stream.Collectors;
 @RequestMapping( "/item" )
 public class ItemController implements AbstractController< Item, Integer > {
   private final ItemService itemService;
+  private final BrandService brandService;
   private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
 
   @Autowired
-  public ItemController(ItemService itemService, MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
+  public ItemController(ItemService itemService, BrandService brandService, MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
     this.itemService = itemService;
+    this.brandService = brandService;
     this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
   }
 
@@ -39,10 +42,14 @@ public class ItemController implements AbstractController< Item, Integer > {
     model.addAttribute("item", item);
     model.addAttribute("addStatus", addState);
     model.addAttribute("mainCategories", MainCategory.values());
+    model.addAttribute("brands",brandService.findAll() );
     model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
         .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
         .build()
         .toString());
+
+
+
     return "item/addItem";
   }
 
@@ -100,6 +107,7 @@ public class ItemController implements AbstractController< Item, Integer > {
   @GetMapping( "/{id}" )
   public String view(@PathVariable Integer id, Model model) {
     model.addAttribute("itemDetail", itemService.findById(id));
+
     return "item/item-detail";
   }
 }

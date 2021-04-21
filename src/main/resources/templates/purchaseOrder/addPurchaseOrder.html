@@ -11,34 +11,33 @@
 <link data-th-href="@{/css/multi.css}" media="all" rel="stylesheet" type="text/css"/>
 <div class="container-fluid ">
     <div class="row text-center formManagement border-info">
-        <!--View List Button-->
+        <!--Home Button-->
         <div class="col">
-            <a class="btn btn-primary" href="/purchaseOrder">
-                <i class="fa fa-list" style="font-size: 20px"></i>&nbsp;&nbsp;View List
+            <a class="btn btn-info" href="/home">
+                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp;&nbsp;Home
             </a>
         </div>
         <!--Form Name-->
         <div class="col">
-            <h2 class="text-white text-center">
-                <strong>
-                    Purchase Order Management
-                </strong>
-            </h2>
+            <h4 class="text-dark text-center">
+                Purchase Order Management
+            </h4>
         </div>
-        <!--Home Button-->
+        <!--View List Button-->
         <div class="col">
-            <a class="btn btn-primary" href="/home">
-                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp;&nbsp;Home
+            <a class="btn btn-success" href="/purchaseOrder">
+                <i class="fa fa-list" style="font-size: 20px"></i>&nbsp;&nbsp;View List
             </a>
         </div>
+
     </div>
 </div>
 
 <!--Form Content - start -->
-<div class="container-fluid bg-info">
+<div class="container-fluid ">
     <!--Supplier Search - Start-->
     <div class="offset-1 flex-column" data-th-if="${searchAreaShow==true}">
-        <form class="form-inline" data-th-action="${'/purchaseOrder/find'}" data-th-object="${purchaseOrder}"
+        <form class="form-inline bg-dark" data-th-action="${'/purchaseOrder/find'}" data-th-object="${purchaseOrder}"
               id="form" method="POST">
             <div class="form-row">
                 <label class="mr-5 ml-5" for="searchCriteria">Search By</label>
@@ -51,7 +50,7 @@
                 <label class="mr-5 ml-5" for="searchValue">Search Value</label>
                 <input class="form-control mr-5 ml-5" id="searchValue" minlength="5" required tabindex="2" type="text">
                 <!--Search Button-->
-                <button class="btn btn-success mr-5 ml-5" id="searchButton" tabindex="3" type="submit">
+                <button class="btn btn-success " id="searchButton" tabindex="3" type="submit">
                     <i class="fa fa-search " style="font-size: 20px"></i>&nbsp;&nbsp; Search
                 </button>
             </div>
@@ -59,17 +58,27 @@
     </div>
     <!--Supplier Search - end-->
     <!--Supplier List Show - start-->
+
     <div class="col-12 flex-column" data-th-if="${supplierDetailShow==true}">
         <div data-th-replace="~{supplier/supplier :: supplierFragment}"></div>
     </div>
+
     <!--Supplier List Show - end-->
     <!--Supplier Item add- start-->
-    <div class="col-12 flex-column" data-th-if="${supplierDetailShow==false}">
-        <div class="container">
-            <section data-th-replace="~{supplier/supplier-detail :: supplierDetailsFragment}"></section>
+    <div class="col-12 flex-column" data-th-if="${supplierDetailShow==false}" style="margin-top:-40px;">
+        <button type="button" class="btn btn-info mb-5 btn-block text-capitalize" data-toggle="collapse"
+                data-target="#dataTargetCollapse1"
+                aria-expanded="false" aria-controls="dataTargetCollapse" style="width:500px;margin-left:400px;margin-top:40px"
+        > Supplier Detail
+        </button >
+        <div class="collapse mx-auto bg-dark" id="dataTargetCollapse1" style="border-radius:25px;">
+            <div class="container" style="margin-top:-10px;">
+                <section data-th-replace="~{supplier/supplier-detail :: supplierDetailsFragment}"></section>
+            </div>
         </div>
+
         <!--Purchase Order Item add Form - start-->
-        <form class="mb-5" data-th-action="${'/purchaseOrder/save'}" data-th-object="${purchaseOrder}" method="POST">
+        <form class="mb-5 formedit" data-th-action="${'/purchaseOrder/save'}" data-th-object="${purchaseOrder}" method="POST" style="margin-top:-48px">
             <input data-th-name="${'supplier'}" data-th-value="${supplierDetail.id}" id="supplier" type="hidden">
             <div class="form-row col-md-6" data-th-if="${purchaseOrderItemEdit==false}">
                 <div class="col-md-4">
@@ -89,16 +98,16 @@
 
             <div class="form-row col-md-12 col-sm-12 mt-4 text-center">
                 <div class="form-row container-fluid">
-                    <div class="col-6 text-left h3 text-capitalize font-weight-bold">Selected Item List</div>
+                    <div class="col-6 text-info h4 text-capitalize ">Selected Item List</div>
                     <div class="col-6 form-row">
-                        <div class="col-6 text-left h3 text-capitalize font-weight-bold">Selected Item Count:</div>
-                        <div class="col-3 text-left h3 text-capitalize font-weight-bold">
+                        <div class="col-6 text-info h4 text-capitalize ">Selected Item Count:</div>
+                        <div class="col-3 text-info h4 text-capitalize">
                             <span id="selectedItemCount"></span>
                         </div>
                     </div>
                 </div>
                 <!--Add new Item-->
-                <table class="table table-striped table-inverse border" id="selectedItemInTable">
+                <table class="table table-striped text-white  table-dark" id="selectedItemInTable">
                     <thead class="thead-inverse">
                     <tr>
                         <th>Item Name</th>
@@ -158,8 +167,8 @@
                     <i class="fa fa-save " style="font-size: 20px"></i>&nbsp;&nbsp;Save
                 </button>
                 <!--Cancel Button-->
-                <button class="btn btn-warning ml-5" tabindex="10" type="reset">
-                    <i class="far fa-times-circle" style="font-size: 20px"></i>&nbsp;&nbsp;Cancel
+                <button class="btn btn-warning ml-5 btnReset" tabindex="10" type="reset">
+                    <i class="far fa-times-circle" style="font-size: 20px"></i>&nbsp;Reset
                 </button>
             </div>
         </form>
@@ -236,7 +245,7 @@
                                 </label>
                         </td>
                         <td>
-                            <button type="button" id="rm${value.itemId}" class="btn btn-outline-danger" onclick="tableRowRemove(this)">Remove</button>
+                            <button type="button" id="rm${value.itemId}" class="btn btn-danger" onclick="tableRowRemove(this)">Remove</button>
                         </td>
                     </tr>`;
 
@@ -280,6 +289,7 @@
     let selectedItemCount = function () {
         $('#selectedItemCount').html($('#selectedItemInTable tr').length - 3);
     };
+
 </script>
 </body>
 </html>

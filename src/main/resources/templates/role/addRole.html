@@ -6,21 +6,20 @@
 </head >
 <body>
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
-      <div class="col-sm-12 flex-column " style="margin-top:100px" >
-        <form id="form" class="form-horizontal" method="POST"
-              data-th-action="${addStatus==true?'/role/add':'/role/update'}"
+      <div class="col-sm-12 flex-column " style="margin-top:150px" >
+        <form id="form" class="form-horizontal formedit" method="POST" data-th-action="${addStatus==true?'/role/add':'/role/update'}"
               data-th-object="${role}" >
           <div class="container-fluid  form-Border" >
             <div class="row text-center formManagement border-info" >
-              <div class="col" >
-                <a class="btn btn-success" href="/home" >
-                  <i class="fa fa-home" style="font-size: 20px" ></i > &nbsp; Home
+              <div class="col">
+                <a class="btn btn-info" href="/home" >
+                  <i class="fa fa-home" style="font-size: 20px" ></i > Home
                 </a >
               </div >
               <div class="col" >
                 <h4 class="text-light text-center" >
                   <strong >
-                    <span id="formHeader" data-th-text="${addStatus==true?'New Role ':'Update Role'}" ></span >
+                    <span id="formHeader" data-th-text="${addStatus==true?'Add New Role ':'Update Role'}" ></span >
                   </strong >
                 </h4 >
               </div >
@@ -44,7 +43,7 @@
               </div >
               <div class="form-row text-right" >
                 <div class="col-md-4" >
-                  <label class="control-label" for="roleName" >Name :</label >
+                  <label class="control-label" for="roleName" >Role Name :</label >
                 </div >
                 <div class="col-md-8" >
                   <input id="roleName" data-th-field="*{roleName}" class="form-control" type="text" required />
@@ -61,14 +60,14 @@
             </button >
           </div >
           <!--Error-->
-          <div class="form-row" >
+          <div class="form-row text-white" >
             <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
             <ul >
               <li id="errorDisplay" data-th-each="err: ${#fields.errors('*')}" data-th-utext="${err}"
                   class="error" ></li >
             </ul >
           </div >
-        </form >
+        </form>
       </div >
     <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
     <!--script include-->

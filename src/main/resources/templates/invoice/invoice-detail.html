@@ -11,9 +11,9 @@
         <!--selected ledger items-->
         <div class="form-group" >
           <div class="form-row" >
-            <div class="container" >
+            <div class="container tableview" style="margin-top:40px">
               <div class="col" >
-                <table class="table table-hover table-striped" id="myTable" >
+                <table class="table table-hover text-white table-striped" id="myTable" >
                   <thead >
                   <tr >
                     <th >Index</th >
@@ -48,7 +48,7 @@
         </div >
         <hr >
         <!--Payment Section-->
-        <div class="form-group" >
+        <div class="form-group  bg-dark text-info" style="background-color:#1d2124;" >
           <!--Payment method and total amount-->
           <div class="form-row text-right" >
             <!--payment method-->
@@ -65,10 +65,10 @@
             <!--Discount-->
             <div class="col-md-6 " >
               <div class="form-row text-right" >
-                <div class="col-md-4" >
+                <div class="col-md-4 text-right" >
                   <label class="control-label" for="discountRatio" >Discount Ratio :</label >
                 </div >
-                <div class="col-md-8" >
+                <div class="col-md-8 text-left" >
                   <p id="discountRatio"
                      data-th-text="${invoiceDetail.discountRatio.name}+${' '}+${invoiceDetail.discountRatio.amount}" ></p >
                 </div >
@@ -77,23 +77,23 @@
           </div >
           <div class="form-row" >
             <!--Total Amount-->
-            <div class="col-md-6 " >
+            <div class="col-md-6  text-right" >
               <div class="form-row text-right" >
                 <div class="col-md-4" >
                   <label class="control-label" for="totalAmount" >Total Amount :</label >
                 </div >
-                <div class="col-md-8" >
+                <div class="col-md-8 text-left" >
                   <p id="totalAmount" data-th-text="${invoiceDetail.totalAmount}" ></p >
                 </div >
               </div >
             </div >
             <!--Discount Amount-->
-            <div class="col-md-6 " >
-              <div class="form-row text-right" >
-                <div class="col-md-4" >
+            <div class="col-md-6 text-right " >
+              <div class="form-row" >
+                <div class="col-md-4 text-right" >
                   <label class="control-label" for="discountAmount" >Discount Amount :</label >
                 </div >
-                <div class="col-md-8" >
+                <div class="col-md-8 text-left" >
                   <p id="discountAmount" data-th-text="${invoiceDetail.discountAmount}" ></p >
                 </div >
               </div >
@@ -104,21 +104,21 @@
             <!--Amount Tendered-->
             <div class="col-md-6 " >
               <div class="form-row text-right" >
-                <div class="col-md-4" >
+                <div class="col-md-4 text-right" >
                   <label class="control-label" for="amountTendered" >Amount Tendered :</label >
                 </div >
-                <div class="col-md-8" >
+                <div class="col-md-8 text-left" >
                   <p id="amountTendered" data-th-text="${invoiceDetail.amountTendered}" ></p >
                 </div >
               </div >
             </div >
             <!--Balance-->
-            <div class="col-md-6 " >
+            <div class="col-md-6 text-right " >
               <div class="form-row text-right" >
-                <div class="col-md-4" >
+                <div class="col-md-4 text-right" >
                   <label class="control-label" for="balance" >Balance :</label >
                 </div >
-                <div class="col-md-8" >
+                <div class="col-md-8 text-left" >
                   <p id="balance" data-th-text="${invoiceDetail.balance}" ></p >
                 </div >
               </div >
@@ -129,10 +129,10 @@
             <!--Bank -->
             <div class="col-md-6 " >
               <div class="form-row text-right" >
-                <div class="col-md-4" >
+                <div class="col-md-4 verticalToolbarSeparator " >
                   <label class="control-label" for="bankName" >Bank Name Tendered :</label >
                 </div >
-                <div class="col-md-8" >
+                <div class="col-md-8 text-left" >
                   <p id="bankName" data-th-text="${invoiceDetail.bankName}" ></p >
                 </div >
               </div >
@@ -140,31 +140,34 @@
             <!--card number-->
             <div class="col-md-6 " >
               <div class="form-row text-right" >
-                <div class="col-md-4" >
+                <div class="col-md-4 text-right" >
                   <label class="control-label" for="cardNumber" >Card Number :</label >
                 </div >
-                <div class="col-md-8" >
+                <div class="col-md-8 text-left" >
                   <p id="cardNumber" data-th-text="${invoiceDetail.cardNumber}" ></p >
                 </div >
               </div >
             </div >
           </div >
         </div >
+  <br>
+  <br>
         <hr >
         <!--customer -->
-        <div class="form-group" >
+        <div class="form-group bg-info " style="margin-top:50px;height:500px">
           <!--Customers-->
           <div data-th-replace="~{customer/customer-detail :: customerDetailsFragment}" ></div >
         </div >
+  <br>
         <hr >
         <!--remarks and invoice print or not-->
-        <div class="form-group" >
+        <div class="form-group bg-light" >
           <div class="form-row" >
             <div class="col-md-6" >
               <!--invoice print or not-->
               <div class="form-row text-right" >
                 <div class="col-md-4" >
-                  <label data-th-for="${invoicePrintOrNot}" >Invoice Print or Not:</label >
+                  <label data-th-for="${invoicePrintOrNot}" >Invoice Print/Not:</label >
                 </div >
                 <div class="col-md-8 text-left" >
                   <p data-th-text="${invoiceDetail.invoicePrintOrNot.invoicePrintOrNot}" ></p >
@@ -196,7 +199,7 @@
         </div >
       </div >
 
-    </main >
+
     <!--/* footer is */-->
     <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
     <!--/* script is included */-->
@@ -212,7 +215,6 @@
             $("#total").val(total);
         });
     </script >
-  </div >
 
 </body >
 </html >

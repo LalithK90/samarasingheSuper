@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,7 @@ import java.util.List;
 public class Role extends AuditEntity {
 
     @NotNull
+    @Size( min = 4, message = "Your Role Name cannot be accepted.Enter more than 4 characters" )
     @Column( unique = true )
     private String roleName;
 
