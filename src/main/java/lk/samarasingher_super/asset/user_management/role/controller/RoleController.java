@@ -84,7 +84,7 @@ public class RoleController {
             return "redirect:/role";
         } catch ( Exception e ) {
             ObjectError error = new ObjectError("role",
-                                                "This role is already in the System <br/>System message -->" + e.toString());
+                                                "This role is already in the System " );
             result.addError(error);
             model.addAttribute("addStatus", false);
             model.addAttribute("role", role);

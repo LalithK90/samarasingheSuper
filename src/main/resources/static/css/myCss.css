@@ -7,84 +7,77 @@
     --error-color: #fa370d;
 }
 
+body{
+    background-color: rgba(131,137,133,0.51);
+}
+.login {
+    background-image: url(../img/login-2.jpg);
+    background-repeat: no-repeat;
+    margin-left: 450px;
+    background-position-y:-5px;
+    background-position-x:20px;
+    background-size: 1320px 658px;}
+
+/* Navbar Style--START*/
+.navbar{
+ background-color:rgba(9,22,21,0.97);
+
+}
+.dropdown-menu{
+    background-color: rgba(18,47,63,0.65);
+}
+.dropdown-menu a{
+    color:white!important;
+
+}
+
+/* Navbar Style--END*/
+
 /*login page start*/
+/* Main window- start*/
 
-#loginPage {
-    background: url(../img/login.jpg)no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-attachment: fixed;
-    top: 50%;
 
-}
-.loginback{
-    margin-left: 750px;
+
+.form-area{
+
+    float: left;
     width: 500px;
-    padding: 20px;
+    height:345px;
     margin-top:150px;
-
-
-}
-
-#loginPage h1{
-
-    padding: 5px;
-    margin-left:30px;
-    color: #20B2AA;
-    text-align: justify;
-    font-size:32px;
-}
-
-#loginPage  .form-label-group {
     position: relative;
+    background-color:rgba(13,61,68,0.8) ;
+    text-align: center;
+    padding:10px;
+    margin-left:50px;
+
 }
 
-#loginPage  .form-label-group input {
-    width: 100%;
-    padding: 0 20px;
+.form-area{
+
+    margin-bottom: 1px;
+    color: white;
+
+}
+input{
+
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    outline: none;
+    width: 75%;
+    height:35px;
+    margin-bottom: 15px;
+    background-color: transparent;
+    color: #fff;
     font-size: 16px;
-    letter-spacing: 1px;
-    color: #000000;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid #20B2AA;
-    outline: none;
-    background: transparent;
-}
-
-#loginPage .form-label-group label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0 20px;
-    font-size: 14px;
-    letter-spacing: 1px;
-    color: #20B2AA;
-    pointer-events: none;
-    transition: .5s;
-}
-
-#loginPage .form-label-group input:focus ~ label,
-#loginPage .form-label-group input:valid ~ label{
-    top: -18px;
-    left: 0;
-    color:#20B2AA;
-    font-size: 12px;
-}
-
-#loginPage input [type="submit"] {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #f7b200;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
 
 }
 
+.form-area p{
+    text-align: left;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 50px;
+}
 
 #btnLogin{
 
@@ -96,14 +89,13 @@
     overflow: hidden;
     position: relative;
     text-align: center;
-    font-size: 14px;
-    background-color: #1f7370;
+    font-size: 16px;
+    background-color: rgb(9, 138, 86);
     border-radius: 250px;
     color: #fff;
-    font-weight: bold;
     margin-top: 20px;
-    margin-right:100px;
     cursor: pointer;
+    margin-left: 15px;
     text-decoration: none;
     -webkit-transition:top 0.6s;
     -moz-transition:top 0.6s;
@@ -112,95 +104,19 @@
 
 
 #btnLogin:hover{
-    background-color: lightseagreen;
+    background-color: #30d0be;
 
 }
 
-.for-pass{
 
-    text-decoration: none;
-    display: block;
-    margin-top: 50px;
-    font-weight: bold;
-    font-size: 14px;
-    color: #fff;
-}
 /* login page-end */
 
-/*Nav Bar style start*/
- #body-row {
-     margin-left:0;
-     margin-right:0;
- }
-#sidebar-container {
-    min-height: 100vh;
-    background-color: #333;
-    padding: 0;
-}
-
-/* Sidebar sizes when expanded and expanded */
- .sidebar-expanded {
-     width:230px;
- }
-.sidebar-collapsed {
-    width: 60px;
-}
-
-/* Menu item*/
- #sidebar-container .list-group a {
-     height: 50px;
-     color: white;
- }
-
-/*  Submenu item*/
- #sidebar-container .list-group .sidebar-submenu a {
-     height: 45px;
-     padding-left: 30px;
- }
-.sidebar-submenu {
-    font-size: 0.9rem;
-}
-
-/* Separators */
- .sidebar-separator-title {
-     background-color: #333;
-     height: 35px;
- }
-.sidebar-separator {
-    background-color: #333;
-    height: 25px;
-}
-.logo-separator {
-    background-color: #333;
-    height:250px;
-    float: left;
-    background-image: url("../img/logo-removebg-preview.png");
-    margin-left:-150px;
-
-}
-
-/*  Closed submenu icon */
- #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
-     content: " \f0d7";
-     font-family: FontAwesome;
-     display: inline;
-     text-align: right;
-     padding-left: 10px;
- }
-/*  Opened submenu icon */
- #sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
-     content: " \f0da";
-     font-family: FontAwesome;
-     display: inline;
-     text-align: right;
-     padding-left: 10px;
- }
-/* Nav Bar style end*/
 
 /*MainWindow Style - Start*/
 
-
 .card{
+
+background-color: rgba(16,48,47,0.94);
     max-width: 18rem;
     margin-bottom:20px;
     margin-left:10px;
@@ -211,12 +127,188 @@
     width:950px;
     padding:20px;
 }
-.card-header{
+
+.card-header {
     font-family: Tahoma;
     font-weight: bolder;
+    color: #ffffff;
+
+}
+
+/*MainWindow Style - End*/
+/*Form START*/
+
+#mainbody{
+    background-image: url(../img/mainwindow.jpg);
+}
+#header{
+    border-radius: 100px;
+}
+#header span{
+    color:  #888844;
+    font-size: large;
+}
+.formedit{
+    position: relative;
+    margin-top:-150px;
+    left: 65%;
+    transform: translate(-65%,10%);
+    padding: 20px;
+ background-color: rgba(15,36,32,0.98);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.8);
+    border-radius:25px;
+    background-size: contain;
+}
+label {
+    font-size: 16px !important;
+    font-max-size: 22px;
+    font-min-size: 12px;
+    font-weight: bold;
+    color:lightseagreen;
+    alignment: left;
+    width:auto;
+    text-align: left;
 
 }
 
 
+div input {
+    font-size: 14px !important;
+    height: border-box;
 
-/*MainWindow Style - End*/
+}
+
+.display_detail {
+    font-size: 16px !important;
+    font-max-size: 20px;
+    font-min-size: 12px;
+    font-weight:normal;
+    color: black;
+    text-align: left;
+}
+
+.form-row {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.formManagement {
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom:50px;
+}
+
+.table-area{
+    border-radius: 15px;
+    background-color: rgba(8,156,137,0.67);
+
+}
+.table-area table tbody{
+    color: white;
+    font-weight: lighter;
+}
+.table-area table thead{
+    color: black;
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+@-webkit-keyframes AnimationName {
+    0% {
+        background-position: 88% 0%
+    }
+    50% {
+        background-position: 13% 100%
+    }
+    100% {
+        background-position: 88% 0%
+    }
+}
+
+@-moz-keyframes AnimationName {
+    0% {
+        background-position: 88% 0%
+    }
+    50% {
+        background-position: 13% 100%
+    }
+    100% {
+        background-position: 88% 0%
+    }
+}
+
+@-o-keyframes AnimationName {
+    0% {
+        background-position: 88% 0%
+    }
+    50% {
+        background-position: 13% 100%
+    }
+    100% {
+        background-position: 88% 0%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 88% 0%
+    }
+    50% {
+        background-position: 13% 100%
+    }
+    100% {
+        background-position: 88% 0%
+    }
+}
+.tableview{
+    background-color: rgba(27,53,43,0.76);
+    margin-top:-50px;
+    width:1200px;
+    border-radius: 50px;
+
+}
+.tableview thead{
+    color: #20c997;
+}
+
+.detailform{
+    position: relative;
+    margin-top:-100px;
+    left: 47%;
+    transform: translate(-65%,10%);
+    padding: 20px;
+    background-color: rgb(2, 28, 19);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.8);
+    border-radius:25px;
+    background-size: contain;
+    width:1000px;
+    height: 700px;
+    color: white;
+
+}
+
+.detailform p{
+    color: white;
+    font-weight: bold;
+}
+
+
+.collapse .container{
+color: white;
+    border-radius: 25px;
+
+}
+
+.carousel { width:1360px; height:650px; }
+
+.table:hover{
+  color: #20c997;
+}
+
+.nav .dropdown-menu{
+    width:400px;
+
+}

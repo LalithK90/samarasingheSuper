@@ -27,24 +27,32 @@ public class CategoryRestController {
 
     @GetMapping(value = "/getCategory/{mainCategory}")
     public MappingJacksonValue getCategoryByMainCategory(@PathVariable String mainCategory) {
+
         Category category = new Category();
+
         category.setMainCategory(MainCategory.valueOf(mainCategory));
+        System.out.println("setMaincategory" +MainCategory.valueOf(mainCategory) );
 
         //MappingJacksonValue
         List<Category> categories = categoryService.search(category);
+        System.out.println("categories" + categories.toString());
+
         //Create new mapping jackson value and set it to which was need to filter
         MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(categories);
-
+        System.out.println("mappingJacksonValue" + mappingJacksonValue.getValue());
         //simpleBeanPropertyFilter :-  need to give any id to addFilter method and created filter which was mentioned
         // what parameter's necessary to provide
         SimpleBeanPropertyFilter simpleBeanPropertyFilter = SimpleBeanPropertyFilter
                 .filterOutAllExcept("id", "name");
+        System.out.println("simpleBeanPropertyFilter" + simpleBeanPropertyFilter.toString());
         //filters :-  set front end required value to before filter
 
         FilterProvider filters = new SimpleFilterProvider()
                 .addFilter("Category", simpleBeanPropertyFilter);
         //Employee :- need to annotate relevant class with JsonFilter  {@JsonFilter("Employee") }
+
         mappingJacksonValue.setFilters(filters);
+        System.out.println("filters" + filters);
 
         return mappingJacksonValue;
     }

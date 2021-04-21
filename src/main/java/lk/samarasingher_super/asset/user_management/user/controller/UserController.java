@@ -81,12 +81,13 @@ public class UserController {
   //Send a searched employee to add working place
   @PostMapping( value = "/workingPlace" )
   public String addUserEmployeeDetails(@ModelAttribute( "employee" ) Employee employee, Model model) {
-
+    System.out.println(employee.toString() + "   employee");
     List< Employee > employees = employeeService.search(employee)
         .stream()
         .filter(userService::findByEmployee)
         .collect(Collectors.toList());
 
+    System.out.println("sss  "+ employees.size());
     if ( employees.size() == 1 ) {
       model.addAttribute("user", new User());
       model.addAttribute("employee", employees.get(0));
@@ -123,6 +124,18 @@ public class UserController {
       userService.persist(dbUser);
       return "redirect:/user";
     }
+
+    User username = null;
+//User name uniq validation
+    if ( user.getUsername() != null && user.getId() == null ) {
+      username = userService.findByUserName(user.getUsername());
+    }
+    if ( username != null) {
+      ObjectError error = new ObjectError("user",
+              "There is an employee on same Username . System message ");
+      result.addError(error);
+    }
+
     if ( result.hasErrors() ) {
       System.out.println("result to string    " + result.toString());
       model.addAttribute("addStatus", false);

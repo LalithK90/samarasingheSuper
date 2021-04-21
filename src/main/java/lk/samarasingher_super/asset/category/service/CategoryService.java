@@ -56,4 +56,9 @@ public class CategoryService implements AbstractService< Category, Integer > {
     Example< Category > categoryExample = Example.of(category, matcher);
     return categoryDao.findAll(categoryExample);
   }
+
+
+  public Category findByName(String name) {
+    return categoryDao.findByName(name);
+  }
 }

@@ -120,14 +120,52 @@ public class EmployeeController {
   //Employee add and update
   @PostMapping( value = {"/save", "/update"} )
   public String addEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model
-                           ) {
+  ) {
+    Employee officeEmail = null;
+    Employee employeeNic = null;
+    Employee mobileOne = null;
+
+    //NIC
+
+    if ( employee.getNic() != null && employee.getId() == null ) {
+      employeeNic = employeeService.findByNic(employee.getNic());
+    }
+    if ( employeeNic != null) {
+      ObjectError error = new ObjectError("employee",
+              "There is employee on same nic number . System message ");
+      result.addError(error);
+    }
+
+    //NIC
+
+    if ( employee.getOfficeEmail() != null &&  employee.getId() == null ) {
+      officeEmail = employeeService.findByOfficeEmail(employee.getOfficeEmail());
+    }
+    if ( officeEmail != null) {
+      ObjectError error = new ObjectError("employee","There is employee on same Email  System message ");
+      result.addError(error);
+    }
+
+//Mobile
+
+    if ( employee.getMobileOne() != null && employee.getId() == null ) {
+      mobileOne = employeeService.findByMobileOne(employee.getMobileOne());
+    }
+    if ( mobileOne != null) {
+      ObjectError error = new ObjectError("employee",
+              "There is employee on same Mobile . System message ");
+      result.addError(error);
+    }
+
+
+
     if ( result.hasErrors() ) {
       model.addAttribute("addStatus", true);
       model.addAttribute("employee", employee);
       return commonThings(model);
     }
+
     employee.setMobileOne(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getMobileOne()));
-    employee.setMobileTwo(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getMobileTwo()));
     employee.setLand(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getLand()));
 
     if ( employee.getId() == null ) {
@@ -138,6 +176,8 @@ public class EmployeeController {
         employee.setCode("SSCE" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getCode().substring(4)).toString());
       }
     }
+
+
 
     //after save employee files and save employee
     Employee employeeSaved = employeeService.persist(employee);

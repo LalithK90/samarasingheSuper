@@ -20,10 +20,11 @@ public interface UserDao extends JpaRepository< User, Integer > {
     @Query( "select id from User where username=?1" )
     Integer findUserIdByUserName(String userName);
 
-    User findByUsername(String name);
+    User findByUsername(String username);
 
     User findByEmployee(Employee employee);
 
     List<User> findByLiveDead(LiveDead live_dead);
+
 
    }

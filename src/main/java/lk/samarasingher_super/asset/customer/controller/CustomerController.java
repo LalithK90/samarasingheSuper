@@ -86,10 +86,10 @@ public  class CustomerController implements AbstractController<Customer, Integer
             }
             //send welcome message and email
             if (customer.getEmail() != null) {
-                emailService.sendEmail(customer.getEmail(), "Welcome Message", "Welcome to Kmart Super...");
+                emailService.sendEmail(customer.getEmail(), "Welcome Message", "Welcome to Samarasinghe Super...");
             }
             if (customer.getMobile() != null) {
-            //    twilioMessageService.sendSMS(customer.getMobile(), "Welcome to Kmart Super");
+            //    twilioMessageService.sendSMS(customer.getMobile(), "Welcome to Samarasinghe Super");
             }
         }
 

@@ -7,11 +7,6 @@
 </head >
 <body class="sb-nav-fixed" >
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
-<div id="layoutSidenav" >
-  <div data-th-replace="~{fragments/sideNav :: sideNavFragment}" >
-  </div >
-  <div id="layoutSidenav_content" >
-    <main >
       <div class="container-fluid " >
         <div class="row text-center formManagement border-info" >
           <div class="col" >
@@ -19,10 +14,10 @@
 
           </div >
           <div class="col " >
-            <h4 class="text-info text-center" >
-              <strong >
+            <h4 class="text-dark text-center" >
+
                 Good Receiving Note Management
-              </strong >
+
             </h4 >
           </div >
           <div class="col" >
@@ -30,9 +25,9 @@
         </div >
       </div >
       <!--Table view-->
-      <div class="col" >
+      <div class="col tableview" style="margin-left: 50px" >
         <div class="col" id="purchaseRequestListPresent" data-th-if="${not #lists.isEmpty(notCompleteAll)}" >
-          <table class="table table-hover table-striped" id="myTable" >
+          <table class="table table-hover text-white table-striped" id="myTable" >
             <thead >
             <tr >
               <th > Index</th >
@@ -55,8 +50,10 @@
               <th >
                 <a data-th-href="${'/purchaseOrder/view/' + purchaseOrder.id}"
                    class="btn btn-primary btn-sm" ><i class="fa fa-folder-open" style="font-size: 15px" ></i >&nbsp;View</a >
+
                 <a data-th-href="${'/goodReceivedNote/' + purchaseOrder.id}" class="btn btn-success btn-sm" ><i
                       class="fa fa-edit" style="font-size: 15px" ></i >&nbsp; Confirm </a >
+
                 <a data-th-href="${'/purchaseOrder/delete/' + purchaseOrder.id}" class="btn btn-danger btn-sm" >
                   <!--data-th-if="${#authorization.expurchaseOrderession('hasRole(''ROLE_ADMIN'')')}"--><i
                       class="fa fa-trash" style="font-size: 15px" ></i > Delete</a >
@@ -80,8 +77,6 @@
         </div >
 
       </div >
-    </main >
-  </div >
 </div >
 
 <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
