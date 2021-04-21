@@ -260,7 +260,7 @@
   };
 
   let removeOption = function (idValue) {
-    $(#${idValue}).find('option')
+    $(`#${idValue}`).find('option')
             .remove();
   }
   $("#subCategory, #weight").change(function () {
