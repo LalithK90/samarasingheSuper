@@ -76,8 +76,8 @@ public class UserService implements AbstractService< User, Integer > {
 
 
   @Transactional( readOnly = true )
-  public User findByUserName(String name) {
-    return userDao.findByUsername(name);
+  public User findByUserName(String username) {
+    return userDao.findByUsername(username);
   }
 
 
@@ -94,4 +94,7 @@ public class UserService implements AbstractService< User, Integer > {
   public List< User > findByLiveDead(LiveDead live_dead) {
     return userDao.findByLiveDead(live_dead);
   }
+
+
+
 }

@@ -3,37 +3,44 @@
 <head data-th-replace="~{fragments/header :: headerFragment}" >
   <meta name="viewport" content="width=device-width, initial-scale=1" >
   <meta charset="UTF-8" >
-  <title >J N Super </title >
+  <title >Samarasinghe Super</title >
 </head >
-<body class="sb-nav-fixed" >
+<body >
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
       <div class="container-fluid  form-Border" >
-        <div class="row text-center      " >
+        <div class="row text-center formManagement border-info" >
+
           <div class="col" >
-            <a class="btn btn-success" href="/discountRatio/add" ><i class="fa fa-user-plus" ></i >
-              &nbsp; New Discount Ratio</a >
+            <a href="/home" id="btnHome" class="btn btn-info" >
+              <i class="fa fa-home" style="font-size: 20px;margin-right:10px"></i> Home&nbsp;
+            </a >
           </div >
+
           <div class="col" >
-            <h4 class="text-info text-center" >
-              <strong >
+            <h4 class="text-dark text-center" >
+
                 Discount Ratio Management
-              </strong >
             </h4 >
           </div >
+
           <div class="col" >
-            <!-- <a href="/discountRatio/workingPlace" id="searchShow" class="btn btn-primary">
+            <a class="btn btn-success" href="/discountRatio/add" ><i class="fa fa-user-plus" ></i >
+              &nbsp; New Discount</a >
+          </div >
+       <!--   <div class="col" >
+            &lt;!&ndash; <a href="/discountRatio/workingPlace" id="searchShow" class="btn btn-primary">
                  <i class="fa fa-user " style="font-size: 20px"></i>&nbsp;Add&nbsp;
                  <i class="fas fa-store-alt" style="font-size: 20px"></i>
                  &nbsp;
-             </a>-->
-          </div >
+             </a>&ndash;&gt;
+          </div >-->
         </div >
       </div >
-      <div class="container-fluid  text-center" >
+      <div class="container-fluid tableview text-center" >
         <div class="col" >
           <div class="col" id="discountRatioListPresent" data-th-if="${not #lists.isEmpty(discountRatios)}" >
-            <table class="table table-hover table-striped" id="myTable" >
+            <table class="table table-hover text-white  table-striped" id="myTable" >
               <thead >
               <tr >
                 <th > Index</th >
@@ -51,7 +58,7 @@
                 <th data-th-text="${discountRatio.discountRatioStatus.discountRatioStatus}" ></th >
                 <th >
                   <a id="discountRatioEdit" data-th-href="${'/discountRatio/edit/' + discountRatio.id}"
-                     class="btn btn-primary btn-sm" ><i class="fa fa-edit" ></i >&nbsp;Edit</a >
+                     class="btn btn-warning btn-sm" ><i class="fa fa-edit" ></i >&nbsp;Edit</a >
                   <a id="discountRatioRemove" data-th-href="${'/discountRatio/delete/' + discountRatio.id}"
                      data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
                      class="btn btn-danger btn-sm" >

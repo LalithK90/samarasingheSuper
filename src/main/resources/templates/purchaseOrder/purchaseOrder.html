@@ -9,20 +9,8 @@
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
       <!--heading Area-->
       <div class="container-fluid " >
-        <div class="row text-center      " >
-          <!-- New PR Button-->
-          <div class="col" >
-            <a class="btn btn-success" href="/purchaseOrder/add" tabindex="1" ><i class="fas fa-plus"
-                                                                                  style="font-size: 20px" ></i >&nbsp;&nbsp;New</a >&nbsp;
-          </div >
-          <!-- List Name-->
-          <div class="col" >
-            <h2 class="text-white text-center" >
-              <strong >
-                Pending Purchase Order List
-              </strong >
-            </h2 >
-          </div >
+        <div class="row text-center formManagement border-info" >
+
           <!-- Home Button-->
           <div class="col" >
             <a href="/home" id="searchShow" class="btn btn-primary" tabindex="2" >
@@ -31,14 +19,30 @@
               &nbsp;
             </a >
           </div >
+
+          <!-- List Name-->
+          <div class="col" >
+            <h4 class="text-dark text-center" >
+
+                Pending Purchase Order List
+
+            </h4 >
+          </div >
+
+          <!-- New PR Button-->
+          <div class="col" >
+            <a class="btn btn-success" href="/purchaseOrder/add" tabindex="1" ><i class="fas fa-plus"
+                                                                                  style="font-size: 20px" ></i >&nbsp;&nbsp;New</a >&nbsp;
+          </div >
+
         </div >
       </div >
-      <div class="container-fluid   text-center" >
+      <div class="container-fluid  tableview text-center" >
         <!--Table view-->
         <div class="col" >
           <div class="col" id="purchaseRequestListPresent"
                data-th-if="${not #lists.isEmpty(purchaseOrders)}" >
-            <table class="table table-hover table-striped" id="myTable" >
+            <table class="table table-hover text-white table-striped" id="myTable" >
               <thead >
               <tr >
                 <th > Index</th >
@@ -59,7 +63,7 @@
                 <th data-th-text="${purchaseOrder.price}" ></th >
                 <th data-th-text="${{purchaseOrder.createdAt}}" ></th >
                 <th >
-                  <a data-th-href="${'/purchaseOrder/' + purchaseOrder.id}" class="btn btn-primary btn-sm" ><i
+                  <a data-th-href="${'/purchaseOrder/' + purchaseOrder.id}" class="btn btn-success btn-sm" ><i
                         class="fa fa-folder-open" style="font-size: 15px" ></i >&nbsp;View/Print</a >
                   <a data-th-if="${grnStatus}" data-th-href="${'/goodReceivedNote/' + purchaseOrder.id}"
                      class="btn btn-success btn-sm" ><i

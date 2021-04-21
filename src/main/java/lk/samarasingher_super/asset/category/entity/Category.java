@@ -1,6 +1,7 @@
 package lk.samarasingher_super.asset.category.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.samarasingher_super.asset.brand.entity.Brand;
 import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
 import lk.samarasingher_super.asset.item.entity.Item;
 import lk.samarasingher_super.asset.item.entity.enums.MainCategory;
@@ -31,9 +32,16 @@ public class Category {
     @Enumerated(EnumType.STRING)
     private LiveDead liveDead;
 
-    @Size( min = 3, message = "Your name cannot be accepted" )
+    @Column( unique = true )
+    @Size( min = 4, message = "Your Subcategory Name cannot be accepted" )
     private String name;
+
+    @OneToMany(mappedBy = "category")
+    private List< Brand > brands;
 
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Item> items;
+
+
+
 }

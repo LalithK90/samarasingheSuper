@@ -9,31 +9,32 @@
 <!--Form Content - start -->
 <div class="container-fluid " style="margin-top:100px">
     <div class="col-sm-12 flex-column ">
-        <form id="form" class="form-horizontal"  data-th-action="${addStatus==true?'/supplier/save':'/supplier/update'}"
+        <form id="form" class="form-horizontal formedit"  data-th-action="${addStatus==true?'/supplier/save':'/supplier/update'}"
                data-th-object="${supplier}" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="container-fluid ">
-                    <div class="row text-center      ">
+                    <div class="row text-center formManagement border-info">
+                        <!--Home Button-->
+                        <div class="col">
+                            <a class="btn btn-info" href="/home" tabindex="2">
+                                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp;&nbsp;Home
+                            </a>
+                        </div>
+                        <!--Form Name-->
+                        <div class="col">
+                            <h4 class="text-white text-center">
+
+                                    <span  data-th-text="${addStatus==true?'Add New Supplier':'Update Supplier Details'}"></span>
+
+                            </h4>
+                        </div>
                         <!--View List Button-->
                         <div class="col">
                             <a href="/supplier" class="btn btn-success" tabindex="1">
                                 <i class="fa fa-list" style="font-size: 20px"></i>&nbsp;&nbsp;View List
                             </a>
                         </div>
-                        <!--Form Name-->
-                        <div class="col">
-                            <h2 class="text-light text-center">
-                                <strong>
-                                    <span  data-th-text="${addStatus==true?'Add New Supplier':'Update Supplier Details'}"></span>
-                                </strong>
-                            </h2>
-                        </div>
-                        <!--Home Button-->
-                        <div class="col">
-                            <a class="btn btn-success" href="/home" tabindex="2">
-                                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp;&nbsp;Home
-                            </a>
-                        </div>
+
                     </div>
                 </div>
 
@@ -169,8 +170,8 @@
                         <i class="fa fa-save " style="font-size: 20px"></i>&nbsp;&nbsp;<span id="submit"  data-th-text="${addStatus==true?'Save': 'Update'}"></span>
                     </button>
                     <!--Cancel Button-->
-                    <button class="btn btn-warning ml-5" type="reset" tabindex="10">
-                        <i class="far fa-times-circle" style="font-size: 20px"></i>&nbsp;&nbsp;Cancel
+                    <button class="btn btn-warning ml-5 btnReset" type="reset" tabindex="10">
+                        <i class="far fa-times-circle" style="font-size: 20px"></i>&nbsp;Reset
                     </button>
                 </div>
                 <!--Error-->

@@ -9,31 +9,33 @@
 
       <!--heading Area-->
       <div class="container-fluid " >
-        <div class="row text-center      " >
-          <!--View List Button-->
-          <div class="col" >
-            <a href="/category" class="btn btn-primary" >
-              <i class="fa fa-list" style="font-size: 20px" ></i >&nbsp;&nbsp;View List
-            </a >
-          </div >
-          <!--Category Name-->
-          <div class="col" >
-            <h2 class="text-light text-center" >
-              <strong >
-                <p data-th-text="${categoryDetail.name}" ></p >
-              </strong >
-            </h2 >
-          </div >
+        <div class="row text-center formManagement border-info" >
           <!--Home Button-->
           <div class="col" >
-            <a class="btn btn-primary" href="/home" >
+            <a class="btn btn-info" href="/home" >
               <i class="fa fa-home" style="font-size: 20px" ></i > &nbsp;&nbsp;Home
             </a >
           </div >
+
+          <!--Category Name-->
+          <div class="col" >
+            <h4 class="text-info text-center" >
+              <strong >
+                <p data-th-text="${categoryDetail.name}" ></p >
+              </strong >
+            </h4 >
+          </div >
+          <!--View List Button-->
+          <div class="col" >
+            <a href="/category" class="btn btn-success" >
+              <i class="fa fa-list" style="font-size: 20px" ></i >&nbsp;&nbsp;View List
+            </a >
+          </div >
+
         </div >
       </div >
       <!--details-->
-      <div data-th-fragment="categoryDetailsFragment" class="container-fluid  " >
+      <div data-th-fragment="categoryDetailsFragment" class="container-fluid detailform " style="margin-top:2px;height:300px">
         <div class="col-sm-12 flex-column " >
           <div class="row" >
             <div class="form-group col-md-12 col-sm-12 text-center flex-column " >

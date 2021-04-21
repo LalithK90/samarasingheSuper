@@ -7,15 +7,15 @@
 <body>
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
       <!--Page header -->
-      <div class="container-fluid" >
-        <div class="row text-center      " >
+      <div class="container-fluid" style="margin-bottom:75px" >
+        <div class="row text-center formManagement border-info" >
           <div class="col" >
-            <a class="btn btn-success" href="/home" >
+            <a class="btn btn-info" href="/home" >
               <i class="fa fa-home" style="font-size: 20px" ></i > &nbsp; Home
             </a >
           </div >
           <div class="col" >
-            <h4 class="text-light text-center" >
+            <h4 class="text-info text-center" >
               <strong >
                     <span id="formHeader"
                           data-th-text="${userDetail.employee.title.title}+${' '}+${userDetail.employee.name}" ></span >
@@ -29,25 +29,25 @@
           </div >
         </div >
       </div >
-      <div class="container-fluid  " >
+      <div class="container-fluid detailform " style="width:700px;height:300px;margin-left:150px;" >
         <div class="row" >
           <!--Left Side-->
           <div class="form-group col-md-6 col-sm-6 text-left flex-column" >
             <div class="form-row" >
               <!--id-->
-              <div class="col-md-4" >
+              <div class="col-md-5" >
                 <label class="control-label" >ID :</label >
               </div >
-              <div class="col-md-8" >
+              <div class="col-md-7" >
                 <strong ><span id="id" data-th-text="${userDetail.id}" ></span ></strong >
               </div >
             </div >
             <!--User Name-->
             <div class="form-row" >
-              <div class="col-md-4" >
+              <div class="col-md-5" >
                 <label class="control-label" >User Name :</label >
               </div >
-              <div class="col-md-8" >
+              <div class="col-md-7" >
                 <strong ><span id="userName" data-th-text="${userDetail.username}" ></span ></strong >
               </div >
             </div >
@@ -56,39 +56,39 @@
           <div class="form-group col-md-6 col-sm-6 text-left flex-column" >
             <!--Employee Details-->
             <div class="form-row" >
-              <div class="col-md-4" >
+              <div class="col-md-5" >
                 <label class="control-label" >Employee :</label >
               </div >
-              <div class="col-md-8" >
+              <div class="col-md-7" >
                 <strong ><span id="employeeName"
                                data-th-text="${userDetail.employee.name}+ ${' - '}+${userDetail.employee.nic}" ></span ></strong >
               </div >
             </div >
             <!--Created date-->
             <div class="form-row" >
-              <div class="col-md-4" >
+              <div class="col-md-5" >
                 <label class="control-label" >Created Date :</label >
               </div >
-              <div class="col-md-8" >
+              <div class="col-md-7" >
                 <strong ><span id="createDate" data-th-text="${{userDetail.createdAt}}" ></span ></strong >
               </div >
             </div >
             <div class="form-row" >
-              <div class="col-md-2" >
+              <div class="col-md-5" >
                 <label class="control-label" >Roles :</label >
               </div >
-              <div class="col-md-10" >
-                <table class="table table-responsive" >
+              <div class="col-md-8">
+                <table class="table table-bordered table-warning table-responsive" >
                   <thead >
                   <tr >
                     <th >No</th >
                     <th >Name</th >
                   </tr >
                   </thead >
-                  <tbody >
+                  <tbody>
                   <tr data-th-each="roles, count : ${userDetail.roles}" >
                     <th data-th-text="${count.count}" ></th >
-                    <th data-th-text="${roles.roleName}" ></th >
+                    <th data-th-text="${roles.roleName}"></th >
                   </tr >
                   </tbody >
                 </table >

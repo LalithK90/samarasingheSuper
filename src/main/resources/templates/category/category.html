@@ -8,39 +8,41 @@
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
       <!--Heading Area-->
       <div class="container-fluid " >
-        <div class="row text-center      " >
-          <!-- New Category Button-->
-          <div class="col" >
-            <a class="btn btn-success" href="/category/add" ><i class="fa fa-user-plus" style="font-size: 20px" ></i >&nbsp;&nbsp;New</a >&nbsp;
-          </div >
-          <!-- List Name-->
-          <div class="col" >
-            <h2 class="text-light text-center" >
-              <strong >
-                Category Management
-              </strong >
-            </h2 >
-          </div >
+        <div class="row text-center formManagement border-info" >
+
           <!-- Home Button-->
           <div class="col" >
-            <a href="/category/workingPlace" id="searchShow" class="btn btn-primary" >
+            <a href="/category/workingPlace" id="searchShow" class="btn btn-info" >
               <!--<i class="fa fa-user " style="font-size: 20px"></i>-->
-              <i class="fas fa-home" style="font-size: 20px" ></i >&nbsp;&nbsp;Home
+              <i class="fas fa-home" style="font-size: 20px;margin-right: 10px" ></i >&nbsp;&nbsp;Home
               &nbsp;
             </a >
           </div >
+
+          <!-- List Name-->
+          <div class="col" >
+            <h4 class="text-dark text-center" >
+                Category Management
+            </h4 >
+          </div >
+
+          <!-- New Category Button-->
+          <div class="col" >
+            <a class="btn btn-success" href="/category/add" ><i class="fa fa-cog" style="font-size: 20px;margin-right: 10px" ></i >Add New</a >&nbsp;
+          </div >
+
         </div >
       </div >
-      <div class="container-fluid   text-center" >
+      <div class="container-fluid  tableview text-white  text-center" >
         <!--Table view-->
         <div class="col" >
           <div class="col" id="categoryListPresent" data-th-if="${not #lists.isEmpty(categorys)}" >
-            <table class="table table-hover table-striped" id="myTable" >
+            <table class="table table-hover text-white table-striped" id="myTable" >
               <thead >
               <tr >
                 <th > Index</th >
                 <th > Main Category</th >
-                <th > Name</th >
+                <th > Sub Category</th >
                 <th > Modify</th >
               </tr >
               </thead >
@@ -50,11 +52,11 @@
                 <th data-th-text="${category.mainCategory.mainCategory}" ></th >
                 <th data-th-text="${category.name}" ></th >
                 <th >
-                  <a id="categoryView" data-th-href="${'/category/' + category.id}" class="btn btn-primary btn-sm" ><i
+                  <a id="categoryView" data-th-href="${'/category/' + category.id}" class="btn btn-info btn-sm" ><i
                         class="fa fa-folder-open" style="font-size: 15px" ></i >&nbsp;View</a >
                   <a id="categoryEdit" data-th-href="${'/category/edit/' + category.id}"
-                     class="btn btn-success btn-sm" ><i class="fa fa-edit" style="font-size: 15px" ></i >&nbsp;Edit</a >
-                  <a id="categoryRemove" data-th-href="${'/category/remove/' + category.id}"
+                     class="btn btn-warning btn-sm" ><i class="fa fa-edit" style="font-size: 15px" ></i >&nbsp;Edit</a >
+                  <a id="categoryRemove" data-th-href="${'/category/delete/' + category.id}"
                      class="btn btn-danger btn-sm"  data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                <i class="fa fa-trash"
                                                                                                      style="font-size: 15px" ></i >

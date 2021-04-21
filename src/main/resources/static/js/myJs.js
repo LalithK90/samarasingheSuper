@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // set current year to the footer
-    document.getElementById("currentYear").innerHTML = new Date().getFullYear();
+   // document.getElementById("currentYear").innerHTML = new Date().getFullYear();
 
     /*//Nav bar properties - start//*/
     /*//Nav bar properties - start//*/
@@ -35,19 +35,29 @@ $(document).ready(function () {
         $("input:radio[name=gender]").filter(`[value=${calculateGender(nic)}]`).prop('checked', true);
 
     });
-
-
+    /* Patient and employee Nic Validation - end*/
+    //input type date can not be selected future date
+    $('[type="date"]').prop('max', function () {
+        return new Date().toJSON().split('T')[0];
+    });
 
 });
 
 
 // regex
-let nicRegex = /^([0-9]{9}[vV|xX])|^([0-9]{12})$/;
+let nicRegex = /^([0-9]{9}[|X|V]|[0-9]{12})$/;
 let mobileRegex = /^([0][7][\d]{8}$)|^([7][\d]{8})$/;
 let landRegex = /^0((11)|(2(1|[3-7]))|(3[1-8])|(4(1|5|7))|(5(1|2|4|5|7))|(6(3|[5-7]))|([8-9]1))([2-4]|5|7|9)[0-9]{6}$/;
-let nameRegex = /^[a-zA-Z .-]{3}[ a-zA-Z.-]+$/;
+let callingNameRegex = /^[A-Za-z\\s]+$/;
+let nameRegex = /^[a-zA-Z.-]{3}[ a-zA-Z.-]+$/;
 let numberRegex = /^([eE][hH][sS][\d]+)$/;
 let invoiceNumberRegex = /^[0-9]{10}$/;
+let addressRegex = /^[0-9a-zA-Z\s,-,/]+$/;
+let officeEmailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+let roleNameRegex = /^[a-zA-Z.-]{3}[ a-zA-Z.-]+$/;
+
+
+
 
 
 //Nic - data of birth - start
@@ -276,17 +286,54 @@ $("#name").bind("keyup", function () {
         backgroundColourChangeBad($(this));
     }
 });
-//calling Name validation
-$("#callingName").bind("keyup", function () {
-    let name = $(this).val();
-    if (nameRegex.test(name)) {
+
+//Name validation
+$("#roleName").bind("keyup", function () {
+    let roleName = $(this).val();
+    if (roleNameRegex.test(roleName)) {
         backgroundColourChangeGood($(this));
-    } else if (name.length === 0) {
+    } else if (roleName.length === 0) {
         backgroundColourChangeNothingToChange($(this));
     } else {
         backgroundColourChangeBad($(this));
     }
 });
+
+//Email validation
+$("#officeEmail").bind("keyup", function () {
+    let officeEmail = $(this).val();
+    if (officeEmailRegex.test(officeEmail)) {
+        backgroundColourChangeGood($(this));
+    } else if (officeEmail.length === 0) {
+        backgroundColourChangeNothingToChange($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
+
+
+//Address validation
+$("#address").bind("keyup", function () {
+    let address = $(this).val();
+    if (addressRegex.test(address)) {
+        backgroundColourChangeGood($(this));
+    } else if (address.length === 0) {
+        backgroundColourChangeNothingToChange($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
+//calling Name validation
+$("#callingName").bind("keyup", function () {
+    let callingname = $(this).val();
+    if (callingNameRegex.test(callingname)) {
+        backgroundColourChangeGood($(this));
+    } else if (callingname.length === 0) {
+        backgroundColourChangeNothingToChange($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+})
 //invoiceNumber validation
 $("#invoiceNumber").bind("keyup", function () {
     let invoiceNumber = $(this).val();
@@ -297,13 +344,44 @@ $("#invoiceNumber").bind("keyup", function () {
     }
 });
 
+//title validation
+$("#title").bind("change", function () {
+    let title = $(this).val();
+    backgroundColourChangeGood($(this));
+
+});
+
+
+//Civil STATUS validation
+$("#civilStatus").bind("change", function () {
+    let title = $(this).val();
+    backgroundColourChangeGood($(this));
+
+});
+
+
+//Designation validation
+$("#designation").bind("change", function () {
+    let title = $(this).val();
+    backgroundColourChangeGood($(this));
+
+});
+
+
+//Employee Status validation
+$("#employeeStatus").bind("change", function () {
+    let title = $(this).val();
+    backgroundColourChangeGood($(this));
+
+});
+
 //colour change function --start
 let backgroundColourChangeGood = function (id) {
-    $(id).css('background-color', '#00FFFF');
+    $(id).css('background-color', '#90EE90');
 };
 
 let backgroundColourChangeBad = function (id) {
-    $(id).css('background-color', '#FF00AA');
+    $(id).css('background-color', '#FF6347');
 };
 
 let backgroundColourChangeNothingToChange = function (id) {
@@ -542,4 +620,23 @@ $(".reveal").on('click', function () {
     } else {
         $pwd.attr('type', 'password');
     }
+});
+
+function confirmDelete(obj) {
+    swal("Are you sure to delete this?", {
+        dangerMode: true,
+        buttons: true,
+    }).then((x) => {
+        if (x) {
+            self.location = location.protocol + "//" + location.host + obj.getAttribute('id');
+        }
+    });
+}
+
+$(".btn-warning").on('click', function () {
+    location.reload();
+});
+
+$(".btnReset").on('click',function (){
+    location.reload();
 });

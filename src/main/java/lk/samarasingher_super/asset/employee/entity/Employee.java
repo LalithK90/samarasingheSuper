@@ -32,7 +32,7 @@ public class Employee extends AuditEntity {
     @Size( min = 5, message = "Your name cannot be accepted" )
     private String name;
 
-    @Size( min = 5, message = "At least 5 characters should be included calling name" )
+    @Size( min = 4, message = "At least 4 characters should be included calling name" )
     private String callingName;
 
     @Size( max = 12, min = 10, message = "NIC number is contained numbers between 9 and X/V or 12 " )
@@ -40,10 +40,8 @@ public class Employee extends AuditEntity {
     private String nic;
 
     @Size( max = 10, message = "Mobile number length should be contained 10 and 9" )
+    @Column( unique = true )
     private String mobileOne;
-
-    @Size( max = 10, message = "Mobile number length should be contained 10 and 9" )
-    private String mobileTwo;
 
     @Size( max = 10, message = "Phone number length should be contained 10 and 9" )
     private String land;

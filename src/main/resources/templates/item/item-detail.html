@@ -8,31 +8,33 @@
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
       <!--heading Area-->
       <div class="container-fluid " >
-        <div class="row text-center      " >
-          <!--View List Button-->
-          <div class="col" >
-            <a href="/item" class="btn btn-primary" tabindex="2" >
-              <i class="fa fa-list" style="font-size: 20px" ></i >&nbsp; View List
-            </a >
-          </div >
-          <!--Item Name-->
-          <div class="col" >
-            <h2 class="text-white text-center" >
-              <strong >
-                <p data-th-text="${itemDetail.name}" ></p >
-              </strong >
-            </h2 >
-          </div >
+
+        <div class="row text-center formManagement border-info" >
           <!--Home Button-->
           <div class="col" >
-            <a class="btn btn-primary" href="/home" tabindex="1" >
-              <i class="fa fa-home" style="font-size: 20px" ></i > &nbsp; Home
+            <a class="btn btn-info" href="/home" tabindex="1" >
+              <i class="fa fa-home" style="font-size: 20px" ></i > Home
+            </a >
+          </div >
+
+          <!--Item Name-->
+          <div class="col" >
+            <h4 class="text-info text-center" >
+                <p data-th-text="${itemDetail.name}" ></p >
+            </h4 >
+          </div >
+
+          <!--View List Button-->
+          <div class="col" >
+            <a href="/item" class="btn btn-success" tabindex="2" >
+              <i class="fa fa-list" style="font-size: 20px" ></i > View List
             </a >
           </div >
         </div >
+
       </div >
       <!--details-->
-      <div data-th-fragment="itemDetailsFragment" class="container-fluid  " >
+      <div data-th-fragment="itemDetailsFragment" class="container-fluid detailform  " style="height:400px">
         <div class="col-sm-12 flex-column " >
           <div class="row" >
             <!--Left Side-->
