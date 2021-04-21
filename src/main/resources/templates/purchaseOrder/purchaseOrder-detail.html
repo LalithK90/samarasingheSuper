@@ -9,27 +9,28 @@
       <!--heading Area-->
       <div class="container-fluid " >
         <div class="row text-center formManagement border-info" >
-          <!--View List Button-->
+          <!--Home Button-->
           <div class="col" >
-            <a href="/item" class="btn btn-primary" tabindex="2" >
-              <i class="fa fa-list" style="font-size: 20px" ></i >&nbsp; View List
+            <a class="btn btn-info" href="/home" tabindex="1" >
+              <i class="fa fa-home" style="font-size: 20px" ></i > &nbsp; Home
             </a >
           </div >
           <!--Item Name-->
           <div class="col" >
-            <p class="h2 text-white font-weight-bold"
+            <p class="h4 text-info"
                data-th-text="${purchaseOrderDetail.supplier.name +' - '+purchaseOrderDetail.code }" ></p >
           </div >
-          <!--Home Button-->
+          <!--View List Button-->
           <div class="col" >
-            <a class="btn btn-primary" href="/home" tabindex="1" >
-              <i class="fa fa-home" style="font-size: 20px" ></i > &nbsp; Home
+            <a href="/item" class="btn btn-success" tabindex="2" >
+              <i class="fa fa-list" style="font-size: 20px" ></i >&nbsp; View List
             </a >
           </div >
+
         </div >
       </div >
       <!--details-->
-      <div data-th-fragment="purchaseOrderDetailsFragment" class="container-fluid  " id="purchaseOrder" >
+      <div data-th-fragment="purchaseOrderDetailsFragment" class="container-fluid detailform  " id="purchaseOrder" >
         <div class="col-sm-12 flex-column " >
           <div class="row" >
             <div class="form-group col-md-12 col-sm-12 text-center flex-column " id="supplierDetail" >
@@ -38,28 +39,28 @@
                 <div class="form-group col-md-6 col-sm-6 text-left flex-column" >
                   <!--code-->
                   <div class="form-row text-right" >
-                    <div class="col-md-4" >
+                    <div class="col-md-6 text-right" >
                       <label class="control-label" for="id" >Code :</label >
                     </div >
-                    <div class="col-md-8" >
+                    <div class="col-md-6 text-left" >
                       <p id="id" data-th-text="${purchaseOrderDetail.code}" class="display_detail" ></p >
                     </div >
                   </div >
                   <!--Supplier Name-->
                   <div class="form-row text-right" >
-                    <div class="col-md-4" >
+                    <div class="col-md-6 text-right" >
                       <label class="control-label" for="departmentIdNumber" >Supplier Name :</label >
                     </div >
-                    <div class="col-md-8" >
+                    <div class="col-md-6 text-left" >
                       <p id="departmentIdNumber" data-th-text="${purchaseOrderDetail.supplier.name}"
                          class="display_detail" ></p ></div >
                   </div >
                   <!--Purchase Order Priority-->
                   <div class="form-row text-right" >
-                    <div class="col-md-4" >
+                    <div class="col-md-6 text-right" >
                       <label class="control-label" for="mainCategory" >Purchase Order Priority :</label >
                     </div >
-                    <div class="col-md-8" >
+                    <div class="col-md-6 text-left" >
                       <p id="mainCategory"
                          data-th-text="${purchaseOrderDetail.purchaseOrderPriority.PurchaseOrderPriority}"
                          class="display_detail" ></p >
@@ -67,10 +68,10 @@
                   </div >
                   <!--Purchase Order Status-->
                   <div class="form-row text-right" >
-                    <div class="col-md-4" >
+                    <div class="col-md-6 text-right" >
                       <label class="control-label" for="subCategory" >Purchase Order Status :</label >
                     </div >
-                    <div class="col-md-8" >
+                    <div class="col-md-6 text-left" >
                       <p id="subCategory"
                          data-th-text="${purchaseOrderDetail.purchaseOrderStatus.purchaseOrderStatus}"
                          class="display_detail" ></p >
@@ -78,20 +79,20 @@
                   </div >
                   <!--Name-->
                   <div class="form-row text-right" >
-                    <div class="col-md-4" >
+                    <div class="col-md-6 text-right" >
                       <label class="control-label" for="name" >Price :</label >
                     </div >
-                    <div class="col-md-8" >
+                    <div class="col-md-6 text-left" >
                       <p id="name" data-th-text="${purchaseOrderDetail.price}"
                          class="display_detail" ></p >
                     </div >
                   </div >
                   <!--Remark-->
                   <div class="form-row text-right" >
-                    <div class="col-md-4" >
+                    <div class="col-md-6 text-right" >
                       <label class="control-label" for="rop" >Remarks :</label >
                     </div >
-                    <div class="col-md-8" >
+                    <div class="col-md-6 text-left" >
                       <p id="rop" data-th-utext="${purchaseOrderDetail.remark}"
                          class="display_detail" ></p >
                     </div >
@@ -101,38 +102,38 @@
                 <div class="form-group col-md-6 col-sm-6 text-right flex-column" >
                   <!--owner name-->
                   <div class="form-row text-right" >
-                    <div class="col-md-4" >
+                    <div class="col-md-6 text-right" >
                       <label class="control-label" for="mainCategory" >Form :</label >
                     </div >
-                    <div class="col-md-8" >
+                    <div class="col-md-6 text-left" >
                       <p >Samarasinghe Super</p >
                     </div >
                   </div >
                   <!--owner address-->
                   <div class="form-row text-right" >
-                    <div class="col-md-4" >
+                    <div class="col-md-6 text-right" >
                       <label class="control-label" for="subCategory" >Address :</label >
                     </div >
-                    <div class="col-md-8" >
+                    <div class="col-md-6 text-left" >
                       <p > Ragama Road <br > Kadawatha</p >
                     </div >
                   </div >
                   <!--Created By-->
                   <div class="form-row text-right" >
-                    <div class="col-md-4" >
+                    <div class="col-md-6 text-right" >
                       <label class="control-label" for="createdBy" >Created By :</label >
                     </div >
-                    <div class="col-md-8" >
+                    <div class="col-md-6 text-left" >
                       <p id="createdBy" data-th-text="${purchaseOrderDetail.createdBy}"
                          class="display_detail" ></p >
                     </div >
                   </div >
                   <!--Created at-->
                   <div class="form-row text-right" >
-                    <div class="col-md-4" >
+                    <div class="col-md-6 text-right" >
                       <label class="control-label" for="createdAt" >Created At :</label >
                     </div >
-                    <div class="col-md-8" >
+                    <div class="col-md-6 text-left" >
                       <p id="createdAt"
                          data-th-text="${#temporals.format(purchaseOrderDetail.createdAt, 'dd-MM-yyyy HH:mm')}"
                          class="display_detail" ></p >
@@ -146,8 +147,8 @@
               <div class="form-row" >
                 <label class="control-label text-capitalize font-weight-bold" >Selected Items :</label >
               </div >
-              <div class="container-fluid table-responsive" >
-                <table class="table table-striped " >
+              <div class="container-fluid  table-responsive" >
+                <table class="table text-white table-striped table-dark " >
                   <thead >
                   <tr >
                     <th >Index</th >
@@ -176,12 +177,12 @@
       </div >
       <!--Payment History -->
       <div class="form-group col-md-12 col-sm-12 text-center flex-column"
-           data-th-if="${ #lists.isEmpty(purchaseOrderDetail.payments)}" >
+           data-th-if="${ #lists.isEmpty(purchaseOrderDetail.payments)}" style="margin-top: 150px" >
         <div class="form-row" >
           <label class="control-label text-capitalize font-weight-bold" >Payment History :</label >
         </div >
-        <div class="container-fluid table-responsive" >
-          <table class="table table-striped " >
+        <div class="container-fluid" >
+          <table class="table text-white table-dark table-striped " >
             <thead >
             <tr >
               <th >Index</th >
@@ -207,7 +208,7 @@
       </div >
 
       <div class="container-fluid" >
-        <div class="offset-2 col-8 col-sm-8 col-md-8" data-th-if="${ #lists.isEmpty(purchaseOrderDetail.payments)}" >
+        <div class="offset-2 col-8 col-sm-8 col-md-6" data-th-if="${ #lists.isEmpty(purchaseOrderDetail.payments)}" >
           <div class="alert alert-warning alert-dismissible fade show" role="alert" >
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
               <span aria-hidden="true" >&times;</span >

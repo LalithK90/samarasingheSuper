@@ -3,6 +3,7 @@ package lk.samarasingher_super.asset.item.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.samarasingher_super.asset.brand.entity.Brand;
 import lk.samarasingher_super.asset.category.entity.Category;
 import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
 import lk.samarasingher_super.asset.item.entity.enums.ItemStatus;
@@ -56,6 +57,9 @@ public class Item extends AuditEntity {
     @OneToMany( mappedBy = "item" )
     @JsonBackReference
     private List< Ledger > ledgers;
+
+    @ManyToOne
+    private Brand brand;
 
     @OneToMany( mappedBy = "item" )
     private List< PurchaseOrderItem > purchaseOrderItems;

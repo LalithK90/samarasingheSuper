@@ -3,7 +3,7 @@
 <head data-th-replace="~{fragments/header :: headerFragment}" >
   <meta name="viewport" content="width=device-width, initial-scale=1" >
   <meta charset="UTF-8" >
-  <title >J N Super </title >
+  <title >Samarasinghe Super</title >
 </head >
 <body>
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
@@ -13,7 +13,7 @@
           <!--Custom Invoice search-->
           <button type="button" class="btn btn-info mb-5 btn-block text-capitalize" data-toggle="collapse"
                   data-target="#dataTargetCollapse"
-                  aria-expanded="false" aria-controls="dataTargetCollapse"
+                  aria-expanded="false" aria-controls="dataTargetCollapse" style="width:500px;margin-left:350px;margin-top:40px"
           > Custom Invoice Search
           </button >
           <div class="collapse mx-auto" id="dataTargetCollapse" >
@@ -41,26 +41,32 @@
         </div >
         <!--There is message about invoice count-->
         <div class="row" data-th-if="${firstInvoiceMessage}" >
-          <div class="col-sm-12 mt-4" >
+
             <div class="form-group text-left col-sm-2" >
               <a class="btn btn-primary" href="/invoice/add" ><span
-                    class="glyphicon glyphicon-list-alt" ></span >&nbsp; New Invoice</a >
+                      class="glyphicon glyphicon-list-alt" ></span >&nbsp; New Invoice</a >
+            </div>
+
+            <div class="alert alert-info col-sm-8" role="alert">
+       Following table show details belongs to there month. if you need to more please  search using above method
             </div >
-            <div class="alert alert-warning col-sm-8" role="alert" >
-              <strong >Following table show details belongs to there month. if you need to more please
-                       search
-                       using above method</strong >
-            </div >
+
             <div class="form-group text-right col-sm-2" >
               <a class="btn btn-info" href="/invoice/search" ><span
                     class="glyphicon glyphicon-search" ></span >&nbsp; Search Invoice</a >
             </div >
+
+
           </div >
         </div >
         <!--List all invoice-->
-        <div class="row" >
-          <div class="table-responsive mt-4" >
-            <table class="table table-hover" id="myTable" >
+
+
+        <div class="container-fluid tableview  text-center text-white" style="margin-top:10px">
+
+        <div class="row " >
+          <div class="col-md-12" >
+            <table class="table table-hover table-responsive mt-4 col-md-12" id="myTable"  style="margin-left:150px">
               <thead >
               <tr >
                 <th >Index</th >
@@ -80,24 +86,26 @@
                 <th data-th-text="${invoice.totalAmount}" ></th >
                 <th data-th-text="${invoice.createdBy}" ></th >
                 <th data-th-text="${{invoice.createdAt}}" ></th >
-                <th ><a class="btn btn-success" data-th-href="${'/invoice/'+ invoice.id}" ><i
+                <th style="width: 200px" ><a class="btn btn-success" data-th-href="${'/invoice/'+ invoice.id}" ><i
                       class="fa fa-folder-open" ></i >&nbsp;View</a >&nbsp;
                 </th >
                 <th data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}" ><a
-                      class="btn btn-danger" data-th-href="${'/invoice/remove/' + invoice.id}" >Delete</a >
+                      class="btn btn-danger" data-th-href="${'/invoice/remove/' + invoice.id}" style="width: 100px" >
+                  <i class="fa fa-recycle" style="font-size:20px;margin-right:5px" ></i >Delete</a >
                 </th >
               </tr >
               </tbody >
             </table >
-          </div >
+
         </div >
+        </div>
       </div >
-    </main >
+
     <!--/* footer is */-->
     <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
     <!--/* script is included */-->
     <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
-  </div >
+
 
 <script >
 

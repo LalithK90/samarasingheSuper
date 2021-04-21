@@ -124,6 +124,18 @@ public class UserController {
       userService.persist(dbUser);
       return "redirect:/user";
     }
+
+    User username = null;
+//User name uniq validation
+    if ( user.getUsername() != null && user.getId() == null ) {
+      username = userService.findByUserName(user.getUsername());
+    }
+    if ( username != null) {
+      ObjectError error = new ObjectError("user",
+              "There is an employee on same Username . System message ");
+      result.addError(error);
+    }
+
     if ( result.hasErrors() ) {
       System.out.println("result to string    " + result.toString());
       model.addAttribute("addStatus", false);

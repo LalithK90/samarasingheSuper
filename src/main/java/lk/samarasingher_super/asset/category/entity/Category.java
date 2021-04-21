@@ -31,9 +31,13 @@ public class Category {
     @Enumerated(EnumType.STRING)
     private LiveDead liveDead;
 
-    @Size( min = 3, message = "Your name cannot be accepted" )
+    @Column( unique = true )
+    @Size( min = 4, message = "Your Subcategory Name cannot be accepted" )
     private String name;
 
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Item> items;
+
+
+
 }

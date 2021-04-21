@@ -4,6 +4,7 @@ package lk.samarasingher_super.asset.employee.service;
 import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
 import lk.samarasingher_super.asset.employee.dao.EmployeeDao;
 import lk.samarasingher_super.asset.employee.entity.Employee;
+import lk.samarasingher_super.asset.employee.entity.enums.EmployeeStatus;
 import lk.samarasingher_super.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -39,7 +40,8 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
 
     public Employee persist(Employee employee) {
         if(employee.getId()==null){
-            employee.setLiveDead(LiveDead.ACTIVE);}
+            employee.setLiveDead(LiveDead.ACTIVE);
+        employee.setEmployeeStatus(EmployeeStatus.WORKING);}
         return employeeDao.save(employee);
     }
 
@@ -77,6 +79,14 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
 
     public Employee findByNic(String nic) {
         return employeeDao.findByNic(nic);
+    }
+
+    public Employee findByOfficeEmail(String officeEmail) {
+        return employeeDao.findByOfficeEmail(officeEmail);
+    }
+
+    public Employee findByMobileOne(String mobileOne) {
+        return employeeDao.findByMobileOne(mobileOne);
     }
 
 

@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
+    <title>SamaraSinghe Super</title>
 
     <!--style sheet ekak link karanne mehemai-->
     <link rel="stylesheet" data-th-href="@{/css/myCss.css}">
 </head>
-<body>
+<body class=" container login">
+
 
 <div class="form-area">
     <form th:action="${'/login'}" method="post">
@@ -31,13 +32,11 @@
             </div>
         </form>
 </div>
-
 <!--footer include-->
 <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
 <!--script include-->
 <script th:replace="~{fragments/script :: scriptFragment}"></script>
 <script type="text/javascript" src="js/main.js"></script>
-
 
 </body>
 </html>

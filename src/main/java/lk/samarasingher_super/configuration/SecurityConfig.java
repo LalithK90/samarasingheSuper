@@ -72,9 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-  /*  http.csrf().disable();
-    http.authorizeRequests().antMatchers("/").permitAll();
-*/
+/*    http.csrf().disable();
+    http.authorizeRequests().antMatchers("/").permitAll();*/
     // For developing easy to give permission all lin
 // {"ADMIN","PROCUREMENT_MANAGER","CASHIER","MANAGER","HR_MANAGER","ACCOUNT_MANAGER"}
 
@@ -83,7 +82,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             authorizeRequests
                 .antMatchers(ALL_PERMIT_URL).permitAll()
                 .antMatchers("/category/**").hasAnyRole("ADMIN","PROCUREMENT_MANAGER","CASHIER","MANAGER")
-                .antMatchers("/category/**").hasAnyRole("CASHIER","MANAGER")
                 .antMatchers("/discountRatio/**").hasAnyRole("PROCUREMENT_MANAGER","MANAGER")
                 .antMatchers("/employee/**").hasAnyRole("MANAGER","HR_MANAGER" ,"ADMIN")
                 .antMatchers("/goodReceivedNote/**").hasAnyRole("MANAGER","PROCUREMENT_MANAGER")
