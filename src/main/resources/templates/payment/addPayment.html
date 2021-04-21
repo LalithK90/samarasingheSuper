@@ -126,6 +126,58 @@
           </div >
         </div >
       </div >
+
+      <!--Bank Name-->
+      <div class="form-group">
+        <div class="form-row text-right" id="bankNameBlock">
+          <div class="col-md-4">
+            <label class="control-label" for="bankName">Bank Name :</label>
+          </div>
+          <div class="col-md-4">
+            <input id="bankName" data-th-field="*{bankName}" class="form-control" tabindex="5"
+                   type="text"/>
+          </div>
+        </div>
+      </div>
+
+      <!--Branch Name-->
+      <div class="form-group">
+        <div class="form-row text-right" id="branchNameBlock">
+          <div class="col-md-4">
+            <label class="control-label" for="branchName">Branch Name :</label>
+          </div>
+          <div class="col-md-4">
+            <input id="branchName" data-th-field="*{branchName}" class="form-control" tabindex="5"
+                   type="text"/>
+          </div>
+        </div>
+      </div>
+
+      <!--Account Number-->
+      <div class="form-group">
+        <div class="form-row text-right" id="accountNumberBlock">
+          <div class="col-md-4">
+            <label class="control-label" for="accountNumber">Account Number :</label>
+          </div>
+          <div class="col-md-4">
+            <input id="accountNumber" data-th-field="*{accountNumber}" class="form-control" tabindex="5"
+                   type="text"/>
+          </div>
+        </div>
+      </div>
+
+      <!--Bank Holder Name-->
+      <div class="form-group">
+        <div class="form-row text-right" id="bankHolderNameBlock">
+          <div class="col-md-4">
+            <label class="control-label" for="bankHolderName">Account Holder Name :</label>
+          </div>
+          <div class="col-md-4">
+            <input id="bankHolderName" data-th-field="*{bankHolderName}" class="form-control" tabindex="5"
+                   type="text"/>
+          </div>
+        </div>
+      </div>
       <!--This purchase order value-->
       <div class="form-group" >
         <div class="form-row text-right" >
@@ -224,14 +276,20 @@
     });
 
     function showHideContent() {
-        let paymentMethodValue = $("input[name='paymentMethod']:checked").val();
-        if (paymentMethodValue === 'CASH') {
-            $("#bankNameBlock").hide();
-            $("#cashPaymentBlock").show();
-        } else {
-            $("#cashPaymentBlock").hide();
-            $("#bankNameBlock").show();
-        }
+      let paymentMethodValue = $("input[name='paymentMethod']:checked").val();
+      if (paymentMethodValue === 'CASH') {
+        $("#bankNameBlock").hide();
+        $("#branchNameBlock").hide();
+        $("#accountNumberBlock").hide();
+        $("#bankHolderNameBlock").hide();
+        $("#cashPaymentBlock").show();
+      } else {
+        $("#cashPaymentBlock").hide();
+        $("#bankNameBlock").show();
+        $("#branchNameBlock").show();
+        $("#accountNumberBlock").show();
+        $("#bankHolderNameBlock").show();
+      }
     }
 
     //enter amount check
