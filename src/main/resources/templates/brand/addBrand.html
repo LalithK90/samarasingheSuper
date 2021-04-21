@@ -21,21 +21,21 @@
         <div class="col" >
           <h4 class="text text-center" >
 
-            <span data-th-text="${addStatus==true?'New Brand':'Update Brand Details'}" ></span >
+              <span data-th-text="${addStatus==true?'New Brand':'Update Brand Details'}" ></span >
 
           </h4 >
         </div >
         <!--Home Button-->
         <div class="col" >
-          <a class="btn btn-info" href="/home" tabindex="2" >
-            <i class="fa fa-home" style="font-size: 20px" ></i > &nbsp;&nbsp;Home
-          </a >
+          <a class="btn btn-info" href="/home" tabindex="2">
+              <i class="fa fa-home" style="font-size: 20px"></i> &nbsp;&nbsp;Home
+          </a>
         </div >
       </div >
     </div >
   </div >
   <!--Form Content-->
-  <div class="container-fluid  formBorder" style="margin-top:200px" >
+  <div class="container-fluid  formBorder" style="margin-top:200px">
     <div class="col-sm-12 flex-column " >
       <form id="form" class="form-horizontal formedit" th:action="${addStatus==true?'/brand/save':'/brand/update'}"
             th:object="${brand}" method="POST" >
@@ -51,36 +51,6 @@
                 <div class="col-md-8" >
                   <input id="id" th:field="*{id}" class="form-control" type="text" readonly />
                 </div >
-              </div > <!--Main Category -->
-              <div class="form-row text-right" >
-                <div class="col-md-4" >
-                  <label class="control-label" for="mainCategory" >Main Category :</label >
-                </div >
-                <div class="col-md-4" >
-                  <select id="mainCategory" data-th-value="${brand.category.mainCategory}" class="form-control"
-                          tabindex="4" style="font-size: large"
-                          required >
-                    <option value="" disabled >Please select</option >
-                    <option data-th-each="mainCategory : ${mainCategories}"
-                            data-th-text="${mainCategory.mainCategory}"
-                            data-th-value="${mainCategory}"
-                    >
-                    </option >
-                  </select >
-                </div >
-              </div >
-              <!--Sub Category -->
-              <div class="form-row text-right" >
-                <div class="col-md-4" >
-                  <label class="control-label" for="subCategory" >Sub Category :</label >
-                </div >
-                <div class="col-md-4" >
-                  <select id="subCategory" data-th-name="${'category'}" class="form-control" tabindex="4"
-                          style="font-size: large" required >
-                    <option value="" disabled >Please select</option >
-                    <option data-th-value="${brand.category.id}" data-th-text="${brand.category.name}" ></option >
-                  </select >
-                </div >
               </div >
               <!--Name-->
               <div class="form-row text-right" >
@@ -94,7 +64,6 @@
                 </div >
               </div >
             </div >
-
           </div >
           <!--Right Side-->
           <div class="form-group col-md-12 col-sm-12 text-right flex-column" >
@@ -159,49 +128,21 @@
 <div th:replace="~{fragments/script :: scriptFragment}" ></div >
 <script >
 
-    $(document).ready(function () {
-            let message = '';
-            $('.error').each(function (index) {
-                message += $(this).text();
-            });
-
-            if (message) {
-                setTimeout(function () {
-                    swal({
-                        title: "System Errors  ",
-                        icon: "warning",
-                        text: message,
-                    });
-                }, 1000);
-            }
-
-
-            let mainCategoryValueBind = $("#mainCategoryValueBind").val();
-            if (mainCategoryValueBind) {
-                $("#mainCategory").val(mainCategoryValueBind);
-                getSubCategory(mainCategoryValueBind);
-            }
-        }
-    );
-    $("#mainCategory").bind("change", function () {
-        getSubCategory(this.value);
+  $(document).ready(function () {
+    let message = '';
+    $('.error').each(function (index) {
+      message += $(this).text();
     });
+    console.log(message)
+    setTimeout(function () {
+      swal({
+        title: "System Errors  ",
+        icon: "warning",
+        text: message,
+      });
+    }, 1000);
 
-    let getSubCategory = function (val) {
-        let url = "[[${urlMainCategory}]]" + val;
-        removeOption('subCategory');
-        $.getJSON(url, function (val) {
-            $.each(val, function () {
-                $("#subCategory").append(`<option value="${this.id}">${this.name}</option>`);
-            });
-        });
-
-    };
-
-    let removeOption = function (idValue) {
-        $(`#${idValue}`).find('option')
-            .remove();
-    }
+  })
 
 
 </script >

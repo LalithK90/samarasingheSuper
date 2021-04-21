@@ -7,6 +7,7 @@ import lk.samarasingher_super.asset.brand.entity.Brand;
 import lk.samarasingher_super.asset.category.entity.Category;
 import lk.samarasingher_super.asset.common_asset.model.enums.LiveDead;
 import lk.samarasingher_super.asset.item.entity.enums.ItemStatus;
+import lk.samarasingher_super.asset.item.entity.enums.Measurement;
 import lk.samarasingher_super.asset.ledger.entity.Ledger;
 import lk.samarasingher_super.asset.purchase_order_item.entity.PurchaseOrderItem;
 import lk.samarasingher_super.asset.supplier_item.entity.SupplierItem;
@@ -47,6 +48,13 @@ public class Item extends AuditEntity {
 
     @Enumerated(EnumType.STRING)
     private LiveDead liveDead;
+
+    @Enumerated(EnumType.STRING)
+    private Measurement measurement;
+
+    @Column
+    private String ammount;
+
     //Ahanna oni ai me kiyala
     @ManyToOne
     private Category category;

@@ -4,9 +4,6 @@ public enum EmployeeStatus {
     WORKING("Working"),
     LEAVE("Leave"),
     SUSPENDED("Suspended"),
-    NOPAY("No pay"),
-    MEDICAL("Medical Leave"),
-    BLOCK("Block"),
     RESIGNED("Resigned"),
     RETIRED("Retired");
 
