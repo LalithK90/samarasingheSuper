@@ -65,4 +65,13 @@ public class SupplierService implements AbstractService<Supplier, Integer> {
     public Supplier findByIdAndItemSupplierStatus(Integer supplierId, ItemSupplierStatus itemSupplierStatus) {
         return supplierDao.findByIdAndItemSupplierStatus(supplierId,itemSupplierStatus);
     }
+
+    public Supplier findByEmail(String email) {
+        return supplierDao.findByEmail(email);
+    }
+
+
+    public Supplier findByName(String name) {
+        return supplierDao.findByName(name);
+    }
 }

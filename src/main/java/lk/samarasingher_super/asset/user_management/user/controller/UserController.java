@@ -158,7 +158,7 @@ public class UserController {
   @GetMapping( value = "/remove/{id}" )
   public String removeUser(@PathVariable Integer id) {
     // user can not be deleted
-    //userService.delete(id);
+    userService.delete(id);
     return "redirect:/user";
   }
 
