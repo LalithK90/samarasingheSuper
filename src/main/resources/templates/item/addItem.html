@@ -236,52 +236,78 @@
 <!--script include-->
 <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
 <script >
-  $(document).ready(function () {
+    $(document).ready(function () {
             let mainCategoryValueBind = $("#mainCategoryValueBind").val();
-            if (mainCategoryValueBind !== null || mainCategoryValueBind !== undefined) {
-              $("#mainCategory").val(mainCategoryValueBind);
-              getSubCategory(mainCategoryValueBind);
+            if (mainCategoryValueBind) {
+                $("#mainCategory").val(mainCategoryValueBind);
+                getSubCategory(mainCategoryValueBind);
             }
-          }
-  );
-  $("#mainCategory").bind("change", function () {
-    getSubCategory(this.value);
-  });
-  let getSubCategory = function (val) {
-    let url = "[[${urlMainCategory}]]" + val;
-    removeOption('subCategory');
-    $.getJSON(url, function (val) {
-      $("#subCategory").append(<option value="">Please Select</option>);
-      $.each(val, function () {
-        $("#subCategory").append(<option value="${this.id}">${this.name}</option>);
-      });
+        }
+    );
+    $("#mainCategory").bind("change", function () {
+        getSubCategory(this.value);
     });
+    let brandList = [];
 
-  };
+    let getSubCategory = function (val) {
+        let url = "[[${urlMainCategory}]]" + val;
+        removeOption('subCategory');
+        removeOption('brand');
+        $("#brand").append(`<option value="">Please Select</option>`);
 
-  let removeOption = function (idValue) {
-    $(`#${idValue}`).find('option')
-            .remove();
-  }
-  $("#subCategory, #weight").change(function () {
-    nameCreation();
-  });
+        $.getJSON(url, function (val) {
+            $.each(val, function () {
+                $("#subCategory").append(`<option value="${this.id}">${this.name}</option>`);
+                let brand = {
+                    id: this.id,
+                    brands: this.brands,
+                }
+                brandList.push(brand)
+            });
+        });
 
-  $("#ammount").keyup(function () {
-    nameCreation();
-  });
+    };
 
+    $("#subCategory").change(function () {
+        removeOption('brand');
+        $("#brand").append(`<option value="">Please Select</option>`);
+        brandAdd($(this).val());
+    })
 
-  function nameCreation() {
-    let subCategory = $("#subCategory option:selected").text();
-    let measurement = $("#measurement option:selected").text();
-    let ammount = $("#ammount").val();
-
-    if (subCategory && ammount && measurement) {
-      $("#name").val(subCategory + ' - ' + ammount + ' - ' + measurement);
+    function brandAdd(val) {
+        if (val && brandList.length !==0) {
+            for (let i = 0; i < brandList.length; i++) {
+                if (brandList[i].id === parseFloat(val)){
+                    for (let brandListElement of brandList[i].brands) {
+                        $("#brand").append(`<option value="${brandListElement.id}">${brandListElement.name}</option>`);
+                    }
+                }
+            }
+        }
     }
 
-  }
+    let removeOption = function (idValue) {
+        $(`#${idValue}`).find('option')
+            .remove();
+    }
+
+
+    $("#eName").change(function () {
+        nameCreation();
+    });
+
+    function nameCreation() {
+        let subCategory = $("#subCategory option:selected").text();
+        let brand = $("#brand option:selected").text();
+        let color = $("#itemColor option:selected").text();
+        let eName = $("#eName").val();
+
+        if (subCategory && brand && color && eName) {
+            $("#name").val(subCategory + "-" + brand + "-" + color + "-" + eName);
+        }
+    }
+
+
 </script >
 </body >
 </html >
