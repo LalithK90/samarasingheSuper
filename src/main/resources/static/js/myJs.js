@@ -54,11 +54,12 @@ let callingNameRegex = /^[A-Za-z\\s]+$/;
 let nameRegex = /^[a-zA-Z.-]{2}[ a-zA-Z.-]+$/;
 let numberRegex = /^([eE][hH][sS][\d]+)$/;
 let invoiceNumberRegex = /^[0-9]{10}$/;
-let addressRegex = /^[0-9a-zA-Z\s,-,/]+$/;
+let addressRegex = /^[0-9a-zA-Z\s,-,./]+$/;
 let officeEmailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 let emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 let roleNameRegex = /^[a-zA-Z.-]{3}[ a-zA-Z.-]+$/;
 let suppliernameRegex = /^[a-zA-Z.-]{3}[ a-zA-Z.-]+$/;
+let contactTwoRegex = /^0((11)|(2(1|[3-7]))|(3[1-8])|(4(1|5|7))|(5(1|2|4|5|7))|(6(3|[5-7]))|([8-9]1))([2-4]|5|7|9)[0-9]{6}$/;
 
 
 
