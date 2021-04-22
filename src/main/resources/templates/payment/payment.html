@@ -15,7 +15,7 @@
             </a >
           </div >
           <div class="col " >
-            <h4 class="text-dark text-center" >
+            <h4 class="text-white text-center" >
                 Payment Management
             </h4 >
           </div >
@@ -25,14 +25,14 @@
                 <i class="fa fa-list" style="font-size: 20px;margin-right:10px"></i>   All Payment</button >
             </a >
           </div >
-        </div >
+        </div ><!--what case-->
       </div >
-      <div class="container-fluid" >
+      <div class="container-fluid"  style="margin-top:10px">
         <div class="row" >
           <!--Custom Invoice search-->
           <button type="button" class="btn btn-info mb-5 btn-block text-capitalize" data-toggle="collapse"
                   data-target="#dataTargetCollapse"
-                  aria-expanded="false" aria-controls="dataTargetCollapse" style="width:500px;margin-left:430px;margin-top:-40px"
+                  aria-expanded="false" aria-controls="dataTargetCollapse" style="width:500px;margin-left:430px;margin-top:50px"
           > Custom Payment Search
           </button >
           <div class="collapse mx-auto" id="dataTargetCollapse" >
@@ -41,12 +41,12 @@
                 <div class="col-sm-6 col-sm-offset-3"  style="margin-left:300px">
                   <h4 class="text-info" ><b > Custom Search</b ></h4 >
                   <form class="form-inline" data-th-action="@{/payment/search}" data-th-method="POST" >
-                    <div class="form-group mx-sm-3 mb-2">
-                      <label for="startDate" >FROM :</label >
+                    <div class="form-group mx-sm-3 mb-2 text-white">
+                      <label for="startDate"  class="text-white">FROM :</label >
                       <input class="form-control" id="startDate" name="startDate" type="date" style="margin-left:20px" />
                     </div >
-                    <div class="form-group mx-sm-3 mb-2">
-                      <label for="endDate" >TO :</label >
+                    <div class="form-group mx-sm-3 mb-2 text-white">
+                      <label for="endDate" class="text-white" >TO :</label >
                       <input class="form-control" id="endDate" name="endDate" type="date" style="margin-left:40px" />
                     </div >
                     <button class="btn btn-success" id="btnSummaryFind" type="submit" ><span
@@ -63,8 +63,8 @@
       <div class="container-fluid text-center tableview text-white" style="margin-top:20px">
         <div class="offset-2 col-8 col-sm-8 col-md-8" data-th-if="${not #lists.isEmpty(purchaseOrders)}" >
           <div class="table-responsive" >
-            <table class="table table-striped text-white table-condensed" >
-              <thead >
+            <table class="table table-striped text-dark table-condensed" >
+              <thead class="thead-dark" >
               <tr >
                 <th > Index</th >
                 <th > Supplier Name</th >

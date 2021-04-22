@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>brand</title>
+</head>
+<body>
+
+<div  data-th-if="${show==false}">
+
+    <h2>Not Exist</h2>
+
+
+</div>
+<div data-th-if="${show==true}">
+    <h2 data-th-text="${message}"></h2>
+    <table class="table table-bordered table-dark">
+
+        <thead>
+        <th>Brand name</th>
+        <th>Category Id</th>
+        </thead>
+        <tbody>
+        <tr>
+            <td data-th-text="${getName}"></td>
+            <td data-th-text="${catname}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

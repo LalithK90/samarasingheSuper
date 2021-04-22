@@ -23,7 +23,7 @@
             </div >
             <!--Form Name-->
             <div class="col" >
-              <h4 class="text-light text-center" >
+              <h4 class="text-dark text-center" >
                 <strong >
                   <span data-th-text="${addStatus==true?'Add New Item':'Update Item Details'}" ></span >
                 </strong >
@@ -52,7 +52,7 @@
           </div >
           <!--Main Category -->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4" ><span class="requiredfield">*</span>
               <label class="control-label" for="mainCategory" >Main Category :</label >
             </div >
             <div class="col-md-4" >
@@ -70,7 +70,7 @@
           </div >
           <!--Sub Category -->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4" ><span class="requiredfield">*</span>
               <label class="control-label" for="subCategory" >Sub Category :</label >
             </div >
             <div class="col-md-4" >
@@ -85,7 +85,7 @@
 
           <!--Brand -->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4" ><span class="requiredfield">*</span>
               <label class="control-label" for="brand" >Brand :</label >
             </div >
             <div class="col-md-4" >
@@ -104,8 +104,8 @@
           <!--Amount-->
           <div class="form-row text-right" >
 
-            <div class="col-md-4" >
-              <label class="control-label" for="eName" >Enter Name :</label >
+            <div class="col-md-4" ><span class="requiredfield">*</span>
+              <label class="control-label" for="eName" >Amount :</label >
             </div >
             <div class="col-md-4" >
               <input id="eName" class="form-control" tabindex="6" type="text"
@@ -115,7 +115,7 @@
 
           <!--Measurement -->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4" ><span class="requiredfield">*</span>
               <label class="control-label" for="measurement" >Measurement :</label >
             </div >
             <div class="col-md-4" >
@@ -148,7 +148,7 @@
 
           <!--ReOrder Point-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4" ><span class="requiredfield">*</span>
               <label class="control-label" for="rop" >Reorder Point :</label >
             </div >
             <div class="col-md-4" >
@@ -159,7 +159,7 @@
           </div >
           <!--Sell Price-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4" ><span class="requiredfield">*</span>
               <label class="control-label" for="sellPrice" >Sell Price :</label >
             </div >
             <div class="col-md-4" >
@@ -248,7 +248,7 @@
         let url = "[[${urlMainCategory}]]" + val;
         removeOption('subCategory');
         removeOption('brand');
-        $("#brand").append(`<option value="">Please Select</option>`);
+        $("#subCategory").append(`<option value="">Please Select</option>`);
 
         $.getJSON(url, function (val) {
             $.each(val, function () {

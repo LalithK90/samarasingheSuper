@@ -21,7 +21,7 @@
                             </a>
                         </div>
                         <div class="col">
-                            <h4 class="text-light text-center">
+                            <h4 class="text-dark text-center">
                                 <strong>
                                     <span id="formHeader" data-th-text="${addStatus==true?'Add New User':'Update User'}"></span>
                                 </strong>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-5 flex-column">
                     <div class="form-group">
-                        <div class="col-4">
+                        <div class="col-4"><span class="requiredfield">*</span>
                             <label class="control-label" for="selectParameter">Parameter :</label>
                         </div>
                         <div class="col-8">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-4 flex-column">
                     <div class="form-group">
-                        <div class="col-5">
+                        <div class="col-5"><span class="requiredfield">*</span>
                             <label class="control-label" for="valueEmployee">Value :</label>
                         </div>
                         <div class="col-7">
@@ -99,7 +99,7 @@
             <!--Left Side-->
             <div class="form-group col-md-6 col-sm-6 text-left flex-column">
                 <div id="idHide" data-th-if="${addStatus==false}" class="form-row">
-                    <div class="col-md-4">
+                    <div class="col-md-4"><span class="requiredfield">*</span>
                         <label class="control-label" for="id">ID :</label>
                     </div>
                     <div class="col-md-8">
@@ -108,7 +108,7 @@
                 </div>
                 <!--Employee details Display-->
                 <div class="form-row">
-                    <div class="col-md-4">
+                    <div class="col-md-4"><span class="requiredfield">*</span>
                         <label class="control-label" for="employee">Employee :</label>
                     </div>
                     <div class="col-md-8">
@@ -133,7 +133,7 @@
                     </div>
                 </div>
                 <!--User name-->
-                <div class="form-row" >
+                <div class="form-row" ><span class="requiredfield">*</span>
                     <label class="control-label col-md-4" for="username">User Name :</label>
                     <div class="col-md-8">
                         <input class="form-control" data-th-field="*{username}" id="username"
@@ -141,7 +141,7 @@
                     </div>
                 </div>
                 <!--Password-->
-                <div class="form-row">
+                <div class="form-row"><span class="requiredfield">*</span>
                     <label class="control-label col-md-4" for="password">Password :</label>
                     <div class="col-md-8">
                         <input class="form-control pwd" id="password" data-th-field="*{password}"

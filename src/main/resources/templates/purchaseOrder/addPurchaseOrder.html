@@ -19,7 +19,7 @@
         </div>
         <!--Form Name-->
         <div class="col">
-            <h4 class="text-dark text-center">
+            <h4 class="text-white text-center">
                 Purchase Order Management
             </h4>
         </div>
@@ -36,18 +36,18 @@
 <!--Form Content - start -->
 <div class="container-fluid ">
     <!--Supplier Search - Start-->
-    <div class="offset-1 flex-column" data-th-if="${searchAreaShow==true}">
+    <div class="offset-1 flex-column" data-th-if="${searchAreaShow==true}" style="margin-left:-10px">
         <form class="form-inline bg-dark" data-th-action="${'/purchaseOrder/find'}" data-th-object="${purchaseOrder}"
               id="form" method="POST">
             <div class="form-row">
-                <label class="mr-5 ml-5" for="searchCriteria">Search By</label>
+                <label class="mr-5 ml-5 text-info" for="searchCriteria">Search By</label>
                 <select class="form-control mr-5 ml-5" id="searchCriteria" required tabindex="1">
                     <option disabled selected value="">Please Select</option>
                     <option value="name">Name</option>
                     <option value="code">Code</option>
                     <option value="contactOne">Mobile Number</option>
                 </select>
-                <label class="mr-5 ml-5" for="searchValue">Search Value</label>
+                <label class="mr-5 ml-5 text-info" for="searchValue">Search Value</label>
                 <input class="form-control mr-5 ml-5" id="searchValue" minlength="5" required tabindex="2" type="text">
                 <!--Search Button-->
                 <button class="btn btn-success " id="searchButton" tabindex="3" type="submit">
@@ -56,6 +56,8 @@
             </div>
         </form>
     </div>
+
+
     <!--Supplier Search - end-->
     <!--Supplier List Show - start-->
 
@@ -81,7 +83,7 @@
         <form class="mb-5 formedit" data-th-action="${'/purchaseOrder/save'}" data-th-object="${purchaseOrder}" method="POST" style="margin-top:-48px">
             <input data-th-name="${'supplier'}" data-th-value="${supplierDetail.id}" id="supplier" type="hidden">
             <div class="form-row col-md-6" data-th-if="${purchaseOrderItemEdit==false}">
-                <div class="col-md-4">
+                <div class="col-md-4"><span class="requiredfield">*</span>
                     <label class="control-label" for="item">Select Items:</label>
                 </div>
                 <div class="text-left col-md-8">
@@ -98,10 +100,10 @@
 
             <div class="form-row col-md-12 col-sm-12 mt-4 text-center">
                 <div class="form-row container-fluid">
-                    <div class="col-6 text-info h4 text-capitalize ">Selected Item List</div>
+                    <div class="col-6 text-dark h4 text-capitalize ">Selected Item List</div>
                     <div class="col-6 form-row">
-                        <div class="col-6 text-info h4 text-capitalize ">Selected Item Count:</div>
-                        <div class="col-3 text-info h4 text-capitalize">
+                        <div class="col-6 text-dark h4 text-capitalize ">Selected Item Count:</div>
+                        <div class="col-3 text-dark h4 text-capitalize">
                             <span id="selectedItemCount"></span>
                         </div>
                     </div>
@@ -139,7 +141,7 @@
                 </table>
             </div>
             <div class="form-row col-md-6" data-th-if="${purchaseOrderItemEdit==false}">
-                <div class="col-md-4">
+                <div class="col-md-4"><span class="requiredfield">*</span>
                     <label class="control-label" for="priority">Select Priority:</label>
                 </div>
                 <div class="text-left col-md-8">

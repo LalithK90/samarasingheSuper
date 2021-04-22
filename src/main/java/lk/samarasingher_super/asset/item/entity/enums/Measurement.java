@@ -8,8 +8,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Measurement {
 
-    KG("Kg"),
-    L("L"),
+    KG("kg"),
+    G("g"),
+    L("l"),
     ML("ml");
 
     private final String measurement;

@@ -7,5 +7,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BrandDao extends JpaRepository<Brand, Integer> {
-    Brand findByName(String nic);
+  Brand findByName(String nic);
+
+//Brand Dao
+  Brand findByNameAndCategoryId(String name,Integer categoryId);
 }

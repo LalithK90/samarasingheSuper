@@ -20,7 +20,7 @@
 
     <!--Supplier Name-->
     <div class="col" >
-      <h4 class="text-info text-center" >
+      <h4 class="text-white text-center" >
 
         <p data-th-text="${supplierDetail.name}" ></p >
 
@@ -38,8 +38,8 @@
 </div >
 <!--details-->
 <div class="row" >
-  <div class="container-fluid detailform text-white " style="height:450px" >
-    <div class="col-sm-12 flex-column text-white " data-th-fragment="supplierDetailsFragment" >
+  <div class="container-fluid  text-dark bg-white" style="height:450px" id="supplierdetailcolor" >
+    <div class="col-sm-12 flex-column text-dark  bg-white" data-th-fragment="supplierDetailsFragment" >
       <div class="row" >
         <!--Left Side-->
         <div class="form-group col-md-6 col-sm-6 text-left flex-column" >
@@ -50,7 +50,7 @@
             </div >
             <div class="col-md-8 " >
               <p id="supplier_id" data-th-text="${supplierDetail.id}"
-                 class="display_detail text-white" ></p >
+                 class="display_detail text-dark" ></p >
             </div >
           </div >
           <!--Code-->
@@ -59,7 +59,7 @@
               <label class="control-label" for="code" >Supplier Code :</label >
             </div >
             <div class="col-md-8" >
-              <p id="code" data-th-text="${supplierDetail.code}" class="display_detail text-white" ></p >
+              <p id="code" data-th-text="${supplierDetail.code}" class="display_detail text-dark" ></p >
             </div >
           </div >
           <!--Name-->
@@ -69,7 +69,7 @@
             </div >
             <div class="col-md-8" >
               <p id="name" data-th-text="${supplierDetail.name}"
-                 class="display_detail text-white" ></p >
+                 class="display_detail text-dark" ></p >
             </div >
           </div >
           <!--BRN-->
@@ -84,21 +84,21 @@
           <!--Contact One-->
           <div class="form-row text-right" >
             <div class="col-md-4" >
-              <label class="control-label" for="contactOne" >Contact No1 :</label >
+              <label class="control-label" for="contactOne" >Mobile :</label >
             </div >
             <div class="col-md-8" >
               <p id="contactOne" data-th-text="${supplierDetail.contactOne}"
-                 class="display_detail text-white" ></p >
+                 class="display_detail text-dark" ></p >
             </div >
           </div >
           <!--Contact Two-->
           <div class="form-row text-right" >
             <div class="col-md-4" >
-              <label class="control-label" for="contactTwo" >Contact No2 :</label >
+              <label class="control-label" for="contactTwo" >Company Hotline:</label >
             </div >
             <div class="col-md-8" >
               <p id="contactTwo" data-th-text="${supplierDetail.contactTwo}"
-                 class="display_detail text-white" ></p >
+                 class="display_detail text-dark" ></p >
             </div >
           </div >
         </div >
@@ -111,7 +111,7 @@
             </div >
             <div class="col-md-8" >
               <p id="email" data-th-text="${supplierDetail.email}"
-                 class="display_detail text-white" ></p >
+                 class="display_detail text-dark" ></p >
             </div >
           </div >
           <!--Address-->
@@ -120,7 +120,7 @@
               <label class="control-label" for="address" >Address :</label >
             </div >
             <div class="col-md-8 text-left" >
-              <p id="address" class="display_detail text-white "
+              <p id="address" class="display_detail text-dark "
                  data-th-utext="${supplierDetail.address}" ></p >
             </div >
           </div >
@@ -131,7 +131,7 @@
             </div >
             <div class="col-md-8" >
               <p id="createdBy" data-th-text="${supplierDetail.createdBy}"
-                 class="display_detail text-white" ></p >
+                 class="display_detail text-dark" ></p >
             </div >
           </div >
           <!--Created at-->
@@ -142,7 +142,7 @@
             <div class="col-md-8" >
               <p id="createdAt"
                  data-th-text="${#temporals.format(supplierDetail.createdAt, 'dd-MM-yyyy HH:mm')}"
-                 class="display_detail text-white" ></p >
+                 class="display_detail text-dark" ></p >
             </div >
           </div >
           <!--Updated by-->
@@ -153,7 +153,7 @@
             <div class="col-md-8" >
               <p id="updatedBy"
                  data-th-text="${#temporals.format(supplierDetail.updatedAt, 'dd-MM-yyyy HH:mm')}"
-                 class="display_detail text-white" ></p >
+                 class="display_detail text-dark" ></p >
             </div >
           </div >
           <!--Updated at-->
@@ -163,44 +163,45 @@
             </div >
             <div class="col-md-8" >
               <p id="updatedAt" data-th-text="${{supplierDetail.updatedAt}}"
-                 class="display_detail text-white" ></p >
+                 class="display_detail text-dark" ></p >
             </div >
           </div >
         </div >
       </div >
     </div >
   </div >
-  <div class="container-fluid detailform text-white " style="height:450px" >
-    <div class="col-sm-12 flex-column text-white " >
-      <div class="row" >
-        <div class="col" id="itemListPresent" data-th-if="${not #lists.isEmpty(supplierDetail.supplierItems)}" >
-          <table class="table table-hover table-striped text-white" id="myTable" >
-            <thead >
-            <tr >
-              <th > Index</th >
-              <th > Main Category</th >
-              <th > Sub Category</th >
-              <th > Name</th >
-              <th > ROP</th >
-              <th > Modify</th >
-            </tr >
-            </thead >
-            <tbody >
-            <tr data-th-each="supplierItem, rowCount : ${supplierDetail.supplierItems}" >
-              <th data-th-text="${rowCount.count}" ></th >
-              <th data-th-text="${supplierItem.item.category.mainCategory.mainCategory}" ></th >
-              <th data-th-text="${supplierItem.item.category.name}" ></th >
-              <th data-th-text="${supplierItem.item.name}" ></th >
-              <th data-th-text="${supplierItem.item.rop}" ></th >
-              <th >
-                <a data-th-href="${'/item/' + supplierItem.item.id}" class="btn btn-info btn-sm" ><i
+</div >
+
+<div class="container-fluid bg-white text-center " >
+  <div class="col-sm-12 flex-column text-white " >
+    <div class="row" >
+      <div class="col" id="itemListPresent" data-th-if="${not #lists.isEmpty(supplierDetail.supplierItems)}" >
+        <table class="table table-hover table-striped text-dark" id="myTable" >
+          <thead >
+          <tr >
+            <th > Index</th >
+            <th > Main Category</th >
+            <th > Sub Category</th >
+            <th > Name</th >
+            <th > ROP</th >
+            <th > Modify</th >
+          </tr >
+          </thead >
+          <tbody >
+          <tr data-th-each="supplierItem, rowCount : ${supplierDetail.supplierItems}" >
+            <th data-th-text="${rowCount.count}" ></th >
+            <th data-th-text="${supplierItem.item.category.mainCategory.mainCategory}" ></th >
+            <th data-th-text="${supplierItem.item.category.name}" ></th >
+            <th data-th-text="${supplierItem.item.name}" ></th >
+            <th data-th-text="${supplierItem.item.rop}" ></th >
+            <th >
+              <a data-th-href="${'/item/' + supplierItem.item.id}" class="btn btn-info btn-sm" ><i
                       class="fa fa-folder-open" style="font-size: 15px" ></i >&nbsp;View</a >
 
-              </th >
-            </tr >
-            </tbody >
-          </table >
-        </div >
+            </th >
+          </tr >
+          </tbody >
+        </table >
       </div >
     </div >
   </div >
