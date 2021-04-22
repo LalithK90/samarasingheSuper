@@ -309,6 +309,61 @@
     }
 
 
+    $('#form').submit(function(e) {
+      e.preventDefault();
+
+      let subCategory = $("#subCategory option:selected").text();
+      let brand = $("#brand option:selected").text();
+
+      var confirmmassage =
+
+              " Main Category "+document.getElementById("mainCategory").value+
+              "\nSub Category  : " + subCategory+
+              "\nBrand: " + brand+
+              "\nAmmount : " + document.getElementById("eName").value+
+              "\nMeasurement : " + document.getElementById("measurement").value+
+              "\nReorder Point : " + document.getElementById("rop").value+
+              "\nSell Price : " + document.getElementById("sellPrice").value;
+
+      swal({
+        title: "Are you sure?",
+        text: confirmmassage,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+              .then((willDelete) => {
+                if (willDelete) {
+
+                  swal("Processing.................");
+                  document.getElementById('form').submit();
+
+                } else {
+                  swal("Your imaginary file is safe!");
+                }
+              });
+
+    });
+
+    $(document).ready(function () {
+              let message = '';
+              $('.error').each(function (index) {
+                message += $(this).text();
+              });
+
+              if (message) {
+                setTimeout(function () {
+                  swal({
+                    title: "System Errors  ",
+                    icon: "warning",
+                    text: message,
+                  });
+                }, 500);
+              }
+            }
+    );
+
+
 </script >
 </body >
 </html >

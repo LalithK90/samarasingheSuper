@@ -59,7 +59,7 @@
                 <th >
                   <a id="discountRatioEdit" data-th-href="${'/discountRatio/edit/' + discountRatio.id}"
                      class="btn btn-warning btn-sm" ><i class="fa fa-edit" ></i >&nbsp;Edit</a >
-                  <a id="discountRatioRemove" data-th-href="${'/discountRatio/delete/' + discountRatio.id}"
+                  <a id="discountRatioRemove" data-th-id="${'/discountRatio/delete/' + discountRatio.id}" onclick="confirmDelete(this)"
                      data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
                      class="btn btn-danger btn-sm" >
                     <i class="fa fa-trash" ></i >

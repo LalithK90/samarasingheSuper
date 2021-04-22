@@ -66,8 +66,8 @@
                      class="btn btn-info btn-sm" >&nbsp;View</a >
                   <a id="employeeEdit" data-th-href="${'/employee/edit/' + employee.id}"
                      class="btn btn-warning btn-sm" ><i class="fa fa-edit" ></i >&nbsp;Edit</a >
-                  <a id="employeeRemove" data-th-href="${'/employee/remove/' + employee.id}"
-                     data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                  <a id="employeeRemove" data-th-id="${'/employee/remove/' + employee.id}"
+                     data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" onclick="confirmDelete(this)"
                      class="btn btn-danger btn-sm" ><i class="fa fa-trash" ></i >
                     Delete</a >
                 </th >
