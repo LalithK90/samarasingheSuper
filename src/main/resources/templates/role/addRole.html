@@ -17,7 +17,7 @@
                 </a >
               </div >
               <div class="col" >
-                <h4 class="text-light text-center" >
+                <h4 class="text-dark text-center" >
                   <strong >
                     <span id="formHeader" data-th-text="${addStatus==true?'Add New Role ':'Update Role'}" ></span >
                   </strong >
@@ -34,7 +34,7 @@
           <div class="form-group col-md-12 col-sm-12 text-center flex-column" >
             <div class="col-sm-6 col-md-6 offset-2" >
               <div id="idHide" data-th-if="${addStatus==false}" class="form-row text-right" >
-                <div class="col-md-4" >
+                <div class="col-md-4" ><span class="requiredfield">*</span>
                   <label class="control-label" for="id" >ID :</label >
                 </div >
                 <div class="col-md-8" >
@@ -42,7 +42,7 @@
                 </div >
               </div >
               <div class="form-row text-right" >
-                <div class="col-md-4" >
+                <div class="col-md-4" ><span class="requiredfield">*</span>
                   <label class="control-label" for="roleName" >Role Name :</label >
                 </div >
                 <div class="col-md-8" >

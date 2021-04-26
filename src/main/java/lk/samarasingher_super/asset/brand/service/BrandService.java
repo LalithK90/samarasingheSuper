@@ -54,9 +54,13 @@ public class BrandService implements AbstractService<Brand, Integer> {
         return brandDao.findAll(brandExample);
     }
 
-
     public Brand findByName(String name) {
         return brandDao.findByName(name);
 
     }
+
+//Brand Service
+ public Brand findByNameAndCategoryId(String name,Integer categoryId){
+        return brandDao.findByNameAndCategoryId(name,categoryId);
+ }
 }

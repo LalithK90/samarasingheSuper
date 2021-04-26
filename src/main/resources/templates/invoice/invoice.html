@@ -67,7 +67,7 @@
         <div class="row " >
           <div class="col-md-12" >
             <table class="table table-hover table-responsive mt-4 col-md-12" id="myTable"  style="margin-left:150px">
-              <thead >
+              <thead class="thead-dark">
               <tr >
                 <th >Index</th >
                 <th >Number</th >
@@ -90,7 +90,7 @@
                       class="fa fa-folder-open" ></i >&nbsp;View</a >&nbsp;
                 </th >
                 <th data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}" ><a
-                      class="btn btn-danger" data-th-href="${'/invoice/remove/' + invoice.id}" style="width: 100px" >
+                      class="btn btn-danger" data-th-id="${'/invoice/remove/' + invoice.id} "  onclick="confirmDelete(this)" style="width: 100px" >
                   <i class="fa fa-recycle" style="font-size:20px;margin-right:5px" ></i >Delete</a >
                 </th >
               </tr >

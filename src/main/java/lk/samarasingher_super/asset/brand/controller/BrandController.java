@@ -38,9 +38,9 @@ public class BrandController {
         model.addAttribute("brand", new Brand());
         model.addAttribute("mainCategories", MainCategory.values());
         model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
-            .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
-            .build()
-            .toString());
+                .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
+                .build()
+                .toString());
 
         return "brand/addBrand";
     }
@@ -49,9 +49,9 @@ public class BrandController {
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("addStatus", false);
         model.addAttribute("brand", brandService.findById(id));model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
-            .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
-            .build()
-            .toString());
+                .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
+                .build()
+                .toString());
 
         model.addAttribute("mainCategories", MainCategory.values());
         return "brand/addBrand";
@@ -60,24 +60,30 @@ public class BrandController {
     @PostMapping(value = {"/save", "/update"})
     public String persist(@Valid @ModelAttribute Brand brand, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 
-
+        //Brand Controller eke liyanna
         Brand name = null;
 
         if ( brand.getName() != null && brand.getId() == null ) {
-            name = brandService.findByName(brand.getName());
+
+            System.out.println("brand.getName() "+ brand.getName());
+            System.out.println("brand.getCategory().getId()" +brand.getCategory().getId());
+
+            name = brandService.findByNameAndCategoryId(brand.getName(),brand.getCategory().getId());
         }
+
+
         if ( name != null ) {
             ObjectError error = new ObjectError("name",
-                                                "Their is already Brand on same name . System message ");
+                    "Their is already Brand on Same SubCategory name System message ");
             bindingResult.addError(error);
         }
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("addStatus", true);
             model.addAttribute("brand", brand);model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
-                .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
-                .build()
-                .toString());
+                    .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
+                    .build()
+                    .toString());
 
             model.addAttribute("mainCategories", MainCategory.values());
             return "brand/addBrand";
@@ -87,15 +93,15 @@ public class BrandController {
             brandService.persist(brand);
         } catch ( Exception e ) {
             ObjectError error = new ObjectError("brand",
-                                                "Please resolve following erros . System message "+e.getCause().getCause().getMessage());
+                    "Please resolve following erros . System message "+e.getCause().getCause().getMessage());
             bindingResult.addError(error);
             e.printStackTrace();
             if (bindingResult.hasErrors()) {
                 model.addAttribute("addStatus", true);
                 model.addAttribute("brand", brand);model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
-                    .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
-                    .build()
-                    .toString());
+                        .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
+                        .build()
+                        .toString());
 
                 model.addAttribute("mainCategories", MainCategory.values());
                 return "brand/addBrand";
@@ -109,4 +115,31 @@ public class BrandController {
         brandService.delete(id);
         return "redirect:/brand";
     }
+
+    @GetMapping("/isexists")
+        public String balla(Model model){
+        model.addAttribute("addStatus", true);
+        model.addAttribute("brand", new Brand());
+        model.addAttribute("mainCategories", MainCategory.values());
+        model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
+                .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
+                .build()
+                .toString());
+
+
+            return "brand/viva";
+        }
+
+        @PostMapping("/report")
+    public String report(@Valid @ModelAttribute Brand brand, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model){
+           Brand name = brandService.findByNameAndCategoryId(brand.getName(),brand.getCategory().getId());
+           String getName = name.getName();
+           String catname =  name.getCategory().getName();
+           model.addAttribute("getName",getName);
+           model.addAttribute("catname",catname);
+
+           model.addAttribute("message","Report details: Given Brand exists");
+            model.addAttribute("show",true);
+        return "brand/report";
+        }
 }

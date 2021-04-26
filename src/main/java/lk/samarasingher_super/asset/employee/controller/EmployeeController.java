@@ -127,7 +127,7 @@ public class EmployeeController {
 
     //NIC
 
-    if ( employee.getNic() != null && employee.getId() == null ) {
+    if ( employee.getNic() != null && employee.getId() == null  ) {
       employeeNic = employeeService.findByNic(employee.getNic());
     }
     if ( employeeNic != null) {
@@ -156,7 +156,6 @@ public class EmployeeController {
               "There is employee on same Mobile . System message ");
       result.addError(error);
     }
-
 
 
     if ( result.hasErrors() ) {

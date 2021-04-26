@@ -19,7 +19,7 @@
         </div >
         <!--Form Name-->
         <div class="col" >
-          <h4 class="text text-center" >
+          <h4 class="text text-center text-white" >
 
             <span data-th-text="${addStatus==true?'New Brand':'Update Brand Details'}" ></span >
 
@@ -54,9 +54,9 @@
               </div > <!--Main Category -->
               <div class="form-row text-right" >
                 <div class="col-md-4" >
-                  <label class="control-label" for="mainCategory" >Main Category :</label >
+                  <label class="control-label" for="mainCategory" ><span class="requiredfield">*</span> Main Category :</label >
                 </div >
-                <div class="col-md-4" >
+                <div class="col-md-8" >
                   <select id="mainCategory" data-th-value="${addStatus==false?'brand.category.mainCategory':''}" class="form-control"
                           tabindex="4" style="font-size: large"
                           required >
@@ -71,10 +71,10 @@
               </div >
               <!--Sub Category -->
               <div class="form-row text-right" >
-                <div class="col-md-4" >
+                <div class="col-md-4" ><span class="requiredfield">*</span>
                   <label class="control-label" for="subCategory" >Sub Category :</label >
                 </div >
-                <div class="col-md-4" >
+                <div class="col-md-8" >
                   <select id="subCategory" data-th-name="${'category'}" class="form-control" tabindex="4"
                           style="font-size: large" required >
                     <option value="" disabled >Please select</option >
@@ -84,7 +84,7 @@
               </div >
               <!--Name-->
               <div class="form-row text-right" >
-                <div class="col-md-4" >
+                <div class="col-md-4" ><span class="requiredfield">*</span>
                   <label class="control-label" for="name" >Brand Name :</label >
                 </div >
                 <div class="col-md-8" >

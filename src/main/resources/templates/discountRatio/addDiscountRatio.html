@@ -20,7 +20,7 @@
                             </a>
                         </div>
                         <div class="col">
-                            <h4 class="text-dark text-center">
+                            <h4 class="text-white text-center">
                     <span data-th-text="${addStatus==true?'New Discount Ratio Add':'Update Discount Ratio Details'}"></span>
                             </h4>
                         </div>
@@ -38,8 +38,8 @@
                     <input type="text" data-th-if="${addStatus==false}" data-th-field="*{liveDead}" hidden>
                     <!--Name-->
                     <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="name">Name :</label>
+                        <div class="col-md-4"><span class="requiredfield">*</span>
+                            <label class="control-label" for="name">Discount Name :</label>
                         </div>
                         <div class="col-md-8">
                             <input class="form-control" data-th-field="*{name}" id="name" required tabindex="4"
@@ -51,7 +51,7 @@
 
                     <!--amount-->
                     <div class="form-row text-right">
-                        <div class="col-md-4">
+                        <div class="col-md-4"><span class="requiredfield">*</span>
                             <label class="control-label" for="name">Amount :</label>
                         </div>
                         <div class="col-md-8">
@@ -63,7 +63,7 @@
                     </div>
                     <!--Discount Ratio status-->
                     <div class="form-row text-right" data-th-if="${addStatus==false}">
-                        <div class="col-md-4">
+                        <div class="col-md-4"><span class="requiredfield">*</span>
                             <label class="control-label" for="discountRatioStatus">Discount Ratio Status :</label>
                         </div>
                         <div class="col-md-8">

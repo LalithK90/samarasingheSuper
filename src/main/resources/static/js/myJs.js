@@ -35,11 +35,13 @@ $(document).ready(function () {
         $("input:radio[name=gender]").filter(`[value=${calculateGender(nic)}]`).prop('checked', true);
 
     });
+
+
     /* Patient and employee Nic Validation - end*/
     //input type date can not be selected future date
-    $('[type="date"]').prop('max', function () {
+   /* $('[type="date"]').prop('max', function () {
         return new Date().toJSON().split('T')[0];
-    });
+    });*/
 
 });
 
@@ -49,17 +51,14 @@ let nicRegex = /^([0-9]{9}[|X|V]|[0-9]{12})$/;
 let mobileRegex = /^([0][7][\d]{8}$)|^([7][\d]{8})$/;
 let landRegex = /^0((11)|(2(1|[3-7]))|(3[1-8])|(4(1|5|7))|(5(1|2|4|5|7))|(6(3|[5-7]))|([8-9]1))([2-4]|5|7|9)[0-9]{6}$/;
 let callingNameRegex = /^[A-Za-z\\s]+$/;
-let nameRegex = /^[a-zA-Z.-]{3}[ a-zA-Z.-]+$/;
+let nameRegex = /^[a-zA-Z.-]{2}[ a-zA-Z.-]+$/;
 let numberRegex = /^([eE][hH][sS][\d]+)$/;
 let invoiceNumberRegex = /^[0-9]{10}$/;
-let addressRegex = /^[0-9a-zA-Z\s,-,/]+$/;
+let addressRegex = /^[0-9a-zA-Z\s,-,./]+$/;
 let officeEmailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 let emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 let roleNameRegex = /^[a-zA-Z.-]{3}[ a-zA-Z.-]+$/;
 let suppliernameRegex = /^[a-zA-Z.-]{3}[ a-zA-Z.-]+$/;
-
-
-
 
 //Nic - data of birth - start
 let dateLengthValidate = function (day) {
@@ -252,6 +251,7 @@ let mobileValidate = function (val) {
     }
 };
 
+
 let landValidate = function (val) {
     let land = $(val).val();
     if (landRegex.test(land)) {
@@ -288,17 +288,24 @@ $("#suppliername").bind("keyup", function () {
     }
 });
 
-
-
-
-
-
 //Name validation
 $("#name").bind("keyup", function () {
     let name = $(this).val();
     if (nameRegex.test(name)) {
         backgroundColourChangeGood($(this));
     } else if (name.length === 0) {
+        backgroundColourChangeNothingToChange($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
+
+//Name validation
+$("#contactTwo").bind("keyup", function () {
+    let contactTwo = $(this).val();
+    if (landRegex.test(contactTwo)) {
+        backgroundColourChangeGood($(this));
+    } else if (contactTwo.length === 0) {
         backgroundColourChangeNothingToChange($(this));
     } else {
         backgroundColourChangeBad($(this));

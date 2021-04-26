@@ -71,14 +71,14 @@ public class SupplierItemController {
   @GetMapping( "/supplier/{id}" )
   public String addPriceToSupplierItem(@PathVariable int id, Model model) {
     Supplier supplier = supplierService.findById(id);
-    List< SupplierItem > supplierItems = supplierItemService.findBySupplier(supplier);
+    List<SupplierItem> supplierItems = supplierItemService.findBySupplier(supplier);
     model.addAttribute("itemSupplierStatus", ItemSupplierStatus.values());
     model.addAttribute("supplierDetail", supplier);
     model.addAttribute("supplierDetailShow", false);
     model.addAttribute("supplierItemEdit", false);
     model.addAttribute("currentlyBuyingItems", supplierItems);
 
-    List< Item > items = itemService.findAll();
+    List<Item> items = itemService.findAll();
 
     if ( !supplierItems.isEmpty() ) {
       for ( Item item : itemService.findAll() ) {
@@ -146,8 +146,8 @@ public class SupplierItemController {
   public PurchaseOrderItemLedger purchaseOrderSupplierItem(@RequestParam( "supplierId" ) Integer supplierId,
                                                            @RequestParam( "itemId" ) Integer itemId) {
     SupplierItem supplierItem = supplierItemService.findBySupplierAndItemItemSupplierStatus(
-        supplierService.findByIdAndItemSupplierStatus(supplierId, ItemSupplierStatus.CURRENTLY_BUYING),
-        itemService.findById(itemId), ItemSupplierStatus.CURRENTLY_BUYING);
+            supplierService.findByIdAndItemSupplierStatus(supplierId, ItemSupplierStatus.CURRENTLY_BUYING),
+            itemService.findById(itemId), ItemSupplierStatus.CURRENTLY_BUYING);
     PurchaseOrderItemLedger purchaseOrderItemLedger = new PurchaseOrderItemLedger();
     /* 1. item ID   2. Item name 3. Rop 4. Price 5. Available Quantity. */
     purchaseOrderItemLedger.setItemId(supplierItem.getItem().getId());
@@ -156,12 +156,12 @@ public class SupplierItemController {
     purchaseOrderItemLedger.setPrice(supplierItem.getPrice());
 
     //comparing to learn comparator
-    Comparator< Ledger > ledgerComparator = Comparator.comparing(AuditEntity::getId);
+    Comparator<Ledger> ledgerComparator = Comparator.comparing(AuditEntity::getId);
     List< Ledger > ledgers =
-        ledgerDao.findByItem(supplierItem.getItem())
-            .stream()
-            .sorted(ledgerComparator)
-            .collect(Collectors.toList());
+            ledgerDao.findByItem(supplierItem.getItem())
+                    .stream()
+                    .sorted(ledgerComparator)
+                    .collect(Collectors.toList());
 
     if ( ledgers.size() != 0 ) {
       purchaseOrderItemLedger.setAvailableQuantity(ledgers.get(0).getQuantity());

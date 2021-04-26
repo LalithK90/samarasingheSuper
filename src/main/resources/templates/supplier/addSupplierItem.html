@@ -5,6 +5,10 @@
 </head>
 <body>
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
+
+<link data-th-href="@{/css/combo-box-search.css}" media="all" rel="stylesheet" type="text/css" />
+
+
 <!--Multi CSS-->
 <link data-th-href="@{/css/multi.css}" media="all" rel="stylesheet" type="text/css"/>
 <!--Heading Area -->
@@ -18,7 +22,7 @@
         </div>
         <!--Form Name-->
         <div class="col">
-            <h4 class="text-dark text-center">
+            <h4 class="text-white text-center">
 
                     Supplier Item Management
 
@@ -88,15 +92,15 @@
         <form data-th-action="${'/supplierItem'}" method="POST" class="mb-5 formedit formedit" data-th-object="${supplier}"  style="margin-top:-10px">
             <input type="hidden" id="supplierId" data-th-value="${supplierDetail.id}">
             <div class="form-row col-md-6" data-th-if="${supplierItemEdit==false}">
-                <div class="col-md-4 text-white">
+                <div class="col-md-4 text-dark">
                     <label class="control-label" for="item">Select Items:</label>
                 </div>
                 <div class="text-left col-md-8">
-                    <select class="form-control" id="item">
+                    <select class="form-control" id="item" >
                         <option value="" selected> Please Select</option>
                         <option data-th-each="item : ${items}"
                                 data-th-value="${item.id}"
-                                data-th-text="${item.name}"> Please Select
+                                data-th-text="${item.name}+' - '+${'  Sell Price:  ' +item.sellPrice}"> Please Select
                         </option>
                     </select>
                 </div>
@@ -106,7 +110,7 @@
                 <!--Add new Item-->
                 <div th:class="${supplierItemEdit==true?'container-fluid':'col-md-6'}">
                     <table class="table table-striped text-white table-inverse table-dark" id="selectedItemInTable" style="width: 500px;margin-left:50px">
-                        <legend class=" text-white">Selected Items </legend>
+                        <legend class=" text-dark">Selected Items </legend>
                         <thead class="thead-inverse">
                         <tr>
                             <th>Index</th>
@@ -167,7 +171,7 @@
                 <!--Show already listed item-->
                 <div class="col-md-6" data-th-if="${supplierItemEdit==false}">
                     <table class="table text-white table-striped table-dark" style="width: 500px;margin-left:50px">
-                        <legend class="text-white">Currently Buying Items<span>
+                        <legend class="text-dark">Currently Buying Items<span>
                             <a data-th-href="${'/supplierItem/edit/'+ supplierDetail.id}">
                             <button class="btn btn-warning" type="button">Edit Item</button>
                         </a></span></legend>
@@ -211,22 +215,33 @@
 </div>
 
 
+
 <!--Supplier Item add - end-->
 <div data-th-replace="~{fragments/footer :: footerFragment}"></div>
 <div data-th-replace="~{fragments/script :: scriptFragment}"></div>
-
+<script data-th-src="@{/js/combo-box-search.js}" ></script >
 <script>
+
+
     $(document).ready(function () {
 //when search criteria add
         $("#searchCriteria").bind("change", function () {
             $("#searchValue").attr("name", $(this).val());
         });
+
+        $("#item").select2({
+            data: $(this).val()
+        });
     });
-    //add new item and price
-    $("#item").bind('change', function () {
+
+
+    //add
+
+ $("#item").bind('change', function () {
         let valueA = optionElementRemove("#item");
         tableRowAdd(valueA);
     });
+
     //table row remove
     let tableRowRemove = function (obj) {
 
@@ -242,6 +257,8 @@
 
 
     }
+
+
     //option tag remove
     let optionElementRemove = function (id) {
         let selectedValue = $(id).val();

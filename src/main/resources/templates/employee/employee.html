@@ -17,7 +17,7 @@
           </div >
 
             <div class="col" >
-              <h4 class="text-dark text-center" >
+              <h4 class="text-white text-center" >
                   Employeee Management
               </h4 >
             </div >
@@ -31,9 +31,9 @@
       <div class="container-fluid tableview text-center text-white" >
         <div class="col" >
           <div class="col" id="employeeListPresent" data-th-if="${not #lists.isEmpty(employees)}" >
-            <table class="table table-striped table-hover text-white" id="myTable" >
+            <table class="table table-striped table-hover" id="myTable" >
 
-              <thead>
+              <thead class="thead-dark">
               <tr >
                 <th > Index</th >
                 <th > Image</th >
@@ -66,8 +66,8 @@
                      class="btn btn-info btn-sm" >&nbsp;View</a >
                   <a id="employeeEdit" data-th-href="${'/employee/edit/' + employee.id}"
                      class="btn btn-warning btn-sm" ><i class="fa fa-edit" ></i >&nbsp;Edit</a >
-                  <a id="employeeRemove" data-th-href="${'/employee/remove/' + employee.id}"
-                     data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                  <a id="employeeRemove" data-th-id="${'/employee/remove/' + employee.id}"
+                     data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" onclick="confirmDelete(this)"
                      class="btn btn-danger btn-sm" ><i class="fa fa-trash" ></i >
                     Delete</a >
                 </th >
